@@ -570,6 +570,78 @@ footer{
   }
 }
 
+
+/* PAPOA mobile refinement v6 */
+.mobileNav{display:none}
+header>.mobileMenuToggle{border:0;background:transparent;padding:0;color:inherit;cursor:pointer}
+@media(max-width:780px){
+  html,body{overflow-x:hidden}
+  body.menuOpen{overflow:hidden}
+  header{position:absolute;z-index:40;padding-left:20px;padding-right:20px}
+  header>.mobileMenuToggle{display:grid;position:relative;z-index:42}
+  .mobileNav{
+    position:fixed;inset:0;z-index:35;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:92px 24px 42px;
+    background:rgba(8,10,10,.97);
+    backdrop-filter:blur(14px);
+    opacity:0;visibility:hidden;transform:translateY(-10px);
+    transition:opacity .28s ease,visibility .28s ease,transform .28s ease
+  }
+  body.menuOpen .mobileNav{opacity:1;visibility:visible;transform:none}
+  .mobileNav a{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:17px 0;border-bottom:1px solid rgba(255,255,255,.14);
+    font-size:28px;line-height:1;letter-spacing:-.04em
+  }
+  .mobileNav a:after{content:"→";font-size:18px;color:#8f918d}
+  .hero{height:82svh;min-height:600px}
+  .heroContent{left:20px;right:20px;top:auto;bottom:15%;max-width:340px}
+  .hero .label{font-size:7px;line-height:1.5;letter-spacing:.25em}
+  .hero h1{font-size:clamp(64px,20vw,78px);margin:14px 0 7px}
+  .heroSub{font-size:clamp(27px,8.2vw,32px);line-height:1.02;max-width:300px;margin-bottom:24px}
+  .pill{min-width:0;max-width:100%;gap:24px;font-size:7px;padding:11px 13px 10px 15px}
+  .heroNums{left:20px;bottom:22px;font-size:7px}
+  .studio{padding:58px 22px;gap:27px}
+  .studio h2{font-size:clamp(34px,10vw,42px);line-height:1.02}
+  .studio p{font-size:14px;line-height:1.62}
+  .values{font-size:7px;padding-left:20px;line-height:2}
+  .discipline{min-height:58svh}
+  .dContent{padding:25px 22px}
+  .dTitle h3{font-size:23px}.dTitle p{font-size:11px}
+  .projects{padding:58px 22px}
+  .projects h2{font-size:clamp(40px,12vw,50px)}
+  .projectGrid{gap:32px}.projectImg{aspect-ratio:1.45/1}
+  .perspective{height:72svh;min-height:560px;background-position:52% center}
+  .pLeft{left:22px;top:11%}.pLeft h2{font-size:clamp(37px,11vw,46px)}
+  .pRight{right:22px;bottom:28px;width:min(76%,310px)}
+  .pRight p{font-size:13px;line-height:1.5}
+  .testimonial{
+    min-height:530px;padding:72px 22px;
+    background-position:34% center
+  }
+  .quoteWrap{margin-left:0;padding-left:34px}
+  .quoteMark{left:-2px;top:-25px;font-size:76px}
+  blockquote{font-size:clamp(23px,7vw,28px);line-height:1.12}
+  .author{font-size:7px}
+  footer{padding:48px 22px 26px}
+  .footerGrid{grid-template-columns:1fr;gap:27px}
+  .footerBrand{font-size:36px}
+  .footerCopy{font-size:11px}
+  .footerLinks{grid-template-columns:1fr 1fr;font-size:11px;gap:13px 28px}
+  .mail .title,.mailRow input{font-size:11px}
+  .socialLink,.socialIcon{width:32px;height:32px}
+  .socialLink svg,.socialIcon svg{width:23px;height:23px}
+  .footerBottom{margin-top:38px;display:grid;gap:7px;font-size:9px}
+}
+@media(max-width:390px){
+  .hero h1{font-size:64px}
+  .heroSub{font-size:27px}
+  .mobileNav a{font-size:25px}
+  .studio h2{font-size:34px}
+  .pLeft h2{font-size:38px}
+}
+
 </style>
 </head>
 <body>
@@ -583,8 +655,15 @@ footer{
 <a href="#contact">Contact</a>
 <span class="menuIcon" aria-hidden="true"></span>
 </nav>
-<span class="menuIcon" aria-hidden="true"></span>
+<button class="menuIcon mobileMenuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav"></button>
 </header>
+<div class="mobileNav" id="mobileNav" aria-hidden="true">
+<a href="./#studio">The Studio</a>
+<a href="./yachts/">Yachts</a>
+<a href="./automotive/">Automotive</a>
+<a href="./interiors/">Interiors</a>
+<a href="#contact">Contact</a>
+</div>
 
 <main id="top">
 <section class="hero">
@@ -657,6 +736,16 @@ footer{
 const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("in")}),{threshold:.12});
 document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
 setTimeout(()=>document.querySelector(".heroContent")?.classList.add("in"),100);
+</script>
+<script>
+const menuToggle=document.querySelector(".mobileMenuToggle");
+const mobileNav=document.getElementById("mobileNav");
+if(menuToggle&&mobileNav){
+  const closeMenu=()=>{document.body.classList.remove("menuOpen");menuToggle.setAttribute("aria-expanded","false");mobileNav.setAttribute("aria-hidden","true")};
+  menuToggle.addEventListener("click",()=>{const open=!document.body.classList.contains("menuOpen");document.body.classList.toggle("menuOpen",open);menuToggle.setAttribute("aria-expanded",String(open));mobileNav.setAttribute("aria-hidden",String(!open))});
+  mobileNav.querySelectorAll("a").forEach(a=>a.addEventListener("click",closeMenu));
+  document.addEventListener("keydown",e=>{if(e.key==="Escape")closeMenu()});
+}
 </script>
 </body>
 </html>
