@@ -642,6 +642,99 @@ header>.mobileMenuToggle{border:0;background:transparent;padding:0;color:inherit
   .pLeft h2{font-size:38px}
 }
 
+
+/* PAPOA mobile layout hotfix v7 */
+@media(max-width:780px){
+  html,body{width:100%;max-width:100%;overflow-x:hidden}
+  body{position:relative}
+  header,main,section,footer{max-width:100vw}
+  .hero,.heroMedia,.studio,.disciplines,.projects,.perspective,.testimonial,footer{width:100%}
+  .heroMedia{inset:0}
+
+  /* reset desktop grids that were overriding the first mobile rules */
+  .studio{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) !important;
+    width:100%;
+    padding:58px 22px;
+    gap:28px;
+  }
+  .studio>div{min-width:0;width:100%}
+  .studio h2{
+    max-width:100%;
+    font-size:clamp(34px,10vw,42px);
+    overflow-wrap:normal;
+  }
+  .studioCopy{padding-top:0}
+  .studio p{max-width:100%;width:100%}
+  .values{
+    width:100%;
+    margin-top:2px;
+    padding:18px 0 0;
+    border-left:0;
+    border-top:1px solid rgba(255,255,255,.17);
+  }
+
+  .disciplines{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) !important;
+    width:100%;
+    height:auto;
+    min-height:0;
+    max-height:none;
+  }
+  .discipline{
+    width:100%;
+    min-width:0;
+    min-height:58svh;
+    border-right:0;
+    border-bottom:2px solid #0b0d0d;
+  }
+  .discipline:last-child{border-bottom:0}
+  .dContent{width:100%}
+
+  .projects{
+    width:100%;
+    padding:58px 22px;
+  }
+  .projectsHead{width:100%}
+  .projectGrid{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) !important;
+    width:100%;
+  }
+  .project{min-width:0;width:100%}
+  .projectImg{width:100%}
+
+  .perspective{
+    width:100%;
+    overflow:hidden;
+  }
+  .pLeft{max-width:calc(100% - 44px)}
+  .pRight{max-width:calc(100% - 44px)}
+
+  .testimonial{
+    width:100%;
+    display:block !important;
+    padding:72px 22px;
+  }
+  .quoteWrap{
+    width:100%;
+    max-width:100%;
+    margin-left:0;
+    transform:none;
+  }
+
+  footer{width:100%;padding:48px 22px 26px}
+  .footerGrid{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) !important;
+    width:100%;
+  }
+  .footerGrid>div{min-width:0}
+  .mailRow{width:100%}
+}
+
 </style>
 </head>
 <body>
