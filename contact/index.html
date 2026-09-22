@@ -334,6 +334,29 @@ footer{padding:43px var(--pad) 23px;background:#090b0b;border-top:1px solid var(
   .heroLead{font-size:28px}
 }
 
+
+/* PAPOA contact mobile title fit hotfix v3 */
+@media(max-width:900px){
+  .contactHero{overflow:hidden}
+  .contactHero h1{
+    display:block;
+    width:max-content;
+    max-width:none;
+    font-size:clamp(44px,12.4vw,52px);
+    line-height:.82;
+    letter-spacing:-.105em;
+    transform:scaleX(.88) scaleY(.80);
+    transform-origin:left bottom;
+    white-space:nowrap;
+  }
+}
+@media(max-width:390px){
+  .contactHero h1{
+    font-size:clamp(42px,12vw,48px);
+    transform:scaleX(.86) scaleY(.80);
+  }
+}
+
 </style>
 </head>
 <body>
