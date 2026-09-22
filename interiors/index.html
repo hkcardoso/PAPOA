@@ -368,6 +368,36 @@ header{height:64px}.brand{font-size:22px}nav a{display:none}.menu{display:grid}
   .g3{border-bottom:0!important}
 }
 
+
+/* Giraldo lead banner sizing v15 */
+.featureGiraldo .featureWrap{min-height:550px}
+.featureGiraldo .featureImage{
+  align-self:stretch!important;
+  min-height:550px!important;
+  overflow:hidden!important;
+  background:#111!important;
+}
+.featureGiraldo .featureImage img{
+  width:100%!important;
+  height:100%!important;
+  min-height:550px!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+}
+@media(max-width:900px){
+  .featureGiraldo .featureWrap{min-height:0}
+  .featureGiraldo .featureImage{
+    min-height:52svh!important;
+    height:52svh;
+  }
+  .featureGiraldo .featureImage img{
+    min-height:52svh!important;
+    height:52svh!important;
+    object-fit:cover!important;
+    object-position:center center!important;
+  }
+}
+
 </style>
 </head>
 <body class="page-interiors">
@@ -425,9 +455,9 @@ header{height:64px}.brand{font-size:22px}nav a{display:none}.menu{display:grid}
 </div>
 </section>
 
-<section class="feature">
+<section class="feature featureGiraldo">
 <div class="featureWrap">
-<a class="featureImage" href="./giraldo/?v=20260922-giraldo-first2" aria-label="View Giraldo project"><img src="https://clasto.pt/projects/Giraldo/Giraldo-01.webp" alt="Giraldo residential project visualization"></a>
+<a class="featureImage" href="./giraldo/?v=20260922-giraldo-first2" aria-label="View Giraldo project"><img src="https://clasto.pt/projects/Giraldo/giraldo-exterior-horizontal.webp" alt="Giraldo residential project visualization"></a>
 <div class="featureCopy">
 <div class="label">SELECTED CONCEPT · 01</div>
 <h2>GIRALDO<br>residential study.</h2>
