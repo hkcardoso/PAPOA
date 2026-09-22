@@ -357,6 +357,8 @@ footer{padding:43px var(--pad) 23px;background:#090b0b;border-top:1px solid var(
   }
 }
 
+
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
@@ -413,13 +415,14 @@ footer{padding:43px var(--pad) 23px;background:#090b0b;border-top:1px solid var(
 <div class="field"><label for="name">NAME</label><input id="name" name="name" autocomplete="name" required></div>
 <div class="field"><label for="email">EMAIL</label><input id="email" name="email" type="email" autocomplete="email" required></div>
 <div class="field"><label for="company">COMPANY / BRAND</label><input id="company" name="company" autocomplete="organization"></div>
+<div class="field"><label for="phone">PHONE (OPTIONAL)</label><input id="phone" name="phone" type="tel" autocomplete="tel"></div>
 <div class="field"><label for="discipline">DISCIPLINE</label><select id="discipline" name="discipline"><option>Yachts</option><option>Automotive</option><option>Interiors</option><option>Other</option></select></div>
 <div class="field full"><label for="subject">PROJECT / SUBJECT</label><input id="subject" name="subject" required></div>
 <div class="field full"><label for="message">TELL US ABOUT IT</label><textarea id="message" name="message" required></textarea></div>
 </div>
 <div class="formBottom">
-<div class="formNote">This static form opens your email app with the project information already filled in.</div>
-<button class="sendBtn" type="submit">SEND ENQUIRY <span>→</span></button>
+<div class="formNote">This opens your email app with the details filled in. Check and send the email there.</div>
+<button class="sendBtn" type="submit">OPEN EMAIL WITH DETAILS <span>→</span></button>
 </div>
 </form>
 </section>
@@ -457,6 +460,7 @@ document.getElementById("contactForm").addEventListener("submit",function(e){
   const name=data.get("name")||"";
   const email=data.get("email")||"";
   const company=data.get("company")||"";
+  const phone=data.get("phone")||"";
   const discipline=data.get("discipline")||"";
   const subject=data.get("subject")||"Project enquiry";
   const message=data.get("message")||"";
@@ -464,6 +468,7 @@ document.getElementById("contactForm").addEventListener("submit",function(e){
     "Name: "+name,
     "Email: "+email,
     "Company / Brand: "+company,
+    "Phone: "+phone,
     "Discipline: "+discipline,
     "",
     message
