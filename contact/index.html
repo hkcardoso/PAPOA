@@ -293,6 +293,47 @@ footer{padding:43px var(--pad) 23px;background:#090b0b;border-top:1px solid var(
   }
 }
 
+
+/* PAPOA contact mobile refinement v2 */
+@media(max-width:900px){
+  .contactHero{
+    min-height:610px;
+    height:auto;
+    padding:112px 22px 42px;
+  }
+  .heroGrid{gap:24px}
+  .contactHero h1{
+    max-width:100%;
+    font-size:clamp(54px,15.5vw,66px);
+    line-height:.80;
+    letter-spacing:-.09em;
+    transform:scaleX(.96) scaleY(.80);
+    transform-origin:left bottom;
+    white-space:nowrap;
+  }
+  .heroLead{
+    margin-top:14px;
+    font-size:clamp(29px,8.2vw,34px);
+    line-height:1.03;
+  }
+  .heroSide{
+    max-width:100%;
+    font-size:13px;
+    line-height:1.55;
+  }
+  .heroSide a{margin-top:16px}
+  .contactMain{padding-top:52px}
+}
+@media(max-width:390px){
+  .contactHero{
+    min-height:585px;
+    padding-left:20px;
+    padding-right:20px;
+  }
+  .contactHero h1{font-size:clamp(50px,15vw,59px)}
+  .heroLead{font-size:28px}
+}
+
 </style>
 </head>
 <body>
