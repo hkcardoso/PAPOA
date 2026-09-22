@@ -1,0 +1,102 @@
+name: Mirror original PAPOA
+
+on:
+  push:
+    paths:
+      - '.github/workflows/mirror-original.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch original published site
+        shell: bash
+        run: |
+          set -euxo pipefail
+          rm -rf original-mirror
+          mkdir -p original-mirror
+          curl --fail --location --retry 3 --connect-timeout 20 \
+            -D original-mirror/headers.txt \
+            'https://papoa-studio.hkcardoso.chatgpt.site/' \
+            -o original-mirror/index.html
+          printf '\nDownloaded bytes: '
+          wc -c < original-mirror/index.html
+
+      - name: Extract asset URLs
+        shell: python
+        run: |
+          from pathlib import Path
+          from html.parser import HTMLParser
+          from urllib.parse import urljoin
+          base='https://papoa-studio.hkcardoso.chatgpt.site/'
+          html=Path('original-mirror/index.html').read_text(errors='replace')
+          class P(HTMLParser):
+              def __init__(self):
+                  super().__init__(); self.urls=[]
+              def handle_starttag(self, tag, attrs):
+                  d=dict(attrs)
+                  for k in ('src','href','poster','srcset'):
+                      v=d.get(k)
+                      if not v: continue
+                      if k=='srcset':
+                          for part in v.split(','):
+                              u=part.strip().split(' ')[0]
+                              if u: self.urls.append(urljoin(base,u))
+                      else:
+                          self.urls.append(urljoin(base,v))
+          p=P(); p.feed(html)
+          urls=[]
+          for u in p.urls:
+              if u.startswith(('http://','https://')) and u not in urls:
+                  urls.append(u)
+          Path('original-mirror/asset-urls.txt').write_text('\n'.join(urls)+'\n')
+          print('\n'.join(urls[:200]))
+
+      - name: Download referenced assets
+        shell: python
+        run: |
+          from pathlib import Path
+          from urllib.parse import urlparse
+          from urllib.request import Request, urlopen
+          import hashlib, mimetypes
+          root=Path('original-mirror/assets'); root.mkdir(parents=True,exist_ok=True)
+          urls=[u.strip() for u in Path('original-mirror/asset-urls.txt').read_text().splitlines() if u.strip()]
+          manifest=[]
+          for i,u in enumerate(urls[:300]):
+              try:
+                  req=Request(u,headers={'User-Agent':'Mozilla/5.0'})
+                  with urlopen(req,timeout=30) as r:
+                      data=r.read(25_000_000)
+                      ctype=(r.headers.get('content-type') or '').split(';')[0]
+                  path=urlparse(u).path
+                  suffix=Path(path).suffix
+                  if not suffix or len(suffix)>8:
+                      suffix=mimetypes.guess_extension(ctype) or '.bin'
+                  name=f'{i:03d}-'+hashlib.sha1(u.encode()).hexdigest()[:12]+suffix
+                  (root/name).write_bytes(data)
+                  manifest.append(f'{name}\t{ctype}\t{u}')
+              except Exception as e:
+                  manifest.append(f'ERROR\t{type(e).__name__}: {e}\t{u}')
+          Path('original-mirror/asset-manifest.tsv').write_text('\n'.join(manifest)+'\n')
+
+      - name: Commit mirror
+        shell: bash
+        run: |
+          set -euxo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add original-mirror
+          if git diff --cached --quiet; then
+            echo 'No mirror changes to commit.'
+            exit 0
+          fi
+          git commit -m 'Mirror original PAPOA site source and assets'
+          git push
