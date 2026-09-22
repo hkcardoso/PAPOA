@@ -100,10 +100,7 @@ header{height:64px}.brand{font-size:22px}nav a{display:none}.menu{display:grid}
 .footerGrid{grid-template-columns:1fr 1fr;gap:32px}.footerBottom{line-height:1.6}
 }
 
-.heroMedia{background-image:url("../assets/images/interiors/arcos-santa-iria-hero.webp")}
-.featureImage{background-image:url("../assets/images/interiors/casa-adega-feature.webp?v=20260922-5")}
-.g1{background-image:url("../assets/images/interiors/casa-adega-gallery.webp")}
-.g2{background-image:url("../assets/images/interiors/arcos-santa-iria-gallery.webp")}
+.heroMedia{background-image:url("https://clasto.pt/projects/Santa_Iria/santa-iria-04.webp")}
 
 /* PAPOA specialty mobile refinement v6 */
 .mobileNav{display:none}
@@ -243,6 +240,76 @@ header{height:64px}.brand{font-size:22px}nav a{display:none}.menu{display:grid}
   .page-interiors .featureImage,.page-interiors .g1,.page-interiors .g2{background-position:center}
 }
 
+
+/* Interiors project imagery refinement v10 */
+.featureImage{
+  min-height:0!important;
+  background:none!important;
+  display:block;
+  align-self:center;
+  overflow:hidden;
+}
+.featureImage img{
+  display:block;
+  width:100%;
+  height:auto;
+  object-fit:contain;
+  object-position:center;
+}
+.featureAlt .featureWrap{grid-template-columns:.78fr 1.22fr}
+.featureAlt .featureImage{order:2}
+.featureAlt .featureCopy{order:1}
+.projectLink{
+  margin-top:28px;
+  display:inline-flex;
+  gap:24px;
+  align-items:center;
+  width:max-content;
+  font-family:Benzin;
+  font-size:7px;
+  letter-spacing:.17em;
+  padding-bottom:5px;
+  border-bottom:1px solid rgba(255,255,255,.28);
+}
+.gallery{
+  grid-template-columns:1fr 1fr;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  align-items:start;
+}
+.g1,.g2{
+  min-height:0!important;
+  background:none!important;
+  display:block;
+}
+.g1 img,.g2 img{
+  display:block;
+  width:100%;
+  height:auto;
+  object-fit:contain;
+  object-position:center;
+}
+.galleryTag{
+  background:linear-gradient(90deg,rgba(0,0,0,.52),rgba(0,0,0,0));
+  padding:11px 14px 10px;
+  left:18px;
+  bottom:18px;
+}
+.page-interiors .heroMedia{
+  background-position:center 48%!important;
+  filter:saturate(.62) brightness(.67) contrast(1.08);
+}
+@media(max-width:900px){
+  .featureAlt .featureWrap{grid-template-columns:1fr}
+  .featureAlt .featureImage{order:1}
+  .featureAlt .featureCopy{order:2}
+  .featureImage img,.g1 img,.g2 img{width:100%;height:auto;object-fit:contain}
+  .gallery{grid-template-columns:1fr}
+  .g1{border-right:0;border-bottom:2px solid #0a0c0c}
+  .page-interiors .heroMedia{background-position:center!important}
+}
+
 </style>
 </head>
 <body class="page-interiors">
@@ -302,7 +369,7 @@ header{height:64px}.brand{font-size:22px}nav a{display:none}.menu{display:grid}
 
 <section class="feature">
 <div class="featureWrap">
-<div class="featureImage"></div>
+<a class="featureImage" href="./casa-adega/" aria-label="View Casa Adega project"><img src="https://clasto.pt/projects/Casa_Adega/casa-adega-10.webp" alt="Casa Adega interior — dining and kitchen visualization"></a>
 <div class="featureCopy">
 <div class="label">SELECTED CONCEPT · 01</div>
 <h2>CASA ADEGA<br>interior study.</h2>
@@ -310,6 +377,22 @@ header{height:64px}.brand{font-size:22px}nav a{display:none}.menu{display:grid}
 <div class="featureFacts">
 <div class="fact"><span>PROJECT</span><strong>Casa Adega</strong></div><div class="fact"><span>FOCUS</span><strong>Interior atmosphere</strong></div><div class="fact"><span>PALETTE</span><strong>Timber + natural light</strong></div><div class="fact"><span>METHOD</span><strong>3D visualization</strong></div>
 </div>
+<a class="projectLink link" href="./casa-adega/">VIEW FULL PROJECT <span class="arrow">→</span></a>
+</div>
+</div>
+</section>
+
+<section class="feature featureAlt">
+<div class="featureWrap">
+<a class="featureImage" href="./arcos-de-santa-iria/" aria-label="View Arcos de Santa Iria project"><img src="https://clasto.pt/projects/Santa_Iria/santa-iria-04.webp" alt="Arcos de Santa Iria interior living room visualization"></a>
+<div class="featureCopy">
+<div class="label">SELECTED CONCEPT · 02</div>
+<h2>ARCOS DE<br>SANTA IRIA.</h2>
+<p>A residential project shaped by clear volumes, patios and generous openings, with light and the relationship between inside and outside defining the atmosphere.</p>
+<div class="featureFacts">
+<div class="fact"><span>PROJECT</span><strong>Arcos de Santa Iria</strong></div><div class="fact"><span>FOCUS</span><strong>Space + natural light</strong></div><div class="fact"><span>LANGUAGE</span><strong>Calm + minimal</strong></div><div class="fact"><span>METHOD</span><strong>3D visualization</strong></div>
+</div>
+<a class="projectLink link" href="./arcos-de-santa-iria/">VIEW FULL PROJECT <span class="arrow">→</span></a>
 </div>
 </div>
 </section>
@@ -325,8 +408,8 @@ header{height:64px}.brand{font-size:22px}nav a{display:none}.menu{display:grid}
 </section>
 
 <section class="gallery">
-<div class="g1"><div class="galleryTag">CASA ADEGA · MATERIAL & LIGHT</div></div>
-<div class="g2"><div class="galleryTag">ARCOS DE SANTA IRIA · SPACE & LIGHT</div></div>
+<a class="g1" href="./casa-adega/"><img src="https://clasto.pt/projects/Casa_Adega/casa-adega-08.webp" alt="Casa Adega living room visualization"><div class="galleryTag">CASA ADEGA · MATERIAL & LIGHT</div></a>
+<a class="g2" href="./arcos-de-santa-iria/"><img src="https://clasto.pt/projects/Santa_Iria/santa-iria-07.webp" alt="Arcos de Santa Iria bedroom visualization"><div class="galleryTag">ARCOS DE SANTA IRIA · SPACE & LIGHT</div></a>
 </section>
 
 <section class="capabilities">
