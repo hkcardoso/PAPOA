@@ -232,6 +232,9 @@ header{height:64px}.brand{font-size:22px}nav a{display:none}.menu{display:grid}
   .page-interiors .hero h1{font-size:clamp(42px,12.4vw,50px)}
 }
 
+
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+.heroVideo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.62) brightness(.74) contrast(1.08)}.heroMedia{opacity:0;pointer-events:none}.hero:after{z-index:1}.heroInner{z-index:2}@media(prefers-reduced-motion:reduce){.heroVideo{display:none}.heroMedia{opacity:1}}
 </style>
 </head>
 <body class="page-yachts">
@@ -256,7 +259,7 @@ header{height:64px}.brand{font-size:22px}nav a{display:none}.menu{display:grid}
 
 <main>
 <section class="hero">
-<div class="heroMedia"></div>
+<video class="heroVideo" autoplay muted loop playsinline preload="metadata" poster="../assets/images/papoa-princess56-hero.webp" aria-hidden="true"><source src="../assets/images/MiniMax_H3_00022_.mp4" type="video/mp4"></video><div class="heroMedia"></div>
 <div class="heroInner">
 <div>
 <div class="label heroKicker">YACHTS · REFIT · CUSTOMIZATION</div>
@@ -285,7 +288,7 @@ header{height:64px}.brand{font-size:22px}nav a{display:none}.menu{display:grid}
 <p>From one focused intervention to a wider transformation, each decision should belong to the same visual and functional system.</p>
 </div>
 <div class="serviceGrid">
-<article class="service"><div class="serviceNum">01</div><h3>Refit & transformation</h3><p>Exterior and interior interventions that refresh an existing vessel without losing its underlying character.</p><div class="more">EXPLORE <span class="arrow">→</span></div></article><article class="service"><div class="serviceNum">02</div><h3>Bespoke interiors</h3><p>Layouts, finishes, furniture and detailing designed around the owner, the boat and the realities of life on board.</p><div class="more">EXPLORE <span class="arrow">→</span></div></article><article class="service"><div class="serviceNum">03</div><h3>3D & technical development</h3><p>Accurate visual development, spatial studies and production-minded 3D work to reduce uncertainty before fabrication.</p><div class="more">EXPLORE <span class="arrow">→</span></div></article>
+<article class="service"><div class="serviceNum">01</div><h3>Refit & transformation</h3><p>Exterior and interior interventions that refresh an existing vessel without losing its underlying character.</p><a class="more link" href="../contact/">DISCUSS A PROJECT <span class="arrow">→</span></a></article><article class="service"><div class="serviceNum">02</div><h3>Bespoke interiors</h3><p>Layouts, finishes, furniture and detailing designed around the owner, the boat and the realities of life on board.</p><a class="more link" href="../contact/">DISCUSS A PROJECT <span class="arrow">→</span></a></article><article class="service"><div class="serviceNum">03</div><h3>3D & technical development</h3><p>Accurate visual development, spatial studies and production-minded 3D work to reduce uncertainty before fabrication.</p><a class="more link" href="../contact/">DISCUSS A PROJECT <span class="arrow">→</span></a></article>
 </div>
 </section>
 
@@ -327,7 +330,7 @@ header{height:64px}.brand{font-size:22px}nav a{display:none}.menu{display:grid}
 
 <section class="cta" id="contact">
 <div><div class="label">START A PROJECT</div><h2>Your yacht.<br>A clearer identity.</h2></div>
-<div><p>Tell us what you own, what you want to change and how far you want to take it. We can start with a focused concept before committing to a full refit.</p><a class="pill darkPill link" href="mailto:hello@papoa.pt">TELL US ABOUT IT <span class="arrow">→</span></a></div>
+<div><p>Tell us what you own, what you want to change and how far you want to take it. We can start with a focused concept before committing to a full refit.</p><a class="pill darkPill link" href="../contact/">TELL US ABOUT IT <span class="arrow">→</span></a></div>
 </section>
 </main>
 
@@ -350,5 +353,5 @@ if(menuToggle&&mobileNav){
   document.addEventListener("keydown",e=>{if(e.key==="Escape")closeMenu()});
 }
 </script>
-</body>
+<script>const heroVideo=document.querySelector(".heroVideo");if(heroVideo&&!window.matchMedia("(prefers-reduced-motion: reduce)").matches){heroVideo.muted=true;heroVideo.defaultMuted=true;heroVideo.play().catch(()=>{heroVideo.style.display="none";document.querySelector(".heroMedia").style.opacity="1"})}</script></body>
 </html>
