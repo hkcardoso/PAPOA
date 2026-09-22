@@ -12,7 +12,7 @@
 @font-face{font-family:Benzin;src:url("./assets/images/Benzin-Semibold.ttf") format("truetype");font-weight:600;font-style:normal;font-display:swap}
 @font-face{font-family:Benzin;src:url("./assets/images/Benzin-Bold.ttf") format("truetype");font-weight:700;font-style:normal;font-display:swap}
 @font-face{font-family:Benzin;src:url("./assets/images/Benzin-ExtraBold.ttf") format("truetype");font-weight:800;font-style:normal;font-display:swap}
-:root{--bg:#0b0d0d;--bg2:#101212;--ink:#f1f0ea;--muted:#a5a6a1;--paper:#f2f0e9;--pad:8.25vw;--line:rgba(255,255,255,.18)}
+:root{--bg:#0b0d0d;--bg2:#101212;--ink:#f1f0ea;--muted:#a5a6a1;--paper:#f2f0e9;--pad:7.35vw;--line:rgba(255,255,255,.18)}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
@@ -21,20 +21,20 @@ button,input{font:inherit}
 img{display:block;max-width:100%}
 .label{font-family:Benzin,Arial,sans-serif;font-size:9px;letter-spacing:.28em;text-transform:uppercase}
 .arrow{display:inline-block;transition:transform .3s ease}.link:hover .arrow{transform:translateX(5px)}
-header{position:absolute;z-index:20;left:0;top:0;width:100%;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 var(--pad);border-bottom:1px solid rgba(255,255,255,.24)}
-.brand{font-family:Benzin,Arial,sans-serif;font-size:20px;font-weight:800;letter-spacing:-.045em}
-nav{display:flex;gap:31px;align-items:center;font-size:8px;color:#ece9e1}
+header{position:absolute;z-index:20;left:0;top:0;width:100%;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 var(--pad);border-bottom:1px solid rgba(255,255,255,.22)}
+.brand{font-family:Benzin,Arial,sans-serif;font-size:20px;font-weight:800;letter-spacing:-.055em;line-height:1}
+nav{display:flex;align-items:center;gap:31px;font-size:8px;color:#ece9e1;margin-left:auto}
 nav a{opacity:.92}
-.menuIcon{width:26px;height:18px;display:grid;align-content:center;gap:5px;margin-left:10px}
-.menuIcon:before,.menuIcon:after{content:"";height:1px;background:#e8e7e2;display:block}
+.menuIcon{width:29px;height:18px;display:grid;align-content:center;gap:5px;margin-left:12px}
+.menuIcon:before,.menuIcon:after{content:"";height:1px;background:#e8e7e2;display:block}.menuIcon:after{width:74%;justify-self:end}header>.menuIcon{display:none}
 .hero{height:40.8vw;min-height:500px;max-height:745px;position:relative;overflow:hidden;background:#121719}
 .heroMedia{position:absolute;inset:0;background:
 linear-gradient(90deg,rgba(5,8,9,.72) 0%,rgba(5,8,9,.35) 34%,rgba(5,8,9,.06) 68%,rgba(5,8,9,.03) 100%),
 url("./assets/images/papoa-princess56-hero.webp") center/cover no-repeat;
 transform:scale(1.01)}
-.heroContent{position:absolute;z-index:2;left:var(--pad);top:33.8%;max-width:620px}
+.heroContent{position:absolute;z-index:2;left:var(--pad);top:34.9%;max-width:620px}
 .hero .label{font-size:9px;letter-spacing:.38em}
-.hero h1{font-family:Benzin,Arial,sans-serif;font-weight:800;font-size:clamp(76px,8.6vw,132px);line-height:.74;letter-spacing:-.055em;margin:20px 0 12px}
+.hero h1{font-family:Benzin,Arial,sans-serif;font-weight:800;font-size:clamp(72px,7.9vw,122px);line-height:.76;letter-spacing:-.055em;margin:19px 0 12px}
 .heroSub{font-size:clamp(28px,3.1vw,48px);line-height:.98;letter-spacing:-.05em;margin:0 0 26px}
 .pill{font-family:Benzin,Arial,sans-serif;display:inline-flex;align-items:center;justify-content:space-between;gap:35px;border:1px solid rgba(255,255,255,.72);border-radius:999px;padding:11px 13px 10px 17px;font-size:7px;letter-spacing:.16em;min-width:145px}
 .heroNums{position:absolute;z-index:2;left:var(--pad);bottom:29px;font-family:Benzin;font-size:7px;letter-spacing:.31em}
@@ -111,7 +111,7 @@ footer{padding:33px var(--pad) 19px;background:#0b0d0d}
 .mobileMenu{display:none}
 @media(max-width:780px){
 :root{--pad:22px}
-header{position:absolute;height:64px}.brand{font-size:18px}nav{display:none}.menuIcon{display:grid}
+header{position:absolute;height:64px}.brand{font-size:18px}nav{display:none}header>.menuIcon{display:grid}
 .hero{height:88svh;min-height:620px;max-height:none}
 .heroMedia{background-position:64% center}
 .heroContent{top:33%;max-width:330px}
