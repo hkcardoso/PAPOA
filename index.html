@@ -3,99 +3,218 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#101111">
-<title>PAPOA — Design & Development Studio</title>
+<meta name="theme-color" content="#0c0e0e">
+<title>PAPOA — Yachts · Automotive · Interiors</title>
 <meta name="description" content="PAPOA — Yachts · Automotive · Interiors. Design, development and bespoke production.">
 <style>
-:root{--bg:#101111;--bg2:#151616;--ink:#f1efe8;--muted:#a7a7a2;--light:#f0eee8;--pad:7.5vw}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}button,input{font:inherit}
-.wrap{padding-left:var(--pad);padding-right:var(--pad)}
-.label{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#d7d5cf}
-.arrow{display:inline-block;transition:transform .35s ease}.link:hover .arrow{transform:translateX(6px)}
-header{position:fixed;z-index:40;left:0;top:0;width:100%;height:84px;display:flex;align-items:center;justify-content:space-between;padding:0 var(--pad);border-bottom:1px solid rgba(255,255,255,.17);transition:.35s}
-header.scrolled{height:66px;background:rgba(16,17,17,.92);backdrop-filter:blur(12px)}
-.brand{font-size:22px;font-weight:900;letter-spacing:-.04em}
-nav{display:flex;gap:28px;font-size:11px}.menuBtn{display:none;background:0;border:0;color:white;font-size:11px}
-.hero{height:100svh;min-height:720px;position:relative;overflow:hidden;background:#182126}
-.heroMedia{position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,8,9,.58) 0%,rgba(5,8,9,.15) 48%,rgba(5,8,9,.02) 100%),url('https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?auto=format&fit=crop&w=2200&q=88') center/cover no-repeat;transform:scale(1.02)}
-.heroContent{position:absolute;left:var(--pad);top:45%;transform:translateY(-50%);z-index:2}
-.hero h1{margin:10px 0 0;font-size:clamp(78px,11vw,182px);line-height:.82;letter-spacing:-.075em;font-weight:950}
-.heroSub{font-size:clamp(25px,3vw,48px);line-height:1.02;font-weight:300;margin:24px 0 34px;max-width:580px}
-.pill{display:inline-flex;align-items:center;gap:42px;border:1px solid rgba(255,255,255,.75);border-radius:99px;padding:14px 18px 14px 22px;font-size:10px;letter-spacing:.16em}
-.heroNums{position:absolute;left:var(--pad);bottom:35px;font-size:11px;letter-spacing:.34em}.heroTag{position:absolute;right:var(--pad);bottom:32px;text-align:right;font-size:9px;letter-spacing:.24em;line-height:1.65}
-.studio{min-height:780px;padding-top:145px;padding-bottom:145px;display:grid;grid-template-columns:1.15fr 1fr .68fr;gap:7vw;background:var(--bg)}
-.studio h2{font-size:clamp(52px,5.4vw,88px);line-height:.92;letter-spacing:-.055em;margin:24px 0 0}
-.studio p{color:#b8b7b2;font-size:14px;line-height:1.7;max-width:520px;margin-top:110px}
-.approach{margin-top:38px;font-size:10px;letter-spacing:.18em}
-.values{border-left:1px solid rgba(255,255,255,.18);padding-left:36px;margin-top:82px;font-size:9px;letter-spacing:.25em;line-height:2.2;color:#d3d2cd}
-.disciplines{display:grid;grid-template-columns:repeat(3,1fr);min-height:710px}
-.discipline{position:relative;overflow:hidden;min-height:710px}
-.discipline .img{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
-.discipline:nth-child(1) .img{background-image:url('https://images.unsplash.com/photo-1540946485063-a40da27545f8?auto=format&fit=crop&w=1400&q=85')}
-.discipline:nth-child(2) .img{background-image:url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=85')}
-.discipline:nth-child(3) .img{background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=85')}
-.discipline:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.48))}
-.discipline:hover .img{transform:scale(1.035)}
-.dContent{position:absolute;z-index:2;inset:0;padding:48px 44px;display:flex;flex-direction:column;justify-content:flex-end}
-.dNum{position:absolute;top:44px;left:44px;font-size:11px;letter-spacing:.22em}.dContent h3{font-size:clamp(34px,3vw,54px);margin:0 0 12px;letter-spacing:-.05em}.dContent p{font-size:16px;margin:0 0 30px}.dLink{font-size:10px;letter-spacing:.17em}
-.projects{padding-top:150px;padding-bottom:160px}.projectsHead{display:flex;justify-content:space-between;align-items:end;margin-bottom:72px}.projects h2{font-size:clamp(58px,6vw,100px);line-height:.86;letter-spacing:-.06em;margin:18px 0 0}.projectGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}.project figure{margin:0}.projectImg{aspect-ratio:1.14/1;overflow:hidden;background-size:cover;background-position:center;transition:transform .6s}.project:hover .projectImg{transform:scale(1.02)}.project:nth-child(1) .projectImg{background-image:url('https://images.unsplash.com/photo-1566847438217-76e82d383f84?auto=format&fit=crop&w=1200&q=85')}.project:nth-child(2) .projectImg{background-image:url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=85')}.project:nth-child(3) .projectImg{background-image:url('https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=85')}.projectMeta{display:flex;justify-content:space-between;padding-top:18px}.projectMeta strong{font-size:18px}.projectMeta small{display:block;color:var(--muted);font-size:11px;margin-top:6px}
-.perspective{min-height:830px;position:relative;overflow:hidden;background:radial-gradient(circle at 55% 42%,#292b2b 0,#161717 33%,#0b0c0c 75%)}.bigP{position:absolute;left:50%;top:51%;transform:translate(-50%,-50%);font-size:clamp(410px,48vw,760px);line-height:.7;font-weight:950;color:#e5e3dc;letter-spacing:-.11em;text-shadow:0 25px 40px rgba(0,0,0,.5)}.perspLeft,.perspRight{position:absolute;z-index:2;top:50%;transform:translateY(-50%)}.perspLeft{left:var(--pad)}.perspRight{right:var(--pad);width:310px}.perspective h2{font-size:clamp(50px,5vw,84px);line-height:.92;letter-spacing:-.055em;margin:28px 0}.perspRight p{font-size:14px;line-height:1.7;color:#c4c3be}
-.testimonial{min-height:720px;background:var(--light);color:#1b1c1c;display:grid;grid-template-columns:1fr 1.15fr .36fr;align-items:center;gap:4vw;padding-top:110px;padding-bottom:110px;position:relative;overflow:hidden}.coast{position:absolute;left:0;bottom:0;width:38%;height:44%;background:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=60') center/cover;filter:grayscale(1);opacity:.2}.quoteMark{font-size:150px;line-height:.3;color:rgba(20,20,20,.12)}blockquote{font-size:clamp(28px,3vw,52px);line-height:1.08;letter-spacing:-.035em;margin:0}.author{margin-top:36px;font-size:10px;letter-spacing:.2em}.pager{text-align:right;font-size:11px;letter-spacing:.28em}.pagerBtns{margin-top:28px;display:flex;justify-content:flex-end;gap:8px}.circle{width:42px;height:42px;border-radius:50%;border:1px solid #777;background:none}
-footer{padding-top:110px;padding-bottom:34px;background:#0b0c0c}.footerGrid{display:grid;grid-template-columns:1.1fr .7fr 1fr;gap:8vw}.footerBrand{font-size:clamp(54px,7vw,112px);font-weight:950;letter-spacing:-.07em}.footerCopy{color:var(--muted);font-size:13px;line-height:1.7}.footerLinks{display:grid;gap:16px;font-size:13px}.mail label{display:block;font-size:10px;letter-spacing:.2em;margin-bottom:24px}.mail .title{font-size:25px;margin-bottom:24px}.mailRow{border-bottom:1px solid #6d6d69;display:flex}.mailRow input{width:100%;background:transparent;border:0;color:white;padding:15px 0;outline:0}.mailRow button{background:none;border:0;color:white}.social{display:flex;gap:18px;margin-top:34px;font-size:11px;color:var(--muted)}.footerBottom{margin-top:110px;padding-top:22px;border-top:1px solid rgba(255,255,255,.16);display:flex;justify-content:space-between;font-size:10px;color:#777}
-.reveal{opacity:0;transform:translateY(22px);transition:.8s ease}.reveal.in{opacity:1;transform:none}
-@media(max-width:900px){:root{--pad:6vw}nav{display:none}.menuBtn{display:block}.hero{min-height:700px}.heroContent{top:48%}.hero h1{font-size:clamp(66px,19vw,130px)}.heroTag{display:none}.studio{grid-template-columns:1fr;padding-top:105px;padding-bottom:105px;min-height:0}.studio p{margin-top:20px}.values{margin-top:0}.disciplines{grid-template-columns:1fr}.discipline{min-height:74vh}.projectGrid{grid-template-columns:1fr}.projects{padding-top:100px;padding-bottom:110px}.perspective{min-height:720px}.bigP{font-size:78vw}.perspRight{right:var(--pad);bottom:50px;top:auto;transform:none;width:48%}.perspLeft{top:22%;transform:none}.testimonial{grid-template-columns:1fr;padding-top:90px;padding-bottom:90px}.testimonial>div:nth-child(2){z-index:2}.quoteMark,.pager{display:none}.coast{width:100%;height:50%}.footerGrid{grid-template-columns:1fr}.footerBottom{margin-top:70px}.projectsHead{align-items:flex-end}.projectsHead>a{font-size:9px}}
-@media(max-width:560px){header{height:70px}.heroSub{font-size:28px}.pill{gap:18px}.heroNums{bottom:24px}.studio h2,.projects h2,.perspective h2{font-size:48px}.dContent{padding:34px 26px}.dNum{left:26px;top:32px}.projectsHead{display:block}.projectsHead>a{display:inline-block;margin-top:28px}.perspective{min-height:650px}.bigP{font-size:96vw;left:57%}.perspRight{width:60%;font-size:12px}.testimonial{min-height:620px}.footerBrand{font-size:64px}.footerBottom{display:block;line-height:2}}
+@font-face{font-family:Benzin;src:url("./assets/images/Benzin-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:Benzin;src:url("./assets/images/Benzin-Medium.ttf") format("truetype");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:Benzin;src:url("./assets/images/Benzin-Semibold.ttf") format("truetype");font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:Benzin;src:url("./assets/images/Benzin-Bold.ttf") format("truetype");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:Benzin;src:url("./assets/images/Benzin-ExtraBold.ttf") format("truetype");font-weight:800;font-style:normal;font-display:swap}
+:root{--bg:#0b0d0d;--bg2:#101212;--ink:#f1f0ea;--muted:#a5a6a1;--paper:#f2f0e9;--pad:8.25vw;--line:rgba(255,255,255,.18)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit}
+img{display:block;max-width:100%}
+.label{font-family:Benzin,Arial,sans-serif;font-size:9px;letter-spacing:.28em;text-transform:uppercase}
+.arrow{display:inline-block;transition:transform .3s ease}.link:hover .arrow{transform:translateX(5px)}
+header{position:absolute;z-index:20;left:0;top:0;width:100%;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 var(--pad);border-bottom:1px solid rgba(255,255,255,.24)}
+.brand{font-family:Benzin,Arial,sans-serif;font-size:20px;font-weight:800;letter-spacing:-.045em}
+nav{display:flex;gap:31px;align-items:center;font-size:8px;color:#ece9e1}
+nav a{opacity:.92}
+.menuIcon{width:26px;height:18px;display:grid;align-content:center;gap:5px;margin-left:10px}
+.menuIcon:before,.menuIcon:after{content:"";height:1px;background:#e8e7e2;display:block}
+.hero{height:40.8vw;min-height:500px;max-height:745px;position:relative;overflow:hidden;background:#121719}
+.heroMedia{position:absolute;inset:0;background:
+linear-gradient(90deg,rgba(5,8,9,.72) 0%,rgba(5,8,9,.35) 34%,rgba(5,8,9,.06) 68%,rgba(5,8,9,.03) 100%),
+url("https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?auto=format&fit=crop&w=2400&q=92") center/cover no-repeat;
+transform:scale(1.01)}
+.heroContent{position:absolute;z-index:2;left:var(--pad);top:33.8%;max-width:620px}
+.hero .label{font-size:9px;letter-spacing:.38em}
+.hero h1{font-family:Benzin,Arial,sans-serif;font-weight:800;font-size:clamp(76px,8.6vw,132px);line-height:.74;letter-spacing:-.055em;margin:20px 0 12px}
+.heroSub{font-size:clamp(28px,3.1vw,48px);line-height:.98;letter-spacing:-.05em;margin:0 0 26px}
+.pill{font-family:Benzin,Arial,sans-serif;display:inline-flex;align-items:center;justify-content:space-between;gap:35px;border:1px solid rgba(255,255,255,.72);border-radius:999px;padding:11px 13px 10px 17px;font-size:7px;letter-spacing:.16em;min-width:145px}
+.heroNums{position:absolute;z-index:2;left:var(--pad);bottom:29px;font-family:Benzin;font-size:7px;letter-spacing:.31em}
+.heroTag{position:absolute;z-index:2;right:var(--pad);bottom:27px;text-align:left;font-family:Benzin;font-size:6px;letter-spacing:.24em;line-height:1.65}
+.studio{min-height:220px;background:#0b0d0d;padding:55px var(--pad) 52px;display:grid;grid-template-columns:1.28fr .92fr .52fr;gap:5.8vw;align-items:start}
+.studio h2{font-size:clamp(31px,3.05vw,47px);line-height:1.01;letter-spacing:-.047em;margin:16px 0 0;font-weight:700;max-width:450px}
+.studioCopy{padding-top:11px}
+.studio p{margin:0;color:#c7c6c0;font-size:11px;line-height:1.55;max-width:390px}
+.approach{font-family:Benzin;font-size:7px;letter-spacing:.18em;display:inline-flex;gap:28px;border:1px solid rgba(255,255,255,.55);border-radius:99px;margin-top:24px;padding:10px 12px 9px 15px}
+.values{border-left:1px solid rgba(255,255,255,.17);padding-left:34px;font-family:Benzin;font-size:7px;letter-spacing:.29em;line-height:2.15;margin-top:12px}
+.disciplines{display:grid;grid-template-columns:repeat(3,1fr);height:27.6vw;min-height:320px;max-height:505px}
+.discipline{position:relative;overflow:hidden;border-right:2px solid #0b0d0d}
+.discipline:last-child{border-right:0}
+.dImg{position:absolute;inset:0;background-position:center;background-size:cover;transition:transform .65s cubic-bezier(.2,.7,.2,1)}
+.discipline:nth-child(1) .dImg{background-image:url("https://images.unsplash.com/photo-1540946485063-a40da27545f8?auto=format&fit=crop&w=1500&q=90");background-position:48% center}
+.discipline:nth-child(2) .dImg{background-image:url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1500&q=90");background-position:center}
+.discipline:nth-child(3) .dImg{background-image:url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1500&q=90");background-position:center}
+.discipline:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,5,5,.12),rgba(4,5,5,.07) 48%,rgba(4,5,5,.45))}
+.discipline:hover .dImg{transform:scale(1.035)}
+.dContent{position:absolute;z-index:2;inset:0;padding:30px 27px;display:flex;flex-direction:column}
+.dTop{display:flex;align-items:start;gap:22px}
+.dNum{font-family:Benzin;font-size:7px;letter-spacing:.2em;padding-top:4px}
+.dTitle h3{font-size:17px;line-height:1;margin:0 0 6px;font-weight:500}
+.dTitle p{font-size:9px;margin:0;color:#efede7}
+.dLink{margin-top:auto;font-family:Benzin;font-size:7px;letter-spacing:.17em;display:flex;align-items:center;gap:27px}
+.projects{padding:44px var(--pad) 43px;background:#0b0d0d}
+.projectsHead{display:flex;justify-content:space-between;align-items:end;margin-bottom:20px}
+.projects h2{font-size:clamp(36px,4vw,61px);line-height:.9;letter-spacing:-.047em;margin:14px 0 0;font-weight:700}
+.allProjects{font-family:Benzin;border:1px solid rgba(255,255,255,.55);border-radius:999px;padding:10px 13px 9px 15px;font-size:7px;letter-spacing:.16em;display:flex;gap:28px;align-items:center;margin-bottom:5px}
+.projectGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.projectImg{aspect-ratio:1.71/1;background-position:center;background-size:cover;overflow:hidden}
+.project:nth-child(1) .projectImg{background-image:url("https://images.unsplash.com/photo-1566847438217-76e82d383f84?auto=format&fit=crop&w=1300&q=90")}
+.project:nth-child(2) .projectImg{background-image:url("https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1300&q=90")}
+.project:nth-child(3) .projectImg{background-image:url("https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1300&q=90")}
+.projectMeta{display:flex;justify-content:space-between;align-items:start;padding-top:9px}
+.projectMeta strong{display:block;font-size:10px;font-weight:400}
+.projectMeta small{font-size:8px;color:#b9b9b5;display:block;margin-top:4px}
+.projectMeta span{font-size:15px;color:#b9b9b5}
+.perspective{height:24.55vw;min-height:285px;max-height:455px;position:relative;overflow:hidden;background:
+radial-gradient(circle at 53% 54%,rgba(160,148,126,.14) 0 14%,transparent 37%),
+linear-gradient(102deg,#252421 0%,#1b1d1d 32%,#101313 58%,#0b0e0f 100%)}
+.perspective:before{content:"";position:absolute;left:0;top:0;width:34%;height:100%;background:linear-gradient(120deg,rgba(238,211,163,.35),transparent 48%);filter:blur(2px);opacity:.75}
+.bigP{position:absolute;left:50%;top:54%;transform:translate(-50%,-50%);font-family:Benzin;font-weight:800;font-size:clamp(205px,22vw,360px);line-height:.7;letter-spacing:-.12em;color:#d4c9b4;background:linear-gradient(90deg,#e8ddc8 0%,#b9a88a 40%,#746756 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 28px 24px rgba(0,0,0,.6))}
+.pLeft{position:absolute;z-index:3;left:var(--pad);top:32%}
+.pLeft h2{font-size:clamp(34px,3.4vw,52px);line-height:1.03;letter-spacing:-.045em;margin:18px 0 0}
+.pRight{position:absolute;z-index:3;right:var(--pad);top:45%;width:240px}
+.pRight p{font-size:10px;line-height:1.4;margin:0 0 18px}
+.pRight a{font-family:Benzin;font-size:7px;letter-spacing:.18em}
+.testimonial{height:19.5vw;min-height:228px;max-height:350px;background:var(--paper);color:#171919;position:relative;overflow:hidden;display:grid;grid-template-columns:36% 1fr 20%;align-items:center;padding:0 var(--pad)}
+.coast{position:absolute;left:0;bottom:0;width:38%;height:100%;background:
+linear-gradient(90deg,rgba(242,240,233,.0),rgba(242,240,233,.95) 96%),
+url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1300&q=80") left center/cover no-repeat;filter:grayscale(1);opacity:.82}
+.quoteWrap{grid-column:2;position:relative;z-index:2;max-width:455px}
+.quoteMark{position:absolute;left:-92px;top:-35px;font-size:110px;color:rgba(20,20,20,.07);line-height:1}
+blockquote{font-size:clamp(16px,1.55vw,24px);line-height:1.14;letter-spacing:-.025em;margin:0}
+.author{font-family:Benzin;font-size:6px;letter-spacing:.2em;line-height:1.6;margin-top:23px}
+.pager{grid-column:3;justify-self:end;text-align:right;font-family:Benzin;font-size:6px;letter-spacing:.26em;z-index:2}
+.pagerBtns{display:flex;gap:8px;justify-content:flex-end;margin-top:22px}
+.circle{width:28px;height:28px;border:1px solid rgba(0,0,0,.2);border-radius:50%;background:transparent}
+footer{padding:33px var(--pad) 19px;background:#0b0d0d}
+.footerGrid{display:grid;grid-template-columns:1.03fr .62fr .66fr 1fr;gap:4.3vw;align-items:start}
+.footerBrand{font-family:Benzin;font-size:27px;font-weight:800;letter-spacing:-.04em}
+.footerCopy{font-size:7px;color:#b7b7b1;line-height:1.7;margin-top:14px}
+.footerLinks{display:grid;gap:15px;font-size:7px;padding-top:19px}
+.mail{padding-top:2px}
+.mail label{font-family:Benzin;font-size:6px;letter-spacing:.2em}
+.mail .title{font-size:8px;margin:12px 0 7px;color:#d8d7d2}
+.mailRow{border:1px solid rgba(255,255,255,.32);border-radius:99px;display:flex;align-items:center;padding:0 4px 0 13px}
+.mailRow input{width:100%;background:none;border:0;outline:0;color:white;font-size:7px;padding:8px 0}
+.mailRow button{width:24px;height:24px;border:0;border-radius:50%;background:#e6e4dc;color:#111}
+.social{display:flex;gap:18px;margin-top:12px;font-family:Benzin;font-size:7px}
+.footerBottom{display:flex;justify-content:space-between;border-top:1px solid rgba(255,255,255,.24);margin-top:30px;padding-top:13px;color:#7f817d;font-size:6px}
+.reveal{opacity:0;transform:translateY(12px);transition:.7s ease}.reveal.in{opacity:1;transform:none}
+.mobileMenu{display:none}
+@media(max-width:780px){
+:root{--pad:22px}
+header{position:absolute;height:64px}.brand{font-size:18px}nav{display:none}.menuIcon{display:grid}
+.hero{height:88svh;min-height:620px;max-height:none}
+.heroMedia{background-position:64% center}
+.heroContent{top:33%;max-width:330px}
+.hero .label{font-size:7px}
+.hero h1{font-size:72px;margin-top:16px}
+.heroSub{font-size:31px;max-width:310px}
+.heroTag{display:none}
+.studio{grid-template-columns:1fr;padding-top:70px;padding-bottom:70px;gap:30px}
+.studio h2{font-size:40px}
+.studioCopy{padding-top:0}.studio p{font-size:13px}.values{margin-top:8px}
+.disciplines{grid-template-columns:1fr;height:auto;max-height:none}
+.discipline{min-height:67vh;border-right:0;border-bottom:2px solid #0b0d0d}
+.dContent{padding:28px 24px}.dTitle h3{font-size:26px}.dTitle p{font-size:12px}.dLink{font-size:8px}
+.projects{padding-top:70px;padding-bottom:70px}.projectsHead{align-items:start}.projects h2{font-size:48px}.allProjects{display:none}
+.projectGrid{grid-template-columns:1fr;gap:35px}.projectImg{aspect-ratio:1.35/1}
+.projectMeta strong{font-size:13px}.projectMeta small{font-size:10px}
+.perspective{height:72vh;min-height:560px;max-height:none}.bigP{font-size:73vw;left:57%;top:53%}
+.pLeft{top:14%}.pLeft h2{font-size:44px}.pRight{right:var(--pad);top:auto;bottom:38px;width:58%}.pRight p{font-size:12px}
+.testimonial{height:auto;min-height:560px;display:block;padding:90px var(--pad)}.coast{width:100%;height:52%;bottom:0;opacity:.5}.quoteWrap{max-width:none;margin-left:44px}.quoteMark{left:-48px;top:-32px;font-size:88px}blockquote{font-size:27px}.pager{display:none}
+footer{padding-top:60px}.footerGrid{grid-template-columns:1fr;gap:28px}.footerBrand{font-size:40px}.footerLinks{padding-top:0;grid-template-columns:repeat(2,1fr)}.footerBottom{margin-top:50px;line-height:1.8}
+}
 </style>
 </head>
 <body>
-<header id="header"><a class="brand" href="#">PAPOA</a><nav><a href="#studio">The Studio</a><a href="#what">What We Do</a><a href="#projects">Projects</a><a href="#contact">Contact</a></nav><button class="menuBtn">MENU</button></header>
-<main>
+<header>
+<a class="brand" href="#top">PAPOA</a>
+<nav>
+<a href="#studio">The Studio</a>
+<a href="#what">What We Do</a>
+<a href="#projects">Projects</a>
+<a href="#contact">Contact</a>
+<span class="menuIcon" aria-hidden="true"></span>
+</nav>
+<span class="menuIcon" aria-hidden="true"></span>
+</header>
+
+<main id="top">
 <section class="hero">
-<div class="heroMedia" id="heroMedia"></div>
-<div class="heroContent reveal"><div class="label">YACHTS · AUTOMOTIVE · INTERIORS</div><h1>PAPOA</h1><div class="heroSub">Crafted experiences<br>in motion.</div><a class="pill link" href="#studio">EXPLORE OUR WORLD <span class="arrow">→</span></a></div>
-<div class="heroNums">01 ─── 02&nbsp;&nbsp;03</div><div class="heroTag">DESIGN<br>SHAPES<br>A BRIGHTER<br>TOMORROW</div>
+<div class="heroMedia"></div>
+<div class="heroContent reveal">
+<div class="label">YACHTS · AUTOMOTIVE · INTERIORS</div>
+<h1>PAPOA</h1>
+<div class="heroSub">Crafted experiences<br>in motion.</div>
+<a class="pill link" href="#studio">EXPLORE OUR WORLD <span class="arrow">→</span></a>
+</div>
+<div class="heroNums">01 ─── 02&nbsp;&nbsp;03</div>
+<div class="heroTag">DESIGN<br>SHAPES<br>A BRIGHTER<br>TOMORROW</div>
 </section>
-<section class="studio wrap" id="studio">
-<div class="reveal"><div class="label">THE STUDIO</div><h2>A multidisciplinary<br>studio for a more<br>extraordinary world.</h2></div>
-<div class="reveal"><p>PAPOA is a design-led studio working between yacht refit and customization, automotive innovation and bespoke interiors. We bring together creativity, engineering and craftsmanship to create meaningful experiences, on land, at sea and in living spaces.</p><a class="approach link" href="#what">OUR APPROACH <span class="arrow">→</span></a></div>
+
+<section class="studio" id="studio">
+<div class="reveal">
+<div class="label">THE STUDIO</div>
+<h2>A multidisciplinary<br>studio for a more<br>extraordinary world.</h2>
+</div>
+<div class="studioCopy reveal">
+<p>PAPOA is a design-led studio working between yacht refit and customization, automotive innovation and bespoke interiors. We bring together creativity, engineering and craftsmanship to create meaningful experiences, on land, at sea and in living spaces.</p>
+<a class="approach link" href="#what">OUR APPROACH <span class="arrow">→</span></a>
+</div>
 <div class="values reveal">PEOPLE<br>IDEAS<br>CRAFT<br>MOVEMENT<br>A BRIGHTER TOMORROW</div>
 </section>
+
 <section class="disciplines" id="what">
-<a class="discipline" href="#"><div class="img"></div><div class="dContent"><div class="dNum">01</div><h3>YACHTS</h3><p>Refit. Customize. Redefine.</p><div class="dLink link">DISCOVER YACHTS <span class="arrow">→</span></div></div></a>
-<a class="discipline" href="#"><div class="img"></div><div class="dContent"><div class="dNum">02</div><h3>AUTOMOTIVE</h3><p>Design for a new horizon.</p><div class="dLink link">EXPLORE AUTOMOTIVE <span class="arrow">→</span></div></div></a>
-<a class="discipline" href="#"><div class="img"></div><div class="dContent"><div class="dNum">03</div><h3>INTERIORS</h3><p>Spaces with a higher purpose.</p><div class="dLink link">VIEW INTERIORS <span class="arrow">→</span></div></div></a>
+<a class="discipline" href="#projects"><div class="dImg"></div><div class="dContent"><div class="dTop"><span class="dNum">01</span><div class="dTitle"><h3>YACHTS</h3><p>Refit. Customize. Redefine.</p></div></div><div class="dLink">DISCOVER YACHTS <span class="arrow">→</span></div></div></a>
+<a class="discipline" href="#projects"><div class="dImg"></div><div class="dContent"><div class="dTop"><span class="dNum">02</span><div class="dTitle"><h3>AUTOMOTIVE</h3><p>Design for a new horizon.</p></div></div><div class="dLink">EXPLORE AUTOMOTIVE <span class="arrow">→</span></div></div></a>
+<a class="discipline" href="#projects"><div class="dImg"></div><div class="dContent"><div class="dTop"><span class="dNum">03</span><div class="dTitle"><h3>INTERIORS</h3><p>Spaces with a higher purpose.</p></div></div><div class="dLink">VIEW INTERIORS <span class="arrow">→</span></div></div></a>
 </section>
-<section class="projects wrap" id="projects">
-<div class="projectsHead reveal"><div><div class="label">FEATURED PROJECTS</div><h2>Ideas<br>brought to life.</h2></div><a class="link label" href="#">ALL PROJECTS <span class="arrow">→</span></a></div>
+
+<section class="projects" id="projects">
+<div class="projectsHead reveal"><div><div class="label">FEATURED PROJECTS</div><h2>Ideas<br>brought to life.</h2></div><a class="allProjects link" href="#">ALL PROJECTS <span class="arrow">→</span></a></div>
 <div class="projectGrid">
-<a class="project reveal" href="#"><figure><div class="projectImg"></div><figcaption class="projectMeta"><div><strong>AURORA</strong><small>Yacht Refit & Customization</small></div><span>→</span></figcaption></figure></a>
-<a class="project reveal" href="#"><figure><div class="projectImg"></div><figcaption class="projectMeta"><div><strong>VÉLOCE</strong><small>Automotive Design Concept</small></div><span>→</span></figcaption></figure></a>
-<a class="project reveal" href="#"><figure><div class="projectImg"></div><figcaption class="projectMeta"><div><strong>SOLACE</strong><small>Bespoke Interior</small></div><span>→</span></figcaption></figure></a>
+<a class="project reveal" href="#"><div class="projectImg"></div><div class="projectMeta"><div><strong>Project AURORA</strong><small>Yacht Refit &amp; Customization</small></div><span>→</span></div></a>
+<a class="project reveal" href="#"><div class="projectImg"></div><div class="projectMeta"><div><strong>Project VÉLOCE</strong><small>Automotive Design Concept</small></div><span>→</span></div></a>
+<a class="project reveal" href="#"><div class="projectImg"></div><div class="projectMeta"><div><strong>Project SOLACE</strong><small>Bespoke Interior</small></div><span>→</span></div></a>
 </div>
 </section>
+
 <section class="perspective">
 <div class="bigP">P</div>
-<div class="perspLeft reveal"><div class="label">│ A BIGGER PERSPECTIVE</div><h2>Design<br>connects<br>everything.</h2></div>
-<div class="perspRight reveal"><p>Different disciplines. A shared belief. That exceptional design can improve how we move, live and feel.</p><a class="label link" href="#">OUR PHILOSOPHY <span class="arrow">→</span></a></div>
+<div class="pLeft reveal"><div class="label">│ A BIGGER PERSPECTIVE</div><h2>Design<br>connects<br>everything.</h2></div>
+<div class="pRight reveal"><p>Different disciplines. A shared belief. That exceptional design can improve how we move, live and feel.</p><a class="link" href="#">OUR PHILOSOPHY <span class="arrow">→</span></a></div>
 </section>
-<section class="testimonial wrap">
-<div class="coast"></div><div class="quoteMark">“</div><div class="reveal"><blockquote>“PAPOA brings a rare combination of creative vision, technical expertise and genuine passion. The result is always beyond expectation.”</blockquote><div class="author">ALEX RIVERA &nbsp; ─── &nbsp; YACHT OWNER</div></div><div class="pager">01&nbsp;&nbsp;02&nbsp;&nbsp;03<div class="pagerBtns"><button class="circle">←</button><button class="circle">→</button></div></div>
+
+<section class="testimonial">
+<div class="coast"></div>
+<div class="quoteWrap reveal"><div class="quoteMark">“</div><blockquote>“PAPOA brings a rare combination of creative vision, technical expertise and genuine passion. The result is always beyond expectation.”</blockquote><div class="author">ALEX RIVERA<br>YACHT OWNER</div></div>
+<div class="pager">01&nbsp;&nbsp;02&nbsp;&nbsp;03<div class="pagerBtns"><button class="circle" aria-label="Previous">←</button><button class="circle" aria-label="Next">→</button></div></div>
 </section>
 </main>
-<footer class="wrap" id="contact">
+
+<footer id="contact">
 <div class="footerGrid">
 <div><div class="footerBrand">PAPOA</div><div class="footerCopy">Yachts · Automotive · Interiors<br>A more extraordinary world.</div></div>
-<div class="footerLinks"><a href="#studio">The Studio</a><a href="#what">What We Do</a><a href="#projects">Projects</a><a href="#contact">Contact</a></div>
-<div class="mail"><label>STAY IN MOTION</label><div class="title">Join our mailing list</div><form class="mailRow" onsubmit="event.preventDefault()"><input type="email" placeholder="Your email" aria-label="Your email"><button aria-label="Join mailing list">→</button></form><div class="social"><span>Instagram</span><span>LinkedIn</span><span>YouTube</span></div></div>
+<div class="footerLinks"><a href="#studio">The Studio</a><a href="#what">What We Do</a></div>
+<div class="footerLinks"><a href="#projects">Projects</a><a href="#contact">Contact</a></div>
+<div class="mail"><label>STAY IN MOTION</label><div class="title">Join our mailing list</div><form class="mailRow" onsubmit="event.preventDefault()"><input type="email" placeholder="Your email" aria-label="Your email"><button aria-label="Join mailing list">→</button></form><div class="social"><span>◎</span><span>in</span><span>▶</span></div></div>
 </div>
 <div class="footerBottom"><span>© 2026 PAPOA. All rights reserved.</span><span>Design moves the world.</span></div>
 </footer>
+
 <script>
-const h=document.getElementById('header'),m=document.getElementById('heroMedia');
-addEventListener('scroll',()=>{h.classList.toggle('scrolled',scrollY>30);m.style.transform='scale('+(1.02+Math.min(scrollY/6000,.05))+')'});
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.13});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-setTimeout(()=>document.querySelector('.heroContent').classList.add('in'),120);
+const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("in")}),{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+setTimeout(()=>document.querySelector(".heroContent")?.classList.add("in"),100);
 </script>
 </body>
 </html>
