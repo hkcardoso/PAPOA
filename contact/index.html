@@ -121,6 +121,79 @@ footer{padding:43px var(--pad) 23px;background:#090b0b;border-top:1px solid var(
   .footerLinks{padding-top:0;font-size:11px}
   .footerBottom{display:grid;gap:7px;font-size:9px}
 }
+
+/* Contact hero refinement v2 */
+.contactHero{
+  min-height:64vh;
+  padding-bottom:82px;
+}
+.heroGrid{
+  grid-template-columns:minmax(0,1.25fr) minmax(280px,.55fr);
+  gap:6vw;
+}
+.contactHero h1{
+  display:inline-block;
+  white-space:nowrap;
+  font-size:clamp(64px,8.1vw,126px);
+  line-height:.78;
+  letter-spacing:-.095em;
+  transform:scaleX(.97) scaleY(.78);
+  transform-origin:left bottom;
+}
+.heroLead{
+  margin-top:16px;
+  max-width:520px;
+  font-size:clamp(24px,2.25vw,36px);
+  line-height:1.04;
+}
+.heroSide{
+  padding-bottom:8px;
+  max-width:350px;
+}
+.contactHero:before{
+  background:
+    linear-gradient(90deg,rgba(4,7,9,.78) 0%,rgba(4,7,9,.52) 38%,rgba(4,7,9,.24) 68%,rgba(4,7,9,.34) 100%),
+    linear-gradient(180deg,rgba(3,6,8,.20),rgba(3,6,8,.05) 52%,rgba(3,6,8,.30)),
+    url("../assets/images/papoa_paisagem.webp") center/cover no-repeat;
+  filter:saturate(.40) brightness(.62) contrast(1.08);
+}
+
+@media(max-width:900px){
+  .contactHero{
+    min-height:620px;
+    padding:118px 22px 50px;
+    align-items:end;
+  }
+  .heroGrid{
+    grid-template-columns:1fr;
+    gap:24px;
+  }
+  .contactHero h1{
+    white-space:nowrap;
+    font-size:clamp(48px,14.8vw,68px);
+    line-height:.82;
+    letter-spacing:-.09em;
+    transform:scaleX(.98) scaleY(.82);
+  }
+  .heroLead{
+    margin-top:14px;
+    max-width:330px;
+    font-size:clamp(26px,7.4vw,32px);
+    line-height:1.04;
+  }
+  .heroSide{
+    max-width:330px;
+    padding:0;
+    font-size:13px;
+    line-height:1.55;
+  }
+}
+
+@media(max-width:390px){
+  .contactHero h1{font-size:46px}
+  .heroLead{font-size:25px}
+}
+
 </style>
 </head>
 <body>
