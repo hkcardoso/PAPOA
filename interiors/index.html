@@ -104,9 +104,109 @@ header{height:64px}.brand{font-size:22px}nav a{display:none}.menu{display:grid}
 .featureImage{background-image:url("../assets/images/papoa-interiors.webp")}
 .g1{background-image:url("../assets/images/papoa-interiors.webp")}
 .g2{background-image:url("../assets/images/papoa_paisagem.webp")}
+
+/* PAPOA specialty mobile refinement v6 */
+.mobileNav{display:none}
+.mobileMenuToggle{appearance:none;border:0;background:transparent;padding:0;color:inherit;cursor:pointer}
+@media(max-width:900px){
+  html,body{overflow-x:hidden}
+  body.menuOpen{overflow:hidden}
+  header{z-index:40;padding-left:22px;padding-right:22px}
+  nav{margin-left:auto}
+  nav .mobileMenuToggle{display:grid;position:relative;z-index:42}
+  .mobileNav{
+    position:fixed;inset:0;z-index:35;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:92px 24px 42px;
+    background:rgba(8,10,10,.97);
+    backdrop-filter:blur(14px);
+    opacity:0;visibility:hidden;transform:translateY(-10px);
+    transition:opacity .28s ease,visibility .28s ease,transform .28s ease
+  }
+  body.menuOpen .mobileNav{opacity:1;visibility:visible;transform:none}
+  .mobileNav a{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:17px 0;border-bottom:1px solid rgba(255,255,255,.14);
+    font-size:28px;line-height:1;letter-spacing:-.04em
+  }
+  .mobileNav a:after{content:"→";font-size:18px;color:#8f918d}
+  .hero{height:auto;min-height:720px;padding-top:64px}
+  .heroMedia{background-position:center;filter:saturate(.58) brightness(.70) contrast(1.08)}
+  .heroInner{
+    left:22px;right:22px;bottom:46px;
+    grid-template-columns:1fr;gap:24px
+  }
+  .heroKicker{margin-bottom:15px;font-size:7px;line-height:1.5;letter-spacing:.21em}
+  .hero h1{
+    font-size:clamp(58px,19vw,78px);
+    line-height:.78;letter-spacing:-.11em;
+    white-space:nowrap
+  }
+  .heroLead{margin-top:10px;font-size:clamp(28px,8vw,33px);line-height:1.02}
+  .heroSide{max-width:360px;padding:0}
+  .heroSide p{font-size:13px;line-height:1.55;margin-bottom:18px}
+  .pill{max-width:100%;gap:20px;font-size:7px;padding:11px 13px 10px 15px}
+  .intro{padding:58px 22px;gap:26px}
+  .intro h2,.services h2,.feature h2,.process h2,.cta h2{font-size:clamp(36px,10vw,46px);line-height:.98}
+  .introCopy p{font-size:14px;line-height:1.62}
+  .introList{font-size:7px;line-height:2.05;padding-left:19px}
+  .services{padding:54px 22px 62px}
+  .servicesHead{margin-bottom:26px}
+  .servicesHead p,.processHead p{font-size:13px;line-height:1.6}
+  .serviceGrid{gap:1px}
+  .service{min-height:0;padding:29px 24px 32px}
+  .service h3{font-size:24px;margin:34px 0 12px}
+  .service p{font-size:13px}
+  .service .more{padding-top:25px}
+  .feature{padding:0 0 62px}
+  .featureWrap{min-height:0}
+  .featureImage{min-height:52svh}
+  .featureCopy{padding:42px 22px}
+  .featureCopy p{font-size:14px;margin:20px 0 24px}
+  .featureFacts{gap:17px 20px}
+  .fact strong{font-size:12px}
+  .process{padding:58px 22px}
+  .processHead{margin-bottom:30px}
+  .steps{grid-template-columns:1fr}
+  .step,.step:not(:first-child){
+    min-height:0;padding:24px 0;border-right:0;border-bottom:1px solid var(--line)
+  }
+  .step:last-child{border-bottom:0}
+  .step h3{font-size:21px;margin:20px 0 9px}
+  .step p{font-size:13px}
+  .gallery{grid-template-columns:1fr}
+  .g1,.g2{min-height:48svh}
+  .galleryTag{left:22px;bottom:20px;font-size:7px}
+  .capabilities{padding:58px 22px;gap:30px}
+  .capabilities h2{font-size:clamp(36px,10vw,45px)}
+  .cap{padding:15px 0;font-size:13px}
+  .cta{padding:58px 22px;gap:28px}
+  .cta h2{font-size:clamp(39px,11vw,49px)}
+  .cta p{font-size:14px}
+  footer{padding:46px 22px 26px}
+  .footerGrid{grid-template-columns:1fr;gap:26px}
+  .footerBrand{font-size:36px}
+  .footerCopy,.footerContact{font-size:11px}
+  .footerLinks{padding-top:0;font-size:11px;gap:12px}
+  .socialLink,.socialIcon{width:32px;height:32px}
+  .socialLink svg,.socialIcon svg{width:23px;height:23px}
+  .footerBottom{margin-top:34px;display:grid;gap:7px;font-size:9px}
+}
+@media(max-width:390px){
+  .mobileNav a{font-size:25px}
+  .hero{min-height:700px}
+  .hero h1{font-size:56px}
+  .heroLead{font-size:28px}
+  .featureFacts{grid-template-columns:1fr}
+}
+.page-interiors .interiorsTitle .firstI{display:inline-block;margin-right:.045em}
+@media(max-width:900px){
+  .page-interiors .hero h1{font-size:clamp(46px,14.6vw,62px)}
+}
+
 </style>
 </head>
-<body>
+<body class="page-interiors">
 <header>
 <a class="brand" href="../">PAPOA</a>
 <nav>
@@ -115,9 +215,16 @@ header{height:64px}.brand{font-size:22px}nav a{display:none}.menu{display:grid}
 <a class="" href="../automotive/">Automotive</a>
 <a class="active" href="../interiors/">Interiors</a>
 <a href="#contact">Contact</a>
-<span class="menu" aria-hidden="true"></span>
+<button class="menu mobileMenuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav"></button>
 </nav>
 </header>
+<div class="mobileNav" id="mobileNav" aria-hidden="true">
+<a href="../#studio">The Studio</a>
+<a href="../yachts/">Yachts</a>
+<a href="../automotive/">Automotive</a>
+<a href="../interiors/">Interiors</a>
+<a href="#contact">Contact</a>
+</div>
 
 <main>
 <section class="hero">
@@ -125,7 +232,7 @@ header{height:64px}.brand{font-size:22px}nav a{display:none}.menu{display:grid}
 <div class="heroInner">
 <div>
 <div class="label heroKicker">INTERIORS · FURNITURE · CRAFT</div>
-<h1>INTERIORS</h1>
+<h1 class="interiorsTitle"><span class="firstI">I</span>NTERIORS</h1>
 <div class="heroLead">Spaces with a<br>higher purpose.</div>
 </div>
 <div class="heroSide">
@@ -205,5 +312,15 @@ header{height:64px}.brand{font-size:22px}nav a{display:none}.menu{display:grid}
 </div>
 <div class="footerBottom"><span>© 2026 PAPOA. All rights reserved.</span><span>Design moves the world.</span></div>
 </footer>
+<script>
+const menuToggle=document.querySelector(".mobileMenuToggle");
+const mobileNav=document.getElementById("mobileNav");
+if(menuToggle&&mobileNav){
+  const closeMenu=()=>{document.body.classList.remove("menuOpen");menuToggle.setAttribute("aria-expanded","false");mobileNav.setAttribute("aria-hidden","true")};
+  menuToggle.addEventListener("click",()=>{const open=!document.body.classList.contains("menuOpen");document.body.classList.toggle("menuOpen",open);menuToggle.setAttribute("aria-expanded",String(open));mobileNav.setAttribute("aria-hidden",String(!open))});
+  mobileNav.querySelectorAll("a").forEach(a=>a.addEventListener("click",closeMenu));
+  document.addEventListener("keydown",e=>{if(e.key==="Escape")closeMenu()});
+}
+</script>
 </body>
 </html>
