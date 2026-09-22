@@ -119,6 +119,160 @@ footer{padding:38px var(--pad) 22px}
   .projectHero:before{background-position:center center!important}
 }
 
+
+/* PAPOA editorial project presentation v12 */
+body{background:#f1f0eb;color:#555}
+header{
+  position:absolute;
+  color:#202222;
+  border-bottom:1px solid rgba(0,0,0,.10);
+  background:linear-gradient(180deg,rgba(241,240,235,.97),rgba(241,240,235,.90),rgba(241,240,235,.70));
+}
+header .brand,header nav a,header .menu{color:#202222}
+header .menu:before,header .menu:after{background:currentColor}
+
+.projectHero,.projectIntro{display:none!important}
+
+.editorialProject{
+  background:#f1f0eb;
+  color:#5b5b58;
+  padding:118px 24px 72px;
+}
+.editorialInner{
+  width:min(820px,100%);
+  margin:0 auto;
+}
+.editorialHead{
+  text-align:center;
+  padding:6px 0 30px;
+}
+.editorialIndex{
+  font-family:Benzin,Arial,sans-serif;
+  font-size:7px;
+  letter-spacing:.18em;
+  color:#a3a39e;
+  margin-bottom:14px;
+}
+.editorialHead h1{
+  margin:0;
+  font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size:clamp(28px,2.7vw,40px);
+  line-height:1.05;
+  font-weight:500;
+  letter-spacing:-.035em;
+  transform:none;
+  color:#555550;
+}
+.editorialDesc{
+  max-width:760px;
+  margin:16px auto 0;
+  font-size:12px;
+  line-height:1.55;
+  color:#777772;
+}
+.editorialMeta{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:8px 0;
+  margin-top:17px;
+  font-size:9px;
+  color:#8e8e89;
+}
+.editorialMeta span{display:inline-flex;align-items:center}
+.editorialMeta span:not(:last-child):after{
+  content:"·";
+  margin:0 10px;
+  color:#aaa9a4;
+}
+.editorialCase{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:52px;
+  border-top:1px solid rgba(0,0,0,.10);
+  margin-top:24px;
+  padding:22px 0 38px;
+}
+.editorialCase strong{
+  display:block;
+  font-family:Benzin,Arial,sans-serif;
+  font-size:7px;
+  letter-spacing:.16em;
+  color:#777773;
+  margin-bottom:9px;
+}
+.editorialCase p{
+  margin:0;
+  font-size:10px;
+  line-height:1.55;
+  color:#787873;
+}
+
+.gallery{
+  background:#f1f0eb!important;
+  padding:0 24px 82px!important;
+}
+.galleryHeader{display:none!important}
+.galleryGrid{
+  width:min(820px,100%);
+  margin:0 auto;
+  display:grid!important;
+  gap:4px!important;
+}
+.shot{
+  margin:0!important;
+  padding:0!important;
+  background:transparent!important;
+}
+.shot img{
+  width:100%!important;
+  max-width:100%!important;
+  height:auto!important;
+  display:block!important;
+  object-fit:contain!important;
+  object-position:center!important;
+}
+.shot figcaption{display:none!important}
+
+.projectNav{
+  background:#0b0d0d;
+  color:#efeee8;
+  border-color:rgba(255,255,255,.14);
+}
+.projectNav a+a{border-color:rgba(255,255,255,.14)}
+.projectNav small{color:#777}
+.cta{background:#e9e7df}
+footer{background:#090b0b;color:#efeee8}
+
+@media(max-width:900px){
+  header{padding:0 20px}
+  header nav .menu{color:#202222}
+  body.menuOpen header nav .menu{color:#fff}
+  .mobileNav{background:rgba(8,10,10,.98)}
+  .editorialProject{padding:96px 20px 50px}
+  .editorialInner{width:100%}
+  .editorialHead{padding-bottom:22px}
+  .editorialHead h1{font-size:30px}
+  .editorialDesc{font-size:12px}
+  .editorialMeta{
+    display:grid;
+    justify-content:center;
+    gap:5px;
+    font-size:9px;
+  }
+  .editorialMeta span{justify-content:center}
+  .editorialMeta span:not(:last-child):after{display:none}
+  .editorialCase{
+    grid-template-columns:1fr;
+    gap:22px;
+    padding:20px 0 30px;
+  }
+  .editorialCase p{font-size:11px}
+  .gallery{padding:0 0 54px!important}
+  .galleryGrid{width:100%;gap:3px!important}
+  .projectNav{margin-top:0}
+}
+
 </style>
 </head>
 <body>
@@ -142,26 +296,17 @@ footer{padding:38px var(--pad) 22px}
 </div>
 
 <main>
-<section class="projectHero">
-<div class="heroGrid">
-<div>
-<div class="projectIndex">INTERIORS · SELECTED CONCEPT · 02</div>
-<h1>ARCOS DE SANTA IRIA</h1>
-<div class="heroLead">A residential project defined by light, patios, generous openings and a close relationship between interior and exterior.</div>
+<section class="editorialProject">
+<div class="editorialInner">
+<div class="editorialHead">
+<div class="editorialIndex">02 / 02</div>
+<h1>Arcos de Santa Iria</h1>
+<p class="editorialDesc">A residential project defined by light, patios, generous openings and a close relationship between interior and exterior.</p>
+<div class="editorialMeta"><span>Residential project</span><span>3D Visualization · PAPOA / CLASTO</span><span>Project · Manuel Tainha</span></div>
 </div>
-<div class="heroSide"><strong>Project · Manuel Tainha</strong><br>Presented through architectural visualization with the images shown at their natural proportions — no forced crops.</div>
-</div>
-</section>
-
-<section class="projectIntro">
-<div><div class="label">PROJECT</div><h2>Material, light<br>and atmosphere.</h2></div>
-<div class="introText">
-<p>A residential project defined by light, patios, generous openings and a close relationship between interior and exterior.</p>
-<div class="meta">
-<div><span>DISCIPLINE</span><strong>Interiors · Architecture</strong></div>
-<div><span>METHOD</span><strong>3D visualization</strong></div>
-<div><span>VISUALIZATION</span><strong>CLASTO</strong></div>
-<div><span>CREDIT</span><strong>Project · Manuel Tainha</strong></div>
+<div class="editorialCase">
+<div><strong>CHALLENGE</strong><p>Organize volumes, patios and generous openings while maintaining privacy, clarity and spatial coherence.</p></div>
+<div><strong>APPROACH</strong><p>Use light and the relationship between inside and outside as the main elements structuring the composition.</p></div>
 </div>
 </div>
 </section>
