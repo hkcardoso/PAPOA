@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b0d0d">
+<title>Arcos de Santa Iria — PAPOA Interiors</title>
+<meta name="description" content="A residential project defined by light, patios, generous openings and a close relationship between interior and exterior.">
+<link rel="icon" type="image/png" href="../../assets/images/papoa-favicon.png">
+<style>
+@font-face{font-family:Benzin;src:url("../../assets/images/Benzin-Regular.ttf") format("truetype");font-weight:400;font-display:swap}
+@font-face{font-family:Benzin;src:url("../../assets/images/Benzin-Medium.ttf") format("truetype");font-weight:500;font-display:swap}
+@font-face{font-family:Benzin;src:url("../../assets/images/Benzin-Bold.ttf") format("truetype");font-weight:700;font-display:swap}
+@font-face{font-family:Benzin;src:url("../../assets/images/Benzin-ExtraBold.ttf") format("truetype");font-weight:800;font-display:swap}
+:root{--bg:#090b0b;--panel:#101212;--ink:#f1efe9;--muted:#a8aaa5;--line:rgba(255,255,255,.16);--paper:#efede7;--pad:7.75vw}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;width:100%;height:auto}
+.label{font-family:Benzin,Arial,sans-serif;font-size:8px;letter-spacing:.24em;text-transform:uppercase}
+header{position:absolute;z-index:30;left:0;top:0;width:100%;height:70px;display:flex;align-items:center;padding:0 var(--pad);border-bottom:1px solid rgba(255,255,255,.17);background:linear-gradient(180deg,rgba(4,6,7,.66),rgba(4,6,7,.08),transparent)}
+.brand{font-family:Benzin;font-size:25px;font-weight:800;letter-spacing:-.115em;transform:scaleX(.94) scaleY(.76);transform-origin:left center}
+nav{margin-left:auto;display:flex;gap:31px;align-items:center;font-size:10px}
+nav a{opacity:.86}nav a:hover{opacity:1}
+.menu{width:29px;margin-left:8px;display:grid;gap:5px;border:0;background:transparent;padding:0;color:#fff}.menu:before,.menu:after{content:"";display:block;height:1px;background:currentColor}.menu:after{width:72%;justify-self:end}
+.mobileNav{display:none}
+
+.projectHero{position:relative;padding:160px var(--pad) 78px;min-height:560px;display:grid;align-items:end;overflow:hidden}
+.projectHero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,6,7,.78),rgba(4,6,7,.34) 48%,rgba(4,6,7,.16)),url("https://clasto.pt/projects/Santa_Iria/santa-iria-04.webp") center/cover no-repeat;filter:saturate(.68) brightness(.66)}
+.heroGrid{position:relative;z-index:2;width:100%;display:grid;grid-template-columns:1.15fr .65fr;gap:8vw;align-items:end}
+.projectIndex{font-family:Benzin;font-size:8px;letter-spacing:.22em;color:#c7c7c1}
+h1{font-family:Benzin;margin:18px 0 8px;font-size:clamp(58px,8.8vw,136px);line-height:.76;letter-spacing:-.095em;font-weight:800;transform:scaleY(.82);transform-origin:left bottom}
+.heroLead{font-size:clamp(25px,2.5vw,39px);line-height:1.03;letter-spacing:-.045em;max-width:680px}
+.heroSide{font-size:14px;line-height:1.6;color:#d4d4cf;max-width:410px;justify-self:end}
+.heroSide strong{font-weight:400;color:#fff}
+
+.projectIntro{padding:72px var(--pad);display:grid;grid-template-columns:.8fr 1.2fr;gap:9vw;border-bottom:1px solid var(--line)}
+.projectIntro h2{font-size:clamp(36px,4.1vw,62px);line-height:.95;letter-spacing:-.05em;margin:14px 0 0}
+.introText{font-size:15px;line-height:1.7;color:#c1c2bd;max-width:680px}
+.meta{margin-top:34px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 34px;border-top:1px solid var(--line)}
+.meta div{padding:16px 0;border-bottom:1px solid var(--line)}
+.meta span{display:block;font-family:Benzin;font-size:7px;letter-spacing:.18em;color:#7e817c;margin-bottom:7px}
+.meta strong{font-size:13px;font-weight:400}
+
+.gallery{padding:0 var(--pad) 90px}
+.galleryHeader{padding:64px 0 28px;display:flex;justify-content:space-between;align-items:end}
+.galleryHeader h2{font-size:clamp(38px,4vw,60px);line-height:.95;letter-spacing:-.05em;margin:13px 0 0}
+.galleryHeader p{font-size:12px;color:#888;margin:0}
+.galleryGrid{display:grid;gap:16px}
+.shot{margin:0;background:#111}
+.shot img{width:100%;height:auto;object-fit:contain;object-position:center}
+.shot figcaption{display:flex;justify-content:space-between;gap:20px;padding:11px 3px 4px;font-size:9px;color:#777}
+.shot figcaption span:first-child{font-family:Benzin;font-size:7px;letter-spacing:.17em;color:#a2a39f}
+
+.projectNav{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.projectNav a{padding:35px var(--pad);min-height:140px;display:flex;flex-direction:column;justify-content:center}
+.projectNav a+ a{border-left:1px solid var(--line);text-align:right;align-items:flex-end}
+.projectNav small{font-family:Benzin;font-size:7px;letter-spacing:.18em;color:#777;margin-bottom:12px}
+.projectNav strong{font-size:22px;font-weight:400;letter-spacing:-.025em}
+
+.cta{background:var(--paper);color:#151717;padding:70px var(--pad);display:grid;grid-template-columns:1fr .65fr;gap:7vw;align-items:end}
+.cta h2{font-size:clamp(42px,4.6vw,70px);line-height:.94;letter-spacing:-.052em;margin:14px 0 0}
+.cta p{font-size:14px;line-height:1.6;margin:0 0 20px;max-width:430px}
+.pill{font-family:Benzin;font-size:8px;letter-spacing:.14em;display:inline-flex;gap:28px;align-items:center;border:1px solid rgba(0,0,0,.38);border-radius:999px;padding:12px 14px 11px 18px}
+
+footer{padding:38px var(--pad) 22px}
+.footerTop{display:flex;justify-content:space-between;gap:30px;align-items:end}
+.footerBrand{font-family:Benzin;font-size:30px;font-weight:800;letter-spacing:-.11em;transform:scaleX(.94) scaleY(.76);transform-origin:left center}
+.footerLinks{display:flex;gap:24px;font-size:10px;color:#aaa}
+.footerBottom{margin-top:25px;padding-top:13px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-size:8px;color:#70726e}
+
+@media(max-width:900px){
+  :root{--pad:22px}
+  body.menuOpen{overflow:hidden}
+  header{height:64px;padding:0 22px;z-index:40}.brand{font-size:22px}nav a{display:none}
+  nav .menu{position:relative;z-index:42}
+  .mobileNav{position:fixed;inset:0;z-index:35;display:flex;flex-direction:column;justify-content:center;padding:90px 24px 42px;background:rgba(8,10,10,.97);backdrop-filter:blur(14px);opacity:0;visibility:hidden;transform:translateY(-10px);transition:.28s ease}
+  body.menuOpen .mobileNav{opacity:1;visibility:visible;transform:none}
+  .mobileNav a{display:flex;justify-content:space-between;align-items:center;padding:17px 0;border-bottom:1px solid rgba(255,255,255,.14);font-size:28px;letter-spacing:-.04em}
+  .mobileNav a:after{content:"→";font-size:18px;color:#888}
+  .projectHero{min-height:680px;padding:120px 22px 46px}
+  .heroGrid{grid-template-columns:1fr;gap:25px}
+  h1{font-size:clamp(48px,13.2vw,62px);line-height:.82;letter-spacing:-.085em}
+  .heroLead{font-size:29px}
+  .heroSide{justify-self:start;font-size:13px}
+  .projectIntro{grid-template-columns:1fr;padding:54px 22px;gap:30px}
+  .projectIntro h2{font-size:40px}
+  .introText{font-size:14px}
+  .meta{grid-template-columns:1fr}
+  .gallery{padding:0 0 62px}
+  .galleryHeader{padding:52px 22px 26px;display:block}
+  .galleryHeader p{margin-top:15px}
+  .galleryGrid{gap:2px}
+  .shot figcaption{padding:11px 22px 20px}
+  .projectNav{grid-template-columns:1fr}
+  .projectNav a{min-height:120px;padding:30px 22px}
+  .projectNav a+a{border-left:0;border-top:1px solid var(--line)}
+  .cta{grid-template-columns:1fr;padding:56px 22px;gap:28px}
+  .cta h2{font-size:42px}
+  .footerTop{display:block}.footerLinks{margin-top:24px;flex-wrap:wrap}
+  .footerBottom{display:grid;gap:6px;font-size:9px}
+}
+</style>
+</head>
+<body>
+<header>
+<a class="brand" href="../../">PAPOA</a>
+<nav>
+<a href="../../#studio">The Studio</a>
+<a href="../../yachts/">Yachts</a>
+<a href="../../automotive/">Automotive</a>
+<a href="../">Interiors</a>
+<a href="../../contact/">Contact</a>
+<button class="menu mobileMenuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav"></button>
+</nav>
+</header>
+<div class="mobileNav" id="mobileNav" aria-hidden="true">
+<a href="../../#studio">The Studio</a>
+<a href="../../yachts/">Yachts</a>
+<a href="../../automotive/">Automotive</a>
+<a href="../">Interiors</a>
+<a href="../../contact/">Contact</a>
+</div>
+
+<main>
+<section class="projectHero">
+<div class="heroGrid">
+<div>
+<div class="projectIndex">INTERIORS · SELECTED CONCEPT · 02</div>
+<h1>ARCOS DE SANTA IRIA</h1>
+<div class="heroLead">A residential project defined by light, patios, generous openings and a close relationship between interior and exterior.</div>
+</div>
+<div class="heroSide"><strong>Project · Manuel Tainha</strong><br>Presented through architectural visualization with the images shown at their natural proportions — no forced crops.</div>
+</div>
+</section>
+
+<section class="projectIntro">
+<div><div class="label">PROJECT</div><h2>Material, light<br>and atmosphere.</h2></div>
+<div class="introText">
+<p>A residential project defined by light, patios, generous openings and a close relationship between interior and exterior.</p>
+<div class="meta">
+<div><span>DISCIPLINE</span><strong>Interiors · Architecture</strong></div>
+<div><span>METHOD</span><strong>3D visualization</strong></div>
+<div><span>VISUALIZATION</span><strong>CLASTO</strong></div>
+<div><span>CREDIT</span><strong>Project · Manuel Tainha</strong></div>
+</div>
+</div>
+</section>
+
+<section class="gallery">
+<div class="galleryHeader"><div><div class="label">FULL PROJECT</div><h2>Project imagery.</h2></div><p>8 views · full-width · uncropped</p></div>
+<div class="galleryGrid">
+<figure class="shot"><img src="https://clasto.pt/projects/Santa_Iria/santa-iria-04.webp" alt="Arcos de Santa Iria visualization 1" loading="eager" decoding="async" fetchpriority="high"><figcaption><span>01 / 08</span><span>Arcos de Santa Iria</span></figcaption></figure>
+<figure class="shot"><img src="https://clasto.pt/projects/Santa_Iria/santa-iria-07.webp" alt="Arcos de Santa Iria visualization 2" loading="lazy" decoding="async"><figcaption><span>02 / 08</span><span>Arcos de Santa Iria</span></figcaption></figure>
+<figure class="shot"><img src="https://clasto.pt/projects/Santa_Iria/santa-iria-01.webp" alt="Arcos de Santa Iria visualization 3" loading="lazy" decoding="async"><figcaption><span>03 / 08</span><span>Arcos de Santa Iria</span></figcaption></figure>
+<figure class="shot"><img src="https://clasto.pt/projects/Santa_Iria/santa-iria-05.webp" alt="Arcos de Santa Iria visualization 4" loading="lazy" decoding="async"><figcaption><span>04 / 08</span><span>Arcos de Santa Iria</span></figcaption></figure>
+<figure class="shot"><img src="https://clasto.pt/projects/Santa_Iria/santa-iria-06.webp" alt="Arcos de Santa Iria visualization 5" loading="lazy" decoding="async"><figcaption><span>05 / 08</span><span>Arcos de Santa Iria</span></figcaption></figure>
+<figure class="shot"><img src="https://clasto.pt/projects/Santa_Iria/santa-iria-03.webp" alt="Arcos de Santa Iria visualization 6" loading="lazy" decoding="async"><figcaption><span>06 / 08</span><span>Arcos de Santa Iria</span></figcaption></figure>
+<figure class="shot"><img src="https://clasto.pt/projects/Santa_Iria/santa-iria-08.webp" alt="Arcos de Santa Iria visualization 7" loading="lazy" decoding="async"><figcaption><span>07 / 08</span><span>Arcos de Santa Iria</span></figcaption></figure>
+<figure class="shot"><img src="https://clasto.pt/projects/Santa_Iria/santa-iria-02.webp" alt="Arcos de Santa Iria visualization 8" loading="lazy" decoding="async"><figcaption><span>08 / 08</span><span>Arcos de Santa Iria</span></figcaption></figure>
+</div>
+</section>
+
+<nav class="projectNav" aria-label="Project navigation">
+<a href="../casa-adega/"><small>PREVIOUS</small><strong>← Casa Adega</strong></a>
+<a href="../"><small>NEXT</small><strong>Interiors →</strong></a>
+</nav>
+
+<section class="cta">
+<div><div class="label">START A PROJECT</div><h2>Have a space<br>worth developing?</h2></div>
+<div><p>Send us the plans, references or an early idea. We can develop the visual direction and spatial language before execution.</p><a class="pill" href="../../contact/">TELL US ABOUT IT <span>→</span></a></div>
+</section>
+</main>
+
+<footer>
+<div class="footerTop"><div><div class="footerBrand">PAPOA</div></div><div class="footerLinks"><a href="../">Interiors</a><a href="./">This project</a><a href="../../contact/">Contact</a></div></div>
+<div class="footerBottom"><span>© 2026 PAPOA. All rights reserved.</span><span>Yachts · Automotive · Interiors</span></div>
+</footer>
+
+<script>
+const menuToggle=document.querySelector(".mobileMenuToggle");
+const mobileNav=document.getElementById("mobileNav");
+if(menuToggle&&mobileNav){
+  const closeMenu=()=>{document.body.classList.remove("menuOpen");menuToggle.setAttribute("aria-expanded","false");mobileNav.setAttribute("aria-hidden","true")};
+  menuToggle.addEventListener("click",()=>{const open=!document.body.classList.contains("menuOpen");document.body.classList.toggle("menuOpen",open);menuToggle.setAttribute("aria-expanded",String(open));mobileNav.setAttribute("aria-hidden",String(!open))});
+  mobileNav.querySelectorAll("a").forEach(a=>a.addEventListener("click",closeMenu));
+}
+</script>
+</body>
+</html>
