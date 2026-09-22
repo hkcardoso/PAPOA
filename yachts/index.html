@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0c0e0e">
+<title>Yachts — PAPOA</title>
+<meta name="description" content="PAPOA Yachts — yacht refit, customization, bespoke interiors and 3D development.">
+<link rel="icon" type="image/png" href="../assets/images/papoa-favicon.png">
+<style>
+@font-face{font-family:Benzin;src:url("../assets/images/Benzin-Regular.ttf") format("truetype");font-weight:400;font-display:swap}
+@font-face{font-family:Benzin;src:url("../assets/images/Benzin-Medium.ttf") format("truetype");font-weight:500;font-display:swap}
+@font-face{font-family:Benzin;src:url("../assets/images/Benzin-Semibold.ttf") format("truetype");font-weight:600;font-display:swap}
+@font-face{font-family:Benzin;src:url("../assets/images/Benzin-Bold.ttf") format("truetype");font-weight:700;font-display:swap}
+@font-face{font-family:Benzin;src:url("../assets/images/Benzin-ExtraBold.ttf") format("truetype");font-weight:800;font-display:swap}
+:root{--bg:#0a0c0c;--bg2:#101212;--ink:#f2f0ea;--muted:#a9aaa5;--line:rgba(255,255,255,.17);--pad:7.75vw;--paper:#efede7}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;width:100%}
+.label{font-family:Benzin,Arial,sans-serif;font-size:9px;letter-spacing:.28em;text-transform:uppercase}
+.arrow{display:inline-block;transition:transform .3s ease}.link:hover .arrow{transform:translateX(5px)}
+header{position:absolute;z-index:20;left:0;top:0;width:100%;height:70px;display:flex;align-items:center;padding:0 var(--pad);border-bottom:1px solid rgba(255,255,255,.18);background:linear-gradient(180deg,rgba(3,6,8,.54),rgba(3,6,8,.08),transparent)}
+.brand{font-family:Benzin;font-size:25px;font-weight:800;letter-spacing:-.115em;transform:scaleX(.94) scaleY(.76);transform-origin:left center}
+nav{margin-left:auto;display:flex;gap:31px;align-items:center;font-size:10px;font-weight:500}
+nav a{opacity:.88;transition:opacity .25s}nav a:hover,nav a.active{opacity:1}
+.menu{width:29px;margin-left:8px;display:grid;gap:5px}.menu:before,.menu:after{content:"";display:block;height:1px;background:white}.menu:after{width:72%;justify-self:end}
+.hero{height:84vh;min-height:620px;position:relative;overflow:hidden}
+.heroMedia{position:absolute;inset:0;background-size:cover;background-position:center;filter:saturate(.62) brightness(.74) contrast(1.08);transform:scale(1.01)}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,7,9,.64),rgba(4,7,9,.28) 35%,rgba(4,7,9,.05) 67%),linear-gradient(180deg,rgba(3,6,8,.30),transparent 42%,rgba(3,6,8,.28))}
+.heroInner{position:absolute;z-index:2;left:var(--pad);right:var(--pad);bottom:10.5%;display:grid;grid-template-columns:1.2fr .72fr;align-items:end;gap:7vw}
+.heroKicker{margin-bottom:20px}
+.hero h1{font-family:Benzin;margin:0;font-size:clamp(78px,10vw,156px);font-weight:800;letter-spacing:-.105em;line-height:.72;transform:scaleY(.80);transform-origin:left bottom}
+.heroLead{margin:12px 0 0;font-size:clamp(27px,2.8vw,44px);line-height:1;letter-spacing:-.05em;max-width:620px}
+.heroSide{padding-bottom:9px;max-width:360px;justify-self:end}
+.heroSide p{font-size:14px;line-height:1.55;color:#e0dfda;margin:0 0 24px}
+.pill{font-family:Benzin;font-size:8px;letter-spacing:.15em;display:inline-flex;gap:34px;align-items:center;border:1px solid rgba(255,255,255,.65);border-radius:999px;padding:12px 14px 11px 18px}
+.intro{padding:82px var(--pad) 76px;display:grid;grid-template-columns:1.05fr .9fr .5fr;gap:5vw;align-items:start}
+.intro h2,.services h2,.feature h2,.process h2,.cta h2{margin:14px 0 0;font-size:clamp(38px,4vw,62px);line-height:.94;letter-spacing:-.052em}
+.introCopy p{font-size:15px;line-height:1.65;color:#c7c6c1;margin:4px 0 0;max-width:500px}
+.introList{border-left:1px solid var(--line);padding-left:30px;font-family:Benzin;font-size:8px;line-height:2.2;letter-spacing:.22em}
+.services{padding:62px var(--pad) 76px;border-top:1px solid var(--line)}
+.servicesHead{display:flex;align-items:end;justify-content:space-between;margin-bottom:34px}
+.servicesHead p{max-width:390px;color:#aaa;font-size:13px;line-height:1.55;margin:0 0 3px}
+.serviceGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:#1b1d1d}
+.service{background:#0d0f0f;padding:38px 34px 42px;min-height:280px;display:flex;flex-direction:column}
+.serviceNum{font-family:Benzin;font-size:8px;letter-spacing:.22em;color:#8d8f8b}
+.service h3{font-size:26px;letter-spacing:-.035em;margin:54px 0 15px;font-weight:500}
+.service p{font-size:13px;line-height:1.6;color:#aaa;margin:0;max-width:330px}
+.service .more{margin-top:auto;padding-top:32px;font-family:Benzin;font-size:7px;letter-spacing:.17em}
+.feature{padding:0 var(--pad) 84px}
+.featureWrap{display:grid;grid-template-columns:1.22fr .78fr;min-height:550px;background:#111}
+.featureImage{background-size:cover;background-position:center;min-height:550px}
+.featureCopy{padding:56px 54px;display:flex;flex-direction:column;justify-content:center}
+.featureCopy h2{font-size:clamp(40px,4.3vw,66px)}
+.featureCopy p{font-size:14px;line-height:1.65;color:#bfc0bb;max-width:440px;margin:24px 0 28px}
+.featureFacts{display:grid;grid-template-columns:repeat(2,1fr);gap:18px 30px;border-top:1px solid var(--line);padding-top:24px}
+.fact span{display:block;font-family:Benzin;font-size:7px;letter-spacing:.2em;color:#8f918c;margin-bottom:8px}.fact strong{font-size:13px;font-weight:400}
+.process{padding:76px var(--pad);background:#0d0f0f;border-top:1px solid var(--line)}
+.processHead{display:flex;justify-content:space-between;align-items:end;margin-bottom:42px}.processHead p{max-width:410px;font-size:13px;line-height:1.55;color:#aaa;margin:0}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.step{padding:28px 28px 36px 0;border-right:1px solid var(--line);min-height:190px}.step:not(:first-child){padding-left:28px}.step:last-child{border-right:0}
+.stepNum{font-family:Benzin;font-size:8px;color:#888;letter-spacing:.2em}.step h3{font-size:20px;margin:34px 0 11px;font-weight:500}.step p{font-size:12px;line-height:1.55;color:#999;margin:0}
+.gallery{display:grid;grid-template-columns:1.15fr .85fr;height:42vw;min-height:480px;max-height:720px}
+.g1,.g2{background-size:cover;background-position:center;position:relative;overflow:hidden}
+.g1:after,.g2:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.35))}
+.g1{border-right:2px solid #0a0c0c}
+.galleryTag{position:absolute;z-index:2;left:28px;bottom:25px;font-family:Benzin;font-size:8px;letter-spacing:.18em}
+.capabilities{padding:78px var(--pad);display:grid;grid-template-columns:.8fr 1.2fr;gap:9vw}
+.capabilities h2{font-size:clamp(36px,3.6vw,56px);line-height:.96;margin:14px 0 0;letter-spacing:-.05em}
+.capList{display:grid;grid-template-columns:1fr 1fr;gap:0 40px}
+.cap{padding:18px 0;border-bottom:1px solid var(--line);font-size:14px;display:flex;justify-content:space-between;gap:16px}.cap span{color:#777}
+.cta{background:var(--paper);color:#151717;padding:78px var(--pad);display:grid;grid-template-columns:1fr .6fr;align-items:end;gap:7vw}
+.cta h2{font-size:clamp(46px,5vw,76px);max-width:760px}.cta p{font-size:15px;line-height:1.55;margin:0 0 24px;max-width:400px}.darkPill{border-color:rgba(0,0,0,.42);font-size:8px}
+footer{padding:43px var(--pad) 23px;background:#090b0b}
+.footerGrid{display:grid;grid-template-columns:1.1fr .62fr .62fr 1.08fr;gap:4vw}
+.footerBrand{font-family:Benzin;font-size:31px;font-weight:800;letter-spacing:-.11em;transform:scaleX(.94) scaleY(.76);transform-origin:left center}
+.footerCopy{font-size:10px;line-height:1.65;color:#aaa;margin-top:14px}
+.footerLinks{display:grid;gap:15px;font-size:10px;padding-top:11px}
+.footerLabel{font-family:Benzin;font-size:8px;letter-spacing:.19em}
+.footerContact{font-size:11px;color:#c3c3bf;margin-top:13px;line-height:1.6}
+.footerBottom{margin-top:32px;padding-top:14px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-size:8px;color:#777}
+@media(max-width:900px){
+:root{--pad:24px}
+header{height:64px}.brand{font-size:22px}nav a{display:none}.menu{display:grid}
+.hero{height:82svh;min-height:620px}.heroInner{grid-template-columns:1fr;bottom:8%;gap:28px}.hero h1{font-size:78px}.heroLead{font-size:31px}.heroSide{justify-self:start;max-width:330px}
+.intro{grid-template-columns:1fr;gap:30px;padding-top:65px}.introList{padding-left:22px}
+.servicesHead,.processHead{display:block}.servicesHead p,.processHead p{margin-top:22px}.serviceGrid{grid-template-columns:1fr}.service{min-height:230px}
+.feature{padding-left:0;padding-right:0}.featureWrap{grid-template-columns:1fr}.featureImage{min-height:55vh}.featureCopy{padding:48px 24px}
+.steps{grid-template-columns:1fr 1fr}.step:nth-child(2){border-right:0}.step:nth-child(-n+2){border-bottom:1px solid var(--line)}
+.gallery{grid-template-columns:1fr;height:auto}.g1,.g2{min-height:55vh}.g1{border-right:0;border-bottom:2px solid #0a0c0c}
+.capabilities{grid-template-columns:1fr;gap:40px}.capList{grid-template-columns:1fr}
+.cta{grid-template-columns:1fr;gap:35px}
+.footerGrid{grid-template-columns:1fr 1fr;gap:32px}.footerBottom{line-height:1.6}
+}
+
+.heroMedia{background-image:url("../assets/images/papoa-princess56-hero.webp")}
+.featureImage{background-image:url("../assets/images/papoa-yachts%20(1).webp")}
+.g1{background-image:url("../assets/images/papoa-princess56-hero.webp")}
+.g2{background-image:url("../assets/images/papoa-yachts%20(1).webp")}
+</style>
+</head>
+<body>
+<header>
+<a class="brand" href="../">PAPOA</a>
+<nav>
+<a href="../#studio">The Studio</a>
+<a class="active" href="../yachts/">Yachts</a>
+<a class="" href="../automotive/">Automotive</a>
+<a class="" href="../interiors/">Interiors</a>
+<a href="#contact">Contact</a>
+<span class="menu" aria-hidden="true"></span>
+</nav>
+</header>
+
+<main>
+<section class="hero">
+<div class="heroMedia"></div>
+<div class="heroInner">
+<div>
+<div class="label heroKicker">YACHTS · REFIT · CUSTOMIZATION</div>
+<h1>YACHTS</h1>
+<div class="heroLead">Refit. Customize.<br>Redefine.</div>
+</div>
+<div class="heroSide">
+<p>We rethink yachts as complete experiences — exterior identity, interior atmosphere, technical development and the details that make a vessel feel personal.</p>
+<a class="pill link" href="#services">DISCOVER OUR APPROACH <span class="arrow">→</span></a>
+</div>
+</div>
+</section>
+
+<section class="intro">
+<div>
+<div class="label">AT SEA</div>
+<h2>Built around<br>the way you move.</h2>
+</div>
+<div class="introCopy"><p>PAPOA approaches yacht work as a balance between design intent and real-world use. We develop concepts visually, test proportion and layout in 3D, and create a clear direction before production begins.</p></div>
+<div class="introList">REFIT<br>CUSTOMIZATION<br>INTERIORS<br>3D DEVELOPMENT<br>DETAIL DESIGN</div>
+</section>
+
+<section class="services" id="services">
+<div class="servicesHead">
+<div><div class="label">WHAT WE DO</div><h2>A complete refit<br>design language.</h2></div>
+<p>From one focused intervention to a wider transformation, each decision should belong to the same visual and functional system.</p>
+</div>
+<div class="serviceGrid">
+<article class="service"><div class="serviceNum">01</div><h3>Refit & transformation</h3><p>Exterior and interior interventions that refresh an existing vessel without losing its underlying character.</p><div class="more">EXPLORE <span class="arrow">→</span></div></article><article class="service"><div class="serviceNum">02</div><h3>Bespoke interiors</h3><p>Layouts, finishes, furniture and detailing designed around the owner, the boat and the realities of life on board.</p><div class="more">EXPLORE <span class="arrow">→</span></div></article><article class="service"><div class="serviceNum">03</div><h3>3D & technical development</h3><p>Accurate visual development, spatial studies and production-minded 3D work to reduce uncertainty before fabrication.</p><div class="more">EXPLORE <span class="arrow">→</span></div></article>
+</div>
+</section>
+
+<section class="feature">
+<div class="featureWrap">
+<div class="featureImage"></div>
+<div class="featureCopy">
+<div class="label">SELECTED CONCEPT · 01</div>
+<h2>Princess 56<br>concept study.</h2>
+<p>A design exercise focused on proportion, interior coherence and a more contemporary visual identity for an established 56-foot platform.</p>
+<div class="featureFacts">
+<div class="fact"><span>TYPE</span><strong>Yacht refit concept</strong></div><div class="fact"><span>FOCUS</span><strong>Exterior + interior</strong></div><div class="fact"><span>METHOD</span><strong>3D development</strong></div><div class="fact"><span>STATUS</span><strong>Concept study</strong></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="process">
+<div class="processHead">
+<div><div class="label">OUR PROCESS</div><h2>From first idea<br>to final detail.</h2></div>
+<p>We use 3D early, not just at the end. It lets design, proportion, technical constraints and client decisions meet before expensive physical work starts.</p>
+</div>
+<div class="steps">
+<div class="step"><div class="stepNum">01</div><h3>Understand</h3><p>Existing vessel, owner priorities, constraints and opportunities.</p></div><div class="step"><div class="stepNum">02</div><h3>Define</h3><p>Visual direction, materials, proportions and the key design moves.</p></div><div class="step"><div class="stepNum">03</div><h3>Develop</h3><p>3D, layouts, details and revisions with technical reality in mind.</p></div><div class="step"><div class="stepNum">04</div><h3>Deliver</h3><p>A coherent package ready to support fabrication, refit and installation.</p></div>
+</div>
+</section>
+
+<section class="gallery">
+<div class="g1"><div class="galleryTag">EXTERIOR DIRECTION</div></div>
+<div class="g2"><div class="galleryTag">DETAIL & MATERIAL</div></div>
+</section>
+
+<section class="capabilities">
+<div><div class="label">CAPABILITIES</div><h2>Design that survives<br>contact with reality.</h2></div>
+<div class="capList">
+<div class="cap">Exterior customization<span>01</span></div><div class="cap">Interior layouts<span>02</span></div><div class="cap">Bespoke furniture<span>03</span></div><div class="cap">Materials & finishes<span>04</span></div><div class="cap">3D visualization<span>05</span></div><div class="cap">Technical coordination<span>06</span></div><div class="cap">Presentation packages<span>07</span></div><div class="cap">Refit design support<span>08</span></div>
+</div>
+</section>
+
+<section class="cta" id="contact">
+<div><div class="label">START A PROJECT</div><h2>Your yacht.<br>A clearer identity.</h2></div>
+<div><p>Tell us what you own, what you want to change and how far you want to take it. We can start with a focused concept before committing to a full refit.</p><a class="pill darkPill link" href="mailto:hello@papoa.studio">TELL US ABOUT IT <span class="arrow">→</span></a></div>
+</section>
+</main>
+
+<footer>
+<div class="footerGrid">
+<div><div class="footerBrand">PAPOA</div><div class="footerCopy">Yachts · Automotive · Interiors<br>A more extraordinary world.</div></div>
+<div class="footerLinks"><a href="../#studio">The Studio</a><a href="../yachts/">Yachts</a><a href="../automotive/">Automotive</a></div>
+<div class="footerLinks"><a href="../interiors/">Interiors</a><a href="../#projects">Projects</a><a href="#contact">Contact</a></div>
+<div><div class="footerLabel">STAY IN MOTION</div><div class="footerContact">Design, development and bespoke production across land, sea and living spaces.</div></div>
+</div>
+<div class="footerBottom"><span>© 2026 PAPOA. All rights reserved.</span><span>Design moves the world.</span></div>
+</footer>
+</body>
+</html>
