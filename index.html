@@ -437,10 +437,24 @@ footer{
   height:29px;
 }
 .social{
-  margin-top:13px;
-  gap:19px;
-  font-size:10px;
+  margin-top:15px;
+  display:flex;
+  align-items:center;
+  gap:14px;
 }
+.socialLink,.socialIcon{
+  width:28px;
+  height:28px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  color:#e8e7e1;
+  opacity:.88;
+  transition:opacity .25s ease,transform .25s ease;
+}
+.socialLink:hover{opacity:1;transform:translateY(-1px)}
+.socialLink svg,.socialIcon svg{width:21px;height:21px;display:block}
+.socialIcon{opacity:.62}
 .footerBottom{
   margin-top:31px;
   padding-top:14px;
@@ -629,7 +643,11 @@ footer{
 <div><div class="footerBrand">PAPOA</div><div class="footerCopy">Yachts · Automotive · Interiors<br>A more extraordinary world.</div></div>
 <div class="footerLinks"><a href="#studio">The Studio</a><a href="#what">What We Do</a></div>
 <div class="footerLinks"><a href="#projects">Projects</a><a href="#contact">Contact</a></div>
-<div class="mail"><label>STAY IN MOTION</label><div class="title">Join our mailing list</div><form class="mailRow" onsubmit="event.preventDefault()"><input type="email" placeholder="Your email" aria-label="Your email"><button aria-label="Join mailing list">→</button></form><div class="social"><span>◎</span><span>in</span><span>▶</span></div></div>
+<div class="mail"><label>STAY IN MOTION</label><div class="title">Join our mailing list</div><form class="mailRow" onsubmit="event.preventDefault()"><input type="email" placeholder="Your email" aria-label="Your email"><button aria-label="Join mailing list">→</button></form><div class="social" aria-label="Social networks">
+<a class="socialLink" href="https://www.instagram.com/papoa.pt/" target="_blank" rel="noopener noreferrer" aria-label="PAPOA on Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.1" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.45" cy="6.65" r="1.15" fill="currentColor"/></svg></a>
+<span class="socialIcon" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 8.2H3.4V20h3.2V8.2Zm.2-3.7A1.85 1.85 0 1 0 3.1 4.5a1.85 1.85 0 0 0 3.7 0ZM20.9 13.2c0-3.55-1.9-5.2-4.45-5.2-2.05 0-2.97 1.13-3.48 1.93V8.2H9.78V20h3.2v-5.84c0-1.54.29-3.03 2.2-3.03 1.88 0 1.9 1.76 1.9 3.13V20h3.2l.62-6.8Z"/></svg></span>
+<span class="socialIcon" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.4 7.1a2.8 2.8 0 0 0-1.97-1.98C17.7 4.65 12 4.65 12 4.65s-5.7 0-7.43.47A2.8 2.8 0 0 0 2.6 7.1 29.1 29.1 0 0 0 2.13 12c0 1.66.15 3.3.47 4.9a2.8 2.8 0 0 0 1.97 1.98c1.73.47 7.43.47 7.43.47s5.7 0 7.43-.47a2.8 2.8 0 0 0 1.97-1.98c.32-1.6.47-3.24.47-4.9 0-1.66-.15-3.3-.47-4.9ZM9.95 15.15v-6.3L15.4 12l-5.45 3.15Z"/></svg></span>
+</div></div>
 </div>
 <div class="footerBottom"><span>© 2026 PAPOA. All rights reserved.</span><span>Design moves the world.</span></div>
 </footer>
