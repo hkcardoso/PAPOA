@@ -53,7 +53,7 @@ transform:scale(1.01)}
 .dImg{position:absolute;inset:0;background-position:center;background-size:cover;transition:transform .65s cubic-bezier(.2,.7,.2,1)}
 .discipline:nth-child(1) .dImg{background-image:url("./assets/images/papoa-yachts%20(1).webp?v=20260922-2");background-position:center}
 .discipline:nth-child(2) .dImg{background-image:url("./assets/images/papoa-automotive.webp?v=20260922-2");background-position:center}
-.discipline:nth-child(3) .dImg{background-image:url("./assets/images/interiors/arcos-santa-iria-hero.webp?v=20260922-4");background-position:center}
+.discipline:nth-child(3) .dImg{background-image:url("https://clasto.pt/projects/Santa_Iria/santa-iria-04.webp");background-position:center 48%}
 .discipline:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,5,5,.12),rgba(4,5,5,.07) 48%,rgba(4,5,5,.45))}
 .discipline:hover .dImg{transform:scale(1.035)}
 .dContent{position:absolute;z-index:2;inset:0;padding:30px 27px;display:flex;flex-direction:column}
@@ -70,7 +70,7 @@ transform:scale(1.01)}
 .projectImg{aspect-ratio:1.71/1;background-position:center;background-size:cover;overflow:hidden}
 .project:nth-child(1) .projectImg{background-image:url("./assets/images/papoa-princess56-hero.webp?v=20260922-2")}
 .project:nth-child(2) .projectImg{background-image:url("./assets/images/papoa-automotive.webp?v=20260922-2")}
-.project:nth-child(3) .projectImg{background-image:url("./assets/images/interiors/casa-adega-feature.webp?v=20260922-5")}
+.project:nth-child(3) .projectImg{background-image:url("https://clasto.pt/projects/Casa_Adega/casa-adega-08.webp");background-position:center 46%}
 .projectMeta{display:flex;justify-content:space-between;align-items:start;padding-top:9px}
 .projectMeta strong{display:block;font-size:10px;font-weight:400}
 .projectMeta small{font-size:8px;color:#b9b9b5;display:block;margin-top:4px}
@@ -735,6 +735,15 @@ header>.mobileMenuToggle{border:0;background:transparent;padding:0;color:inherit
   .mailRow{width:100%}
 }
 
+
+/* PAPOA homepage interiors image alignment v11 */
+.discipline:nth-child(3) .dImg{background-position:center 48%}
+.project:nth-child(3) .projectImg{background-position:center 46%}
+@media(max-width:780px){
+  .discipline:nth-child(3) .dImg{background-position:center 50%}
+  .project:nth-child(3) .projectImg{background-position:center}
+}
+
 </style>
 </head>
 <body>
@@ -794,7 +803,7 @@ header>.mobileMenuToggle{border:0;background:transparent;padding:0;color:inherit
 <div class="projectGrid">
 <a class="project reveal" href="#"><div class="projectImg"></div><div class="projectMeta"><div><strong>Project AURORA</strong><small>Yacht Refit &amp; Customization</small></div><span>→</span></div></a>
 <a class="project reveal" href="#"><div class="projectImg"></div><div class="projectMeta"><div><strong>Project VÉLOCE</strong><small>Automotive Design Concept</small></div><span>→</span></div></a>
-<a class="project reveal" href="#"><div class="projectImg"></div><div class="projectMeta"><div><strong>Casa Adega</strong><small>Interior Visualization Study</small></div><span>→</span></div></a>
+<a class="project reveal" href="./interiors/casa-adega/"><div class="projectImg"></div><div class="projectMeta"><div><strong>Casa Adega</strong><small>Interior Visualization Study</small></div><span>→</span></div></a>
 </div>
 </section>
 
