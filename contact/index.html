@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0c0e0e">
+<title>Contact — PAPOA</title>
+<meta name="description" content="Contact PAPOA — Yachts, Automotive and Interiors. Start a project with us.">
+<link rel="icon" type="image/png" href="../assets/images/papoa-favicon.png">
+<style>
+@font-face{font-family:Benzin;src:url("../assets/images/Benzin-Regular.ttf") format("truetype");font-weight:400;font-display:swap}
+@font-face{font-family:Benzin;src:url("../assets/images/Benzin-Medium.ttf") format("truetype");font-weight:500;font-display:swap}
+@font-face{font-family:Benzin;src:url("../assets/images/Benzin-Semibold.ttf") format("truetype");font-weight:600;font-display:swap}
+@font-face{font-family:Benzin;src:url("../assets/images/Benzin-Bold.ttf") format("truetype");font-weight:700;font-display:swap}
+@font-face{font-family:Benzin;src:url("../assets/images/Benzin-ExtraBold.ttf") format("truetype");font-weight:800;font-display:swap}
+:root{--bg:#0a0c0c;--panel:#0f1111;--ink:#f3f1eb;--muted:#a7a8a3;--line:rgba(255,255,255,.16);--paper:#efede7;--pad:7.75vw}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.label{font-family:Benzin,Arial,sans-serif;font-size:9px;letter-spacing:.28em;text-transform:uppercase}
+.arrow{display:inline-block;transition:transform .3s ease}.link:hover .arrow{transform:translateX(5px)}
+header{position:absolute;z-index:30;left:0;top:0;width:100%;height:70px;display:flex;align-items:center;padding:0 var(--pad);border-bottom:1px solid rgba(255,255,255,.18);background:linear-gradient(180deg,rgba(3,6,8,.58),rgba(3,6,8,.08),transparent)}
+.brand{font-family:Benzin;font-size:25px;font-weight:800;letter-spacing:-.115em;transform:scaleX(.94) scaleY(.76);transform-origin:left center}
+nav{margin-left:auto;display:flex;gap:31px;align-items:center;font-size:10px;font-weight:500}
+nav a{opacity:.86;transition:opacity .25s}nav a:hover,nav a.active{opacity:1}
+.menu{width:29px;margin-left:8px;display:grid;gap:5px}.menu:before,.menu:after{content:"";display:block;height:1px;background:white}.menu:after{width:72%;justify-self:end}
+.mobileNav{display:none}
+
+.contactHero{min-height:58vh;position:relative;display:flex;align-items:end;padding:150px var(--pad) 72px;overflow:hidden}
+.contactHero:before{content:"";position:absolute;inset:0;background:
+linear-gradient(90deg,rgba(4,7,9,.83) 0%,rgba(4,7,9,.58) 38%,rgba(4,7,9,.26) 68%,rgba(4,7,9,.34) 100%),
+url("../assets/images/papoa_paisagem.webp") center/cover no-repeat;
+filter:saturate(.52) brightness(.68) contrast(1.05);transform:scale(1.02)}
+.heroGrid{position:relative;z-index:2;width:100%;display:grid;grid-template-columns:1.15fr .62fr;gap:8vw;align-items:end}
+.contactHero h1{font-family:Benzin;margin:15px 0 0;font-size:clamp(70px,9.4vw,148px);line-height:.74;letter-spacing:-.105em;font-weight:800;transform:scaleY(.80);transform-origin:left bottom}
+.heroLead{font-size:clamp(26px,2.55vw,40px);line-height:1.02;letter-spacing:-.045em;margin-top:10px;max-width:590px}
+.heroSide{max-width:390px;justify-self:end;font-size:14px;line-height:1.6;color:#d4d4ce}
+.heroSide a{display:inline-block;margin-top:20px;font-family:Benzin;font-size:8px;letter-spacing:.16em;border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:4px}
+
+.contactMain{display:grid;grid-template-columns:.78fr 1.22fr;gap:8vw;padding:82px var(--pad) 92px}
+.contactInfo{padding-top:4px}
+.contactInfo h2{font-size:clamp(38px,4vw,62px);line-height:.95;letter-spacing:-.052em;margin:15px 0 26px}
+.contactInfo p{max-width:430px;color:#b9bab5;font-size:14px;line-height:1.65}
+.direct{margin-top:42px;padding-top:24px;border-top:1px solid var(--line)}
+.directLabel{font-family:Benzin;font-size:7px;letter-spacing:.22em;color:#777}
+.directEmail{display:inline-block;margin-top:12px;font-size:20px;letter-spacing:-.02em;border-bottom:1px solid rgba(255,255,255,.28);padding-bottom:4px}
+.social{display:flex;align-items:center;gap:14px;margin-top:24px}
+.socialLink{width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center;color:#eceae4;opacity:.86;transition:opacity .25s ease,transform .25s ease}
+.socialLink:hover{opacity:1;transform:translateY(-1px)}
+.socialLink svg{width:23px;height:23px;display:block}
+
+.contactForm{background:var(--panel);padding:42px 42px 46px;border:1px solid rgba(255,255,255,.06)}
+.formTop{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:34px}
+.formTop h3{font-size:28px;font-weight:500;letter-spacing:-.035em;margin:0}
+.formTop span{font-family:Benzin;font-size:7px;letter-spacing:.2em;color:#777}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 28px}
+.field{position:relative;padding:17px 0 9px;border-bottom:1px solid var(--line)}
+.field.full{grid-column:1/-1}
+.field label{display:block;font-family:Benzin;font-size:7px;letter-spacing:.18em;color:#838581;margin-bottom:9px}
+.field input,.field textarea,.field select{width:100%;border:0;outline:0;background:transparent;color:#f1efe9;padding:0;font-size:15px}
+.field input,.field select{height:29px}
+.field textarea{min-height:125px;resize:vertical;line-height:1.55}
+.field select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,#888 50%),linear-gradient(135deg,#888 50%,transparent 50%);background-position:calc(100% - 14px) 12px,calc(100% - 9px) 12px;background-size:5px 5px;background-repeat:no-repeat}
+.field select option{background:#111;color:white}
+.formBottom{display:flex;justify-content:space-between;align-items:center;gap:30px;margin-top:28px}
+.formNote{font-size:11px;line-height:1.5;color:#777;max-width:330px}
+.sendBtn{font-family:Benzin;font-size:8px;letter-spacing:.15em;color:#111;background:var(--paper);border:0;border-radius:999px;padding:13px 16px 12px 20px;min-width:172px;display:inline-flex;align-items:center;justify-content:space-between;gap:25px}
+
+.specialties{padding:0 var(--pad) 82px}
+.specialtyGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:#202222}
+.specialty{background:#0d0f0f;padding:31px 30px 34px;min-height:220px;display:flex;flex-direction:column}
+.specialtyNum{font-family:Benzin;font-size:7px;letter-spacing:.2em;color:#777}
+.specialty h3{font-size:25px;font-weight:500;margin:42px 0 10px}
+.specialty p{font-size:12px;line-height:1.55;color:#999;margin:0}
+.specialty .link{margin-top:auto;padding-top:26px;font-family:Benzin;font-size:7px;letter-spacing:.16em}
+
+footer{padding:43px var(--pad) 23px;background:#090b0b;border-top:1px solid var(--line)}
+.footerGrid{display:grid;grid-template-columns:1.1fr .62fr .62fr 1.08fr;gap:4vw}
+.footerBrand{font-family:Benzin;font-size:31px;font-weight:800;letter-spacing:-.11em;transform:scaleX(.94) scaleY(.76);transform-origin:left center}
+.footerCopy{font-size:10px;line-height:1.65;color:#aaa;margin-top:14px}
+.footerLinks{display:grid;gap:15px;font-size:10px;padding-top:11px}
+.footerLabel{font-family:Benzin;font-size:8px;letter-spacing:.19em}
+.footerContact{font-size:11px;color:#c3c3bf;margin-top:13px;line-height:1.6}
+.footerBottom{margin-top:32px;padding-top:14px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-size:8px;color:#777}
+
+@media(max-width:900px){
+  :root{--pad:22px}
+  body.menuOpen{overflow:hidden}
+  header{height:64px;padding:0 22px}
+  .brand{font-size:22px}
+  nav a{display:none}
+  .mobileMenuToggle{appearance:none;border:0;background:transparent;padding:0;color:inherit}
+  nav .mobileMenuToggle{display:grid}
+  .mobileNav{position:fixed;inset:0;z-index:25;display:flex;flex-direction:column;justify-content:center;padding:92px 24px 42px;background:rgba(8,10,10,.97);backdrop-filter:blur(14px);opacity:0;visibility:hidden;transform:translateY(-10px);transition:.28s ease}
+  body.menuOpen .mobileNav{opacity:1;visibility:visible;transform:none}
+  .mobileNav a{display:flex;justify-content:space-between;align-items:center;padding:17px 0;border-bottom:1px solid rgba(255,255,255,.14);font-size:28px;line-height:1;letter-spacing:-.04em}
+  .mobileNav a:after{content:"→";font-size:18px;color:#8f918d}
+  .contactHero{min-height:680px;padding:130px 22px 48px}
+  .heroGrid{grid-template-columns:1fr;gap:26px}
+  .contactHero h1{font-size:clamp(62px,20vw,86px)}
+  .heroLead{font-size:30px}
+  .heroSide{justify-self:start;font-size:13px}
+  .contactMain{grid-template-columns:1fr;padding:58px 22px 64px;gap:42px}
+  .contactInfo h2{font-size:42px}
+  .contactForm{padding:30px 22px 34px}
+  .formTop{display:block}.formTop span{display:block;margin-top:10px}
+  .grid2{grid-template-columns:1fr}
+  .field.full{grid-column:auto}
+  .formBottom{align-items:flex-start;flex-direction:column}
+  .sendBtn{width:100%}
+  .specialties{padding:0 22px 58px}
+  .specialtyGrid{grid-template-columns:1fr}
+  .specialty{min-height:190px}
+  footer{padding:46px 22px 26px}
+  .footerGrid{grid-template-columns:1fr;gap:26px}
+  .footerBrand{font-size:36px}
+  .footerCopy,.footerContact{font-size:11px}
+  .footerLinks{padding-top:0;font-size:11px}
+  .footerBottom{display:grid;gap:7px;font-size:9px}
+}
+</style>
+</head>
+<body>
+<header>
+<a class="brand" href="../">PAPOA</a>
+<nav>
+<a href="../#studio">The Studio</a>
+<a href="../yachts/">Yachts</a>
+<a href="../automotive/">Automotive</a>
+<a href="../interiors/">Interiors</a>
+<a class="active" href="./">Contact</a>
+<button class="menu mobileMenuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav"></button>
+</nav>
+</header>
+<div class="mobileNav" id="mobileNav" aria-hidden="true">
+<a href="../#studio">The Studio</a>
+<a href="../yachts/">Yachts</a>
+<a href="../automotive/">Automotive</a>
+<a href="../interiors/">Interiors</a>
+<a href="./">Contact</a>
+</div>
+
+<main>
+<section class="contactHero">
+<div class="heroGrid">
+<div>
+<div class="label">CONTACT · START A PROJECT</div>
+<h1>LET'S TALK</h1>
+<div class="heroLead">Bring us the idea.<br>We'll help shape it.</div>
+</div>
+<div class="heroSide">Yacht refit, automotive development or bespoke interiors. Start with the problem, the reference, the object or even a rough idea.<br><a href="mailto:hello@papoa.studio">hello@papoa.studio ↗</a></div>
+</div>
+</section>
+
+<section class="contactMain">
+<div class="contactInfo">
+<div class="label">GET IN TOUCH</div>
+<h2>One conversation<br>can start a project.</h2>
+<p>Tell us what you are working on, what stage it is at and what you need from us. Plans, references, photographs and existing 3D files are all useful if you have them.</p>
+<div class="direct">
+<div class="directLabel">DIRECT EMAIL</div>
+<a class="directEmail" href="mailto:hello@papoa.studio">hello@papoa.studio</a>
+<div class="social">
+<a class="socialLink" href="https://www.instagram.com/papoa.pt/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.1" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.45" cy="6.65" r="1.15" fill="currentColor"/></svg></a>
+<a class="socialLink" href="https://www.linkedin.com/company/papoa-tv/?viewAsMember=true" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 8.2H3.4V20h3.2V8.2Zm.2-3.7A1.85 1.85 0 1 0 3.1 4.5a1.85 1.85 0 0 0 3.7 0ZM20.9 13.2c0-3.55-1.9-5.2-4.45-5.2-2.05 0-2.97 1.13-3.48 1.93V8.2H9.78V20h3.2v-5.84c0-1.54.29-3.03 2.2-3.03 1.88 0 1.9 1.76 1.9 3.13V20h3.2l.62-6.8Z"/></svg></a>
+<a class="socialLink" href="https://www.youtube.com/@papoatv" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.4 7.1a2.8 2.8 0 0 0-1.97-1.98C17.7 4.65 12 4.65 12 4.65s-5.7 0-7.43.47A2.8 2.8 0 0 0 2.6 7.1 29.1 29.1 0 0 0 2.13 12c0 1.66.15 3.3.47 4.9a2.8 2.8 0 0 0 1.97 1.98c1.73.47 7.43.47 7.43.47s5.7 0 7.43-.47a2.8 2.8 0 0 0 1.97-1.98c.32-1.6.47-3.24.47-4.9 0-1.66-.15-3.3-.47-4.9ZM9.95 15.15v-6.3L15.4 12l-5.45 3.15Z"/></svg></a>
+</div>
+</div>
+</div>
+
+<form class="contactForm" id="contactForm">
+<div class="formTop"><h3>Tell us about your project.</h3><span>01 — PROJECT ENQUIRY</span></div>
+<div class="grid2">
+<div class="field"><label for="name">NAME</label><input id="name" name="name" autocomplete="name" required></div>
+<div class="field"><label for="email">EMAIL</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+<div class="field"><label for="company">COMPANY / BRAND</label><input id="company" name="company" autocomplete="organization"></div>
+<div class="field"><label for="discipline">DISCIPLINE</label><select id="discipline" name="discipline"><option>Yachts</option><option>Automotive</option><option>Interiors</option><option>Other</option></select></div>
+<div class="field full"><label for="subject">PROJECT / SUBJECT</label><input id="subject" name="subject" required></div>
+<div class="field full"><label for="message">TELL US ABOUT IT</label><textarea id="message" name="message" required></textarea></div>
+</div>
+<div class="formBottom">
+<div class="formNote">This static form opens your email app with the project information already filled in.</div>
+<button class="sendBtn" type="submit">SEND ENQUIRY <span>→</span></button>
+</div>
+</form>
+</section>
+
+<section class="specialties">
+<div class="specialtyGrid">
+<a class="specialty" href="../yachts/"><div class="specialtyNum">01</div><h3>Yachts</h3><p>Refit, customization, interiors and 3D development.</p><div class="link">DISCOVER YACHTS <span class="arrow">→</span></div></a>
+<a class="specialty" href="../automotive/"><div class="specialtyNum">02</div><h3>Automotive</h3><p>Concept design, components, modelling and prototyping.</p><div class="link">EXPLORE AUTOMOTIVE <span class="arrow">→</span></div></a>
+<a class="specialty" href="../interiors/"><div class="specialtyNum">03</div><h3>Interiors</h3><p>Interior concepts, bespoke furniture, joinery and visualization.</p><div class="link">VIEW INTERIORS <span class="arrow">→</span></div></a>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="footerGrid">
+<div><div class="footerBrand">PAPOA</div><div class="footerCopy">Yachts · Automotive · Interiors<br>A more extraordinary world.</div></div>
+<div class="footerLinks"><a href="../#studio">The Studio</a><a href="../yachts/">Yachts</a><a href="../automotive/">Automotive</a></div>
+<div class="footerLinks"><a href="../interiors/">Interiors</a><a href="../#projects">Projects</a><a href="./">Contact</a></div>
+<div><div class="footerLabel">STAY IN MOTION</div><div class="footerContact">Design, development and bespoke production across land, sea and living spaces.</div></div>
+</div>
+<div class="footerBottom"><span>© 2026 PAPOA. All rights reserved.</span><span>Design moves the world.</span></div>
+</footer>
+
+<script>
+const menuToggle=document.querySelector(".mobileMenuToggle");
+const mobileNav=document.getElementById("mobileNav");
+if(menuToggle&&mobileNav){
+  const closeMenu=()=>{document.body.classList.remove("menuOpen");menuToggle.setAttribute("aria-expanded","false");mobileNav.setAttribute("aria-hidden","true")};
+  menuToggle.addEventListener("click",()=>{const open=!document.body.classList.contains("menuOpen");document.body.classList.toggle("menuOpen",open);menuToggle.setAttribute("aria-expanded",String(open));mobileNav.setAttribute("aria-hidden",String(!open))});
+  mobileNav.querySelectorAll("a").forEach(a=>a.addEventListener("click",closeMenu));
+}
+document.getElementById("contactForm").addEventListener("submit",function(e){
+  e.preventDefault();
+  const data=new FormData(this);
+  const name=data.get("name")||"";
+  const email=data.get("email")||"";
+  const company=data.get("company")||"";
+  const discipline=data.get("discipline")||"";
+  const subject=data.get("subject")||"Project enquiry";
+  const message=data.get("message")||"";
+  const body=[
+    "Name: "+name,
+    "Email: "+email,
+    "Company / Brand: "+company,
+    "Discipline: "+discipline,
+    "",
+    message
+  ].join("\n");
+  window.location.href="mailto:hello@papoa.studio?subject="+encodeURIComponent("[PAPOA] "+subject)+"&body="+encodeURIComponent(body);
+});
+</script>
+</body>
+</html>
