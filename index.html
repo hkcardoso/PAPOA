@@ -755,6 +755,27 @@ header>.mobileMenuToggle{border:0;background:transparent;padding:0;color:inherit
   .discipline:nth-child(3) .dImg{background-position:center center!important}
   .project:nth-child(3) .projectImg{background-position:center center!important}
 }
+
+/* PAPOA motion and clearer project navigation */
+.heroVideo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(.65) brightness(.76) contrast(1.07);z-index:0}
+.heroMedia{background-image:url("./assets/images/papoa-princess56-hero.webp");opacity:0;pointer-events:none}
+.hero:before{z-index:1}
+.heroContent,.heroNums,.heroTag{z-index:2}
+.project{display:block}
+.projectImg{transition:transform .65s cubic-bezier(.2,.7,.2,1),filter .4s ease}
+.project:hover .projectImg{transform:scale(1.025);filter:brightness(1.1)}
+.project:focus-visible,.discipline:focus-visible,.pill:focus-visible,.footerContactLink:focus-visible{outline:2px solid #f1f0ea;outline-offset:4px}
+.discipline:hover .dImg{transform:scale(1.03)}
+.footerContactLink{display:flex;align-items:center;justify-content:space-between;border:1px solid rgba(255,255,255,.38);border-radius:99px;padding:12px 15px;margin:12px 0 10px;font-family:Benzin,Arial,sans-serif;font-size:8px;letter-spacing:.08em}
+.method{background:#f2f0e9;color:#171919;padding:68px var(--pad) 76px}
+.method h2{font-size:clamp(36px,4vw,60px);line-height:1.02;letter-spacing:-.05em;margin:17px 0 44px}
+.methodSteps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px}
+.methodSteps>div{border-top:1px solid rgba(0,0,0,.3);padding-top:18px}
+.methodSteps span{font:10px Benzin,Arial,sans-serif;color:#676965;display:block;margin-bottom:28px}
+.methodSteps strong{font-size:19px;font-weight:500}
+.methodSteps p{max-width:330px;font-size:14px;line-height:1.5;color:#555;margin:13px 0 0}
+@media(max-width:780px){.heroVideo{object-position:64% center}.method{padding:60px 22px}.method h2{margin-bottom:34px}.methodSteps{grid-template-columns:1fr;gap:28px}.methodSteps span{margin-bottom:12px}.methodSteps strong{font-size:20px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.projectImg,.dImg,.arrow{transition:none!important}.heroVideo{display:none}.heroMedia{opacity:1}}
 </style>
 </head>
 <body>
@@ -780,7 +801,7 @@ header>.mobileMenuToggle{border:0;background:transparent;padding:0;color:inherit
 
 <main id="top">
 <section class="hero">
-<div class="heroMedia"></div>
+<video class="heroVideo" autoplay muted loop playsinline preload="metadata" poster="./assets/images/papoa-princess56-hero.webp" aria-hidden="true"><source src="./assets/images/MiniMax_H3_00022_.mp4" type="video/mp4"></video><div class="heroMedia"></div>
 <div class="heroContent reveal">
 <div class="label">YACHTS · AUTOMOTIVE · INTERIORS</div>
 <h1>PAPOA</h1>
@@ -810,24 +831,28 @@ header>.mobileMenuToggle{border:0;background:transparent;padding:0;color:inherit
 </section>
 
 <section class="projects" id="projects">
-<div class="projectsHead reveal"><div><div class="label">FEATURED PROJECTS</div><h2>Ideas<br>brought to life.</h2></div><a class="allProjects link" href="./interiors/">ALL PROJECTS <span class="arrow">→</span></a></div>
+<div class="projectsHead reveal"><div><div class="label">FEATURED PROJECTS</div><h2>Selected<br>work.</h2></div><a class="allProjects link" href="./interiors/">VIEW INTERIORS <span class="arrow">→</span></a></div>
 <div class="projectGrid">
-<a class="project reveal" href="#"><div class="projectImg"></div><div class="projectMeta"><div><strong>Project AURORA</strong><small>Yacht Refit &amp; Customization</small></div><span>→</span></div></a>
-<a class="project reveal" href="#"><div class="projectImg"></div><div class="projectMeta"><div><strong>Project VÉLOCE</strong><small>Automotive Design Concept</small></div><span>→</span></div></a>
-<a class="project reveal" href="./interiors/giraldo/?v=20260922-giraldo-first2"><div class="projectImg"></div><div class="projectMeta"><div><strong>Giraldo</strong><small>Residential Visualization Study</small></div><span>→</span></div></a>
+<a class="project reveal" href="./interiors/giraldo/"><div class="projectImg" style="background-image:url('https://clasto.pt/projects/Giraldo/giraldo-exterior-horizontal.webp')"></div><div class="projectMeta"><div><strong>Giraldo</strong><small>Residential visualization study</small></div><span>→</span></div></a>
+<a class="project reveal" href="./interiors/casa-adega/"><div class="projectImg" style="background-image:url('https://clasto.pt/projects/Casa_Adega/casa-adega-10.webp')"></div><div class="projectMeta"><div><strong>Casa Adega</strong><small>Interior visualization study</small></div><span>→</span></div></a>
+<a class="project reveal" href="./interiors/arcos-de-santa-iria/"><div class="projectImg" style="background-image:url('https://clasto.pt/projects/Santa_Iria/santa-iria-04.webp')"></div><div class="projectMeta"><div><strong>Arcos de Santa Iria</strong><small>Residential visualization study</small></div><span>→</span></div></a>
 </div>
 </section>
 
 <section class="perspective">
 <div class="bigP">P</div>
 <div class="pLeft reveal"><div class="label">│ A BIGGER PERSPECTIVE</div><h2>Design<br>connects<br>everything.</h2></div>
-<div class="pRight reveal"><p>Different disciplines. A shared belief. That exceptional design can improve how we move, live and feel.</p><a class="link" href="#">OUR PHILOSOPHY <span class="arrow">→</span></a></div>
+<div class="pRight reveal"><p>Different disciplines. A shared belief. That exceptional design can improve how we move, live and feel.</p><a class="link" href="./contact/">TELL US ABOUT YOUR PROJECT <span class="arrow">→</span></a></div>
 </section>
 
-<section class="testimonial">
-<div class="coast"></div>
-<div class="quoteWrap reveal"><div class="quoteMark">“</div><blockquote>“PAPOA brings a rare combination of creative vision, technical expertise and genuine passion. The result is always beyond expectation.”</blockquote><div class="author">ALEX RIVERA<br>YACHT OWNER</div></div>
-<div class="pager">01&nbsp;&nbsp;02&nbsp;&nbsp;03<div class="pagerBtns"><button class="circle" aria-label="Previous">←</button><button class="circle" aria-label="Next">→</button></div></div>
+<section class="method" aria-labelledby="methodTitle">
+<div class="label">HOW WE WORK</div>
+<h2 id="methodTitle">From an idea<br>to a clear direction.</h2>
+<div class="methodSteps">
+<div><span>01</span><strong>Understand</strong><p>References, constraints and what the project needs to achieve.</p></div>
+<div><span>02</span><strong>Develop in 3D</strong><p>Explore form, space, proportions and materials before committing.</p></div>
+<div><span>03</span><strong>Prepare to build</strong><p>Share a coherent direction that supports decisions and execution.</p></div>
+</div>
 </section>
 </main>
 
@@ -836,7 +861,7 @@ header>.mobileMenuToggle{border:0;background:transparent;padding:0;color:inherit
 <div><div class="footerBrand">PAPOA</div><div class="footerCopy">Yachts · Automotive · Interiors<br>A more extraordinary world.</div></div>
 <div class="footerLinks"><a href="#studio">The Studio</a><a href="#what">What We Do</a></div>
 <div class="footerLinks"><a href="#projects">Projects</a><a href="./contact/">Contact</a></div>
-<div class="mail"><label>STAY IN MOTION</label><div class="title">Join our mailing list</div><form class="mailRow" onsubmit="event.preventDefault()"><input type="email" placeholder="Your email" aria-label="Your email"><button aria-label="Join mailing list">→</button></form><div class="social" aria-label="Social networks">
+<div class="mail"><label>STAY IN MOTION</label><div class="title">Yachts, Automotive or Interiors?</div><a class="footerContactLink" href="./contact/">TELL US ABOUT YOUR PROJECT <span>→</span></a><div class="social" aria-label="Social networks">
 <a class="socialLink" href="https://www.instagram.com/papoa.pt/" target="_blank" rel="noopener noreferrer" aria-label="PAPOA on Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.1" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.45" cy="6.65" r="1.15" fill="currentColor"/></svg></a>
 <a class="socialLink" href="https://www.linkedin.com/company/papoa-tv/?viewAsMember=true" target="_blank" rel="noopener noreferrer" aria-label="PAPOA on LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 8.2H3.4V20h3.2V8.2Zm.2-3.7A1.85 1.85 0 1 0 3.1 4.5a1.85 1.85 0 0 0 3.7 0ZM20.9 13.2c0-3.55-1.9-5.2-4.45-5.2-2.05 0-2.97 1.13-3.48 1.93V8.2H9.78V20h3.2v-5.84c0-1.54.29-3.03 2.2-3.03 1.88 0 1.9 1.76 1.9 3.13V20h3.2l.62-6.8Z"/></svg></a>
 <a class="socialLink" href="https://www.youtube.com/@papoatv" target="_blank" rel="noopener noreferrer" aria-label="PAPOA on YouTube" title="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.4 7.1a2.8 2.8 0 0 0-1.97-1.98C17.7 4.65 12 4.65 12 4.65s-5.7 0-7.43.47A2.8 2.8 0 0 0 2.6 7.1 29.1 29.1 0 0 0 2.13 12c0 1.66.15 3.3.47 4.9a2.8 2.8 0 0 0 1.97 1.98c1.73.47 7.43.47 7.43.47s5.7 0 7.43-.47a2.8 2.8 0 0 0 1.97-1.98c.32-1.6.47-3.24.47-4.9 0-1.66-.15-3.3-.47-4.9ZM9.95 15.15v-6.3L15.4 12l-5.45 3.15Z"/></svg></a>
@@ -846,6 +871,8 @@ header>.mobileMenuToggle{border:0;background:transparent;padding:0;color:inherit
 </footer>
 
 <script>
+const heroVideo=document.querySelector(".heroVideo");
+if(heroVideo&&!window.matchMedia("(prefers-reduced-motion: reduce)").matches){heroVideo.muted=true;heroVideo.defaultMuted=true;heroVideo.play().catch(()=>{heroVideo.style.display="none";document.querySelector(".heroMedia").style.opacity="1"});}
 const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("in")}),{threshold:.12});
 document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
 setTimeout(()=>document.querySelector(".heroContent")?.classList.add("in"),100);
