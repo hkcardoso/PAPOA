@@ -196,6 +196,103 @@ footer{padding:43px var(--pad) 23px;background:#090b0b;border-top:1px solid var(
   .heroLead{font-size:25px}
 }
 
+
+/* Contact hero refinement v3 — editorial composition */
+.contactHero{
+  min-height:66vh;
+  padding:145px var(--pad) 76px;
+  align-items:end;
+}
+.contactHero:before{
+  background:
+    linear-gradient(90deg,rgba(4,7,9,.80) 0%,rgba(4,7,9,.60) 36%,rgba(4,7,9,.32) 61%,rgba(4,7,9,.44) 100%),
+    linear-gradient(180deg,rgba(3,6,8,.14) 0%,rgba(3,6,8,0) 45%,rgba(3,6,8,.28) 100%),
+    url("../assets/images/papoa_paisagem.webp") left center/cover no-repeat;
+  filter:saturate(.34) brightness(.58) contrast(1.10);
+}
+.heroGrid{
+  grid-template-columns:minmax(0,1.08fr) minmax(300px,.56fr);
+  gap:9vw;
+  align-items:end;
+}
+.contactHero h1{
+  display:block;
+  white-space:nowrap;
+  max-width:760px;
+  margin:18px 0 0;
+  font-size:clamp(58px,7.05vw,108px);
+  line-height:.82;
+  letter-spacing:-.095em;
+  transform:scaleX(.97) scaleY(.84);
+  transform-origin:left bottom;
+}
+.heroLead{
+  margin-top:18px;
+  max-width:480px;
+  font-size:clamp(25px,2.2vw,35px);
+  line-height:1.05;
+  letter-spacing:-.042em;
+}
+.heroSide{
+  max-width:360px;
+  padding:0 0 8px 30px;
+  border-left:1px solid rgba(255,255,255,.22);
+  justify-self:end;
+  font-size:13px;
+  line-height:1.62;
+  color:#d7d7d1;
+}
+.heroSide a{
+  margin-top:22px;
+  font-size:7px;
+  letter-spacing:.17em;
+}
+.contactHero .label{
+  font-size:8px;
+  letter-spacing:.24em;
+}
+
+@media(max-width:1100px) and (min-width:901px){
+  .contactHero{min-height:610px}
+  .heroGrid{grid-template-columns:1fr .54fr;gap:6vw}
+  .contactHero h1{font-size:clamp(58px,7vw,88px)}
+  .heroLead{font-size:30px}
+  .heroSide{font-size:12px}
+}
+
+@media(max-width:900px){
+  .contactHero{
+    min-height:680px;
+    padding:118px 22px 48px;
+  }
+  .contactHero:before{
+    background:
+      linear-gradient(180deg,rgba(4,7,9,.38) 0%,rgba(4,7,9,.24) 38%,rgba(4,7,9,.58) 100%),
+      url("../assets/images/papoa_paisagem.webp") 24% center/cover no-repeat;
+    filter:saturate(.38) brightness(.58) contrast(1.10);
+  }
+  .heroGrid{grid-template-columns:1fr;gap:28px}
+  .contactHero h1{
+    max-width:100%;
+    font-size:clamp(46px,14.5vw,64px);
+    line-height:.86;
+    transform:scaleX(.98) scaleY(.86);
+  }
+  .heroLead{
+    max-width:330px;
+    margin-top:14px;
+    font-size:clamp(25px,7.2vw,31px);
+  }
+  .heroSide{
+    justify-self:start;
+    max-width:330px;
+    padding:18px 0 0;
+    border-left:0;
+    border-top:1px solid rgba(255,255,255,.22);
+    font-size:13px;
+  }
+}
+
 </style>
 </head>
 <body>
