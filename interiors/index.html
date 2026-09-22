@@ -310,6 +310,27 @@ header{height:64px}.brand{font-size:22px}nav a{display:none}.menu{display:grid}
   .page-interiors .heroMedia{background-position:center!important}
 }
 
+
+/* PAPOA no-crop image framing v11 */
+.featureWrap{align-items:center}
+.featureImage{display:flex!important;align-items:center;justify-content:center;overflow:visible!important}
+.featureImage img,.g1 img,.g2 img{
+  display:block!important;
+  width:100%!important;
+  max-width:100%!important;
+  height:auto!important;
+  margin:0 auto!important;
+  object-fit:contain!important;
+  object-position:center center!important;
+}
+.g1,.g2{overflow:visible!important}
+.page-interiors .heroMedia{background-position:center center!important}
+@media(max-width:900px){
+  .featureImage{width:100%}
+  .featureImage img,.g1 img,.g2 img{height:auto!important;object-position:center center!important}
+  .page-interiors .heroMedia{background-position:center center!important}
+}
+
 </style>
 </head>
 <body class="page-interiors">
