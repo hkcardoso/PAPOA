@@ -1,0 +1,122 @@
+/* PAPOA homepage — editorial composition based on the supplied visual direction. */
+.home{--pad:clamp(24px,7.7vw,130px);background:#faf9f6;color:#24292b}
+.home .label{font:600 12px/1.5 Arial,Helvetica,sans-serif;letter-spacing:.2em}
+.home header{height:78px;background:transparent;border:0;color:white;padding:0 var(--pad)}
+.home header nav{gap:24px;margin-left:auto;font-size:13px}
+.home header .brand{transform:none;letter-spacing:-.095em;font-size:23px;line-height:1;font-weight:800}
+.home header .languageSwitch{margin-left:clamp(12px,6vw,110px)}
+.home header .menuIcon{display:none}
+.home header .mobileMenuToggle{display:none}
+.home .hero{height:min(760px,100svh);min-height:640px;max-height:none;color:#fff}
+.home .heroVideo{object-position:center 49%;filter:saturate(.77) brightness(.92)}
+.home .hero:before{background:linear-gradient(90deg,rgba(5,16,22,.7) 0%,rgba(5,16,22,.38) 40%,rgba(5,16,22,.05) 75%),linear-gradient(180deg,rgba(0,0,0,.22),transparent 26%,rgba(0,0,0,.16) 100%)}
+.home .heroContent{top:28%;max-width:min(700px,65vw)}
+.home .hero h1{display:block;transform:none;font:300 clamp(68px,7vw,118px)/.94 "Helvetica Neue",Helvetica,Arial,sans-serif;letter-spacing:-.07em;margin:20px 0 25px;text-shadow:none}
+.home .heroSub{font:400 clamp(16px,1.22vw,20px)/1.5 Arial,Helvetica,sans-serif;letter-spacing:0;max-width:330px;margin:0 0 44px}
+.home .heroExplore{display:inline-flex;align-items:center;gap:17px;font-size:12px;letter-spacing:.15em;font-weight:600;min-height:54px}
+.home .exploreCircle{display:grid;place-items:center;width:52px;height:52px;border:1px solid #fff9;border-radius:50%;font-size:25px;font-weight:300;line-height:1;transition:background .3s,transform .3s}
+.home .heroExplore:hover .exploreCircle{background:#ffffff28;transform:translateY(3px)}
+.home .heroTag{display:block;bottom:37px;right:var(--pad);font:600 10px/1.5 Arial,sans-serif;letter-spacing:.18em;text-align:right}
+.home .videoToggle{right:auto;left:var(--pad);bottom:30px;background:#09141972;border-color:#ffffff70;font-size:12px}
+.home .studio{display:grid;grid-template-columns:1.2fr 1fr 1.12fr .55fr;gap:clamp(22px,3vw,54px);align-items:center;min-height:300px;padding:68px var(--pad);background:#faf9f6;color:#24292b}
+.home .studio h2{font-size:clamp(35px,3vw,54px);font-weight:400;line-height:1.06;letter-spacing:-.06em;margin:16px 0 0}
+.home .studioCopy{padding:0}
+.home .studio p{color:#474f52;font-size:16px;line-height:1.55;max-width:370px}
+.home .approach{padding:0;margin:24px 0 0;border:0;min-height:30px;font:600 12px Arial,sans-serif;letter-spacing:.1em;color:#24292b}
+.home .studioImage{width:100%;height:184px;object-fit:cover;object-position:center}
+.home .values{border:0;padding:0;margin:0;color:#737b7b;font:600 11px/2 Arial,sans-serif;letter-spacing:.15em}
+.home .disciplines{height:clamp(560px,56vw,850px);min-height:0;max-height:none}
+.home .discipline{border-right:2px solid #faf9f6}
+.home .discipline:last-child{border:0}
+.home .discipline:nth-child(3) .dImg{background-image:url('./images/papoa-interiors.webp');background-position:center!important}
+.home .discipline:after{background:linear-gradient(180deg,rgba(4,10,13,.52),rgba(4,10,13,.05) 48%,rgba(4,10,13,.42))}
+.home .dContent{padding:clamp(26px,4.5vw,68px) clamp(24px,3.5vw,55px)}
+.home .dTop{display:block}
+.home .dNum{display:block;margin-bottom:24px;color:#fff9;font-size:12px;letter-spacing:.18em}
+.home .dTitle h3{font-size:clamp(32px,3vw,50px);font-weight:300;letter-spacing:-.055em;line-height:1.04;text-transform:none;margin:0 0 12px}
+.home .dTitle p{font-size:15px;line-height:1.4}
+.home .dLink{font:600 12px/1.5 Arial,sans-serif;letter-spacing:.15em;gap:15px}
+.home .perspective{height:clamp(380px,38vw,560px);max-height:none;background:#14232d url('./images/papoa-princess56-hero.webp') center 40%/cover no-repeat;color:white}
+.home .perspective:before{background:linear-gradient(90deg,rgba(5,21,31,.72),rgba(5,21,31,.32) 63%,rgba(5,21,31,.65))}
+.home .pLeft{top:35%}
+.home .pLeft h2{font-size:clamp(43px,4.5vw,76px);font-weight:300;line-height:1.05;letter-spacing:-.065em;margin-top:22px}
+.home .pRight{top:auto;bottom:19%;width:260px}
+.home .pRight p{font-size:16px;line-height:1.55;color:#fff}
+.home .pRight a{display:inline-flex;align-items:center;gap:14px;font:600 12px/1.5 Arial,sans-serif;letter-spacing:.1em}
+.home .projects{display:grid;grid-template-columns:minmax(240px,.78fr) minmax(0,1.5fr);column-gap:clamp(35px,8vw,150px);row-gap:16px;align-items:center;padding:clamp(75px,8vw,140px) var(--pad) clamp(54px,6vw,96px);background:#faf9f6;color:#24292b}
+.home .projects h2{font-size:clamp(38px,4.1vw,68px);font-weight:400;letter-spacing:-.055em;line-height:1;margin:18px 0 8px}
+.home .featuredType{font-size:15px;color:#626b6e}
+.home .featuredCopy p{max-width:300px;margin:46px 0 24px;font-size:16px;line-height:1.6;color:#41494c}
+.home .featuredLink{display:inline-flex;align-items:center;gap:20px;min-height:44px;font:600 12px/1.5 Arial,sans-serif;letter-spacing:.12em}
+.home .featuredMedia{display:block;overflow:hidden;aspect-ratio:1.75}
+.home .featuredMedia img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .55s ease}
+.home .featuredMedia:hover img{transform:scale(1.025)}
+.home .featuredBrowse{grid-column:2;display:flex;align-items:center;justify-content:flex-end;gap:28px;font:600 12px Arial,sans-serif;letter-spacing:.12em;color:#687174}
+.home .featuredBrowse a{color:#24292b;min-height:44px;display:flex;align-items:center;gap:12px}
+.home .method{padding:65px var(--pad) 72px;background:#f0efec;color:#24292b}
+.home .method h2{font-weight:400;font-size:clamp(35px,3.5vw,54px);margin-bottom:34px}
+.home .methodSteps p{font-size:16px}
+.home .homeCta{text-align:center;padding:100px 24px 105px;background:linear-gradient(#0a1012b3,#0a1012b3),url('./images/papoa-interiors.webp') center 53%/cover;color:#fff}
+.home .homeCta h2{font-size:clamp(35px,4vw,62px);font-weight:300;letter-spacing:-.055em;margin:18px 0 28px}
+.home .homeCta a{display:inline-flex;align-items:center;gap:20px;border:1px solid #ffffffa0;border-radius:99px;padding:14px 23px;font:600 12px/1.3 Arial,sans-serif;letter-spacing:.12em;min-height:48px}
+.home footer{padding:70px var(--pad) 35px;background:#101414;color:#f4f3ef}
+.home .footerGrid{grid-template-columns:1.2fr .65fr .65fr 1.2fr;gap:4vw}
+.home .footerBrand{font-size:29px}
+.home .footerCopy{margin-top:18px;color:#bcbfbd}
+.home .footerLinks{padding:0}
+.home .footerContactBlock{display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.home .footerContactLink{border:0;border-radius:0;padding:0;margin:0;font:600 12px Arial,sans-serif;letter-spacing:.12em}
+.home .footerSocial{margin-top:14px}
+.home .footerBottom{padding-top:32px;margin-top:70px;border-top:1px solid #ffffff2b;color:#a9afad}
+html[data-theme='light'] .home header{background:transparent!important;color:#fff!important;border:0!important}
+html[data-theme='light'] .home header :is(.brand,nav a,.languageSwitch){color:#fff!important;text-shadow:0 1px 7px #0006}
+html[data-theme='light'] .home header .themeToggle{color:#fff!important}
+html[data-theme='light'] .home :is(.studio,.projects){background:#faf9f6!important;color:#24292b!important}
+html[data-theme='light'] .home :is(.method){background:#f0efec!important;color:#24292b!important}
+html[data-theme='light'] .home footer{background:#101414!important;color:#f4f3ef!important}
+html[data-theme='light'] .home :is(.studio p,.featuredCopy p,.footerCopy){color:inherit!important}
+html[data-theme='light'] .home .featuredType{color:#626b6e!important}
+html[data-theme='light'] .home .footerBottom{color:#a9afad!important}
+html[data-theme='dark'] .home{background:#101414;color:#f4f3ef}
+html[data-theme='dark'] .home :is(.studio,.projects){background:#151a1b;color:#f4f3ef}
+html[data-theme='dark'] .home .studio p,html[data-theme='dark'] .home .featuredCopy p,html[data-theme='dark'] .home .featuredType{color:#c4c8c6}
+html[data-theme='dark'] .home :is(.approach,.featuredBrowse a){color:#f4f3ef}
+html[data-theme='dark'] .home .method{background:#202627;color:#f4f3ef}
+html[data-theme='dark'] .home .methodSteps p{color:#c4c8c6}
+html[data-theme='dark'] .home .methodSteps>div{border-color:#ffffff55}
+@media(max-width:1100px){.home .studio{grid-template-columns:1fr 1fr;gap:28px}.home .studioImage{height:230px}.home .values{grid-column:auto}.home .footerGrid{grid-template-columns:1fr 1fr}}
+@media(max-width:780px){
+ .home{--pad:24px}
+ .home header{height:72px;padding:0 var(--pad)}
+ .home header nav{display:none}
+ .home header .mobileMenuToggle{display:grid;right:16px;top:16px;margin:0;color:#fff}
+ .home header .languageSwitch{margin-left:auto;margin-right:44px}
+ .home .hero{height:100svh;min-height:650px}
+ .home .heroVideo{object-position:60% center}
+ .home .heroContent{top:30%;max-width:calc(100vw - 48px)}
+ .home .hero h1{font-size:clamp(62px,12vw,90px);margin:18px 0 22px}
+ .home .heroSub{font-size:16px;max-width:290px;margin-bottom:26px}
+ .home .heroTag{display:none}
+ .home .videoToggle{bottom:20px;left:24px}
+ .home .studio{grid-template-columns:1fr;padding:70px var(--pad);gap:30px}
+ .home .studio h2{font-size:43px}
+ .home .studioImage{height:auto;aspect-ratio:1.8;object-fit:cover}
+ .home .values{display:none}
+ .home .disciplines{height:auto;display:grid;grid-template-columns:1fr}
+ .home .discipline{height:72svh;min-height:520px;border-right:0;border-bottom:2px solid #faf9f6}
+ .home .dContent{padding:33px 28px}
+ .home .dTitle h3{font-size:43px}
+ .home .perspective{height:530px;background-position:55% center}
+ .home .pLeft{top:25%}.home .pLeft h2{font-size:clamp(44px,9vw,62px)}
+ .home .pRight{top:auto;bottom:35px;left:var(--pad);right:auto;width:min(320px,80vw)}
+ .home .projects{grid-template-columns:1fr;padding:78px var(--pad) 60px;gap:28px}
+ .home .featuredCopy p{margin:25px 0 12px}
+ .home .featuredBrowse{grid-column:1}
+ .home .method{padding:70px var(--pad)}
+ .home .homeCta{padding:90px 24px}
+ .home .footerGrid{grid-template-columns:1fr;gap:32px}
+ .home .footerBottom{margin-top:48px}
+ html[data-theme='light'] .home header .mobileMenuToggle{color:#fff!important}
+ html[data-theme='light'] .home .mobileNav{background:#fff!important;color:#24292b!important}
+}
+@media(prefers-reduced-motion:reduce){.home .featuredMedia img,.home .exploreCircle{transition:none}}

@@ -8,6 +8,7 @@
 <meta content="no-cache" http-equiv="Pragma"/>
 <meta content="0" http-equiv="Expires"/>
 <meta content="#0c0e0e" name="theme-color"/><script src=".././assets/theme.js"></script>
+<script>try{if(!localStorage.getItem('papoa-theme')){document.documentElement.dataset.theme='light';document.querySelector('meta[name="theme-color"]').content='#ffffff'}}catch{}</script>
 <title>PAPOA — Yachts · Automotive · Interiores</title>
 <meta content="PAPOA — design, desenvolvimento 3D, renovação de barcos, componentes automóveis e interiores à medida. Peniche, Portugal." name="description"/>
 <link href=".././assets/images/papoa-favicon.png?v=20260922-1" rel="icon" type="image/png"/>
@@ -778,8 +779,8 @@ header>.mobileMenuToggle{border:0;background:transparent;padding:0;color:inherit
 @media(max-width:780px){.heroVideo{object-position:64% center}.method{padding:60px 22px}.method h2{margin-bottom:34px}.methodSteps{grid-template-columns:1fr;gap:28px}.methodSteps span{margin-bottom:12px}.methodSteps strong{font-size:20px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.projectImg,.dImg,.arrow{transition:none!important}.heroVideo{display:none}.heroMedia{opacity:1}}
 </style>
-<link href=".././assets/refinement.css" rel="stylesheet"/></head>
-<body>
+<link href=".././assets/refinement.css" rel="stylesheet"/><link href=".././assets/home-layout.css" rel="stylesheet"/></head>
+<body class="home">
 <header>
 <a class="brand" href="#top">PAPOA</a>
 <nav>
@@ -803,37 +804,38 @@ header>.mobileMenuToggle{border:0;background:transparent;padding:0;color:inherit
 <section class="hero">
 <video aria-hidden="true" autoplay="" class="heroVideo" loop="" muted="" playsinline="" poster=".././assets/images/papoa-princess56-hero.webp" preload="metadata"><source src=".././assets/images/MiniMax_H3_00022_.mp4" type="video/mp4"/></video><div class="heroMedia"></div>
 <div class="heroContent reveal">
-<div class="label">YACHTS · AUTOMOTIVE · INTERIORES</div>
-<h1>PAPOA</h1>
-<div class="heroSub">Design, 3D e<br/>projetos à medida.</div>
-<a class="pill link" href="#studio">CONHECER A PAPOA <span class="arrow">→</span></a>
+<div class="label">DESIGN / DESENVOLVIMENTO / 3D</div>
+<h1>Para lá da<br/>função.</h1>
+<p class="heroSub">Yachts, automóveis e interiores unidos pela mesma visão — da primeira ideia aos detalhes que importam.</p>
+<a class="heroExplore link" href="#studio"><span aria-hidden="true" class="exploreCircle">↓</span> EXPLORAR</a>
 </div>
-<div class="heroTag">DESIGN<br/>QUE DÁ FORMA<br/>AO<br/>FUTURO</div>
+<div class="heroTag">PENICHE / PORTUGAL<br/>IDEIAS EM MOVIMENTO</div>
 <button aria-pressed="false" class="videoToggle" type="button">Pausar vídeo</button></section>
 <section class="studio" id="studio">
 <div class="reveal">
 <div class="label">O ESTÚDIO</div>
-<h2>Da primeira ideia<br/>aos detalhes<br/>que fazem a diferença.</h2>
+<h2>O design<br/>com propósito.</h2>
 </div>
 <div class="studioCopy reveal">
-<p>Desenvolvemos conceitos de renovação de barcos, componentes automóveis e interiores à medida. O Henrique lidera o design e o desenvolvimento 3D; o Gonçalo traz experiência prática em renovação, carpintaria e materiais. O fabrico e a instalação são definidos para cada projeto.</p>
-<a class="approach link" href="#what">A NOSSA ABORDAGEM <span class="arrow">→</span></a>
+<p>Desenvolvemos conceitos para barcos, automóveis e interiores. O design e o 3D juntam-se à experiência prática em renovação, carpintaria e materiais. Cada projeto responde às suas próprias necessidades.</p>
+<a class="approach link" href="./team/">CONHECER A EQUIPA <span class="arrow">→</span></a>
 </div>
+<img alt="Conceito de interior com vista para o mar" class="studioImage" loading="lazy" src=".././assets/images/papoa-interiors.webp"/>
 <div class="values reveal">PESSOAS<br/>IDEIAS<br/>SABER FAZER<br/>MOVIMENTO<br/>PROJETAR O FUTURO</div>
 </section>
 <section class="disciplines" id="what">
-<a class="discipline" href="./yachts/"><div class="dImg"></div><div class="dContent"><div class="dTop"><span class="dNum">01</span><div class="dTitle"><h3>YACHTS</h3><p>Renovar. Personalizar. Transformar.</p></div></div><div class="dLink">EXPLORAR YACHTS <span class="arrow">→</span></div></div></a>
-<a class="discipline" href="./automotive/"><div class="dImg"></div><div class="dContent"><div class="dTop"><span class="dNum">02</span><div class="dTitle"><h3>AUTOMOTIVE</h3><p>Design para peças e componentes.</p></div></div><div class="dLink">EXPLORAR AUTOMOTIVE <span class="arrow">→</span></div></div></a>
-<a class="discipline" href="./interiors/"><div class="dImg"></div><div class="dContent"><div class="dTop"><span class="dNum">03</span><div class="dTitle"><h3>INTERIORES</h3><p>Espaços e mobiliário à medida.</p></div></div><div class="dLink">VER INTERIORES <span class="arrow">→</span></div></div></a>
-</section>
-<section class="projects" id="projects">
-<div class="projectsHead reveal"><div><div class="label">PROJETOS E CONCEITOS</div><h2>Trabalhos<br/>selecionados.</h2></div></div>
-<div class="projectGrid"><a class="project reveal" href="./yachts/#concept"><div class="projectImg" style="background-image:url('../assets/images/papoa-princess56-hero.webp')"></div><div class="projectMeta"><div><strong>Princess 56</strong><small>Yachts · Estudo de conceito</small></div><span>↗</span></div></a><a class="project reveal" href="./automotive/#concept"><div class="projectImg" style="background-image:url('../assets/images/papoa-automotive.webp')"></div><div class="projectMeta"><div><strong>VÉLOCE</strong><small>Automotive · Conceito visual</small></div><span>↗</span></div></a><a class="project reveal" href="./interiors/giraldo/"><div class="projectImg" style="background-image:url('https://clasto.pt/projects/Giraldo/Giraldo-01.webp')"></div><div class="projectMeta"><div><strong>Giraldo</strong><small>Interiores · Visualização 3D</small></div><span>↗</span></div></a></div>
+<a class="discipline" href="./yachts/"><div class="dImg"></div><div class="dContent"><div class="dTop"><span class="dNum">01 /</span><div class="dTitle"><h3>Yachts</h3><p>Renovação. Personalização. À medida.</p></div></div><div class="dLink">EXPLORAR <span class="arrow">→</span></div></div></a>
+<a class="discipline" href="./automotive/"><div class="dImg"></div><div class="dContent"><div class="dTop"><span class="dNum">02 /</span><div class="dTitle"><h3>Automotive</h3><p>Forma, detalhe e novas possibilidades.</p></div></div><div class="dLink">EXPLORAR <span class="arrow">→</span></div></div></a>
+<a class="discipline" href="./interiors/"><div class="dImg"></div><div class="dContent"><div class="dTop"><span class="dNum">03 /</span><div class="dTitle"><h3>Interiores</h3><p>Espaços e mobiliário com propósito.</p></div></div><div class="dLink">EXPLORAR <span class="arrow">→</span></div></div></a>
 </section>
 <section class="perspective">
-<div class="bigP">P</div>
-<div class="pLeft reveal"><div class="label">│ UMA VISÃO MAIS AMPLA</div><h2>O design<br/>liga<br/>as ideias.</h2></div>
-<div class="pRight reveal"><p>Veja a proposta em 3D, compare materiais e defina os detalhes antes de avançar para o fabrico ou a renovação.</p><a class="link" href="./contact/">FALE-NOS DO SEU PROJETO <span class="arrow">→</span></a></div>
+<div class="pLeft reveal"><div class="label">UMA VISÃO MAIS AMPLA</div><h2>Espaços, objetos<br/>e experiências.</h2></div>
+<div class="pRight reveal"><p>Usamos o design e o 3D para ligar a ideia à forma como será vista, usada e concretizada.</p><a class="link" href="./team/">A NOSSA ABORDAGEM <span class="arrow">→</span></a></div>
+</section>
+<section aria-labelledby="featuredTitle" class="projects" id="projects">
+<div class="featuredCopy"><div class="label">PROJETO EM DESTAQUE / 01</div><h2 id="featuredTitle">Princess 56</h2><span class="featuredType">Yachts · Estudo de conceito</span><p>Um estudo de conceito para um iate clássico. Uma exploração da forma, do espaço e da vida a bordo.</p><a class="featuredLink link" href="./yachts/#concept">VER PROJETO <span class="arrow">→</span></a></div>
+<a aria-label="Ver estudo de conceito Princess 56" class="featuredMedia" href="./yachts/#concept"><img alt="Conceito do iate Princess 56 no mar" loading="lazy" src=".././assets/images/papoa-princess56-hero.webp"/></a>
+<div class="featuredBrowse"><span>01 / 03</span><a href="./automotive/#concept">PROJETO SEGUINTE <span aria-hidden="true">→</span></a></div>
 </section>
 <section aria-labelledby="methodTitle" class="method">
 <div class="label">COMO TRABALHAMOS</div>
@@ -844,6 +846,7 @@ header>.mobileMenuToggle{border:0;background:transparent;padding:0;color:inherit
 <div><span>03</span><strong>Preparar a execução</strong><p>Reunir a informação que apoia as decisões e a execução.</p></div>
 </div>
 </section>
+<section class="homeCta"><div class="label">VAMOS CRIAR O QUE VEM A SEGUIR</div><h2>A tua visão, mais longe.</h2><a href="./contact/">INICIAR UM PROJETO <span aria-hidden="true">→</span></a></section>
 </main>
 <footer id="contact"><div class="footerGrid"><div><div class="footerBrand">PAPOA</div><p class="footerCopy">Design, 3D e projetos à medida.<br/>Peniche, Portugal.</p></div><div class="footerLinks"><a href="./#studio">O Estúdio</a><a href="./team/">Equipa</a><a href="./#projects">Projetos</a></div><div class="footerLinks"><a href="./yachts/">Yachts</a><a href="./automotive/">Automotive</a><a href="./interiors/">Interiores</a></div><div class="footerContactBlock"><a class="footerContactLink" href="./contact/">INICIAR UM PROJETO ↗</a><a href="mailto:hello@papoa.pt">hello@papoa.pt</a><div class="footerSocial"><a href="https://www.instagram.com/papoa.pt/" rel="noopener noreferrer" target="_blank">Instagram</a><a href="https://www.linkedin.com/company/papoa-tv/" rel="noopener noreferrer" target="_blank">LinkedIn</a><a href="https://www.youtube.com/@papoatv" rel="noopener noreferrer" target="_blank">YouTube</a></div></div></div><div class="footerBottom">© 2026 PAPOA. Todos os direitos reservados.</div></footer>
 <script>
