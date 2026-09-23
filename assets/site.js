@@ -48,3 +48,30 @@
   button.addEventListener('click', () => {const poster = hero.classList.toggle('showPoster');button.setAttribute('aria-pressed', String(poster));button.textContent = poster ? (pt ? 'Ver animação' : 'View animation') : (pt ? 'Ver imagem 3D' : 'View 3D image');if (poster) video.pause();else video.play().catch(() => {});});
   hero.append(button);
 })();
+// One shared theme choice across pages and languages.
+(() => {
+  const host = document.querySelector('.languageSwitch');
+  if (!host) return;
+  const pt = document.documentElement.lang === 'pt-PT';
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'themeToggle';
+  button.setAttribute('aria-label', pt ? 'Tema claro' : 'Light theme');
+  button.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 4a8 8 0 0 1 0 16Z" fill="currentColor"/></svg>';
+  const apply = theme => {
+    const light = theme === 'light';
+    document.documentElement.dataset.theme = light ? 'light' : 'dark';
+    button.setAttribute('aria-pressed', String(light));
+    button.title = light ? (pt ? 'Mudar para tema escuro' : 'Switch to dark theme') : (pt ? 'Mudar para tema claro' : 'Switch to light theme');
+    const color = document.querySelector('meta[name="theme-color"]');
+    if (color) color.content = light ? '#ffffff' : '#0b0d0d';
+  };
+  button.addEventListener('click', () => {
+    const theme = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+    apply(theme);
+    try { localStorage.setItem('papoa-theme', theme); } catch {}
+  });
+  window.addEventListener('storage', event => { if (event.key === 'papoa-theme') apply(event.newValue); });
+  host.append(button);
+  apply(document.documentElement.dataset.theme);
+})();

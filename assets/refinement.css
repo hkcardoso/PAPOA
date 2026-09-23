@@ -4,3 +4,30 @@ html{scroll-padding-top:90px}body{font-size:16px}a,button{-webkit-tap-highlight-
 @media(max-width:780px){header{height:76px;gap:12px}.languageSwitch{margin-left:auto;margin-right:48px}.mobileMenuToggle{position:absolute!important;right:20px;top:19px;min-width:44px;min-height:40px;z-index:61}header nav{margin-left:0}.heroContent{bottom:19%}.hero .label{font-size:11px}.hero{min-height:660px}.heroInner{padding-top:118px}.heroLead{font-size:clamp(27px,7vw,38px)}.pill,.approach,.dLink,.more{font-size:12px}.studio p,.intro p,.service p,.heroSide p,.pRight p,.featureCopy p,.servicesHead p,.processHead p,.contactInfo p{font-size:16px}.dTitle p{font-size:14px}.values{font-size:12px}.serviceGrid{grid-template-columns:1fr}.footerGrid{grid-template-columns:1fr}.footerLinks{font-size:14px}.footerCopy{font-size:14px}.footerBottom{font-size:12px}.projectMeta strong{font-size:17px}.projectMeta small{font-size:13px}.contactHero h1{font-size:clamp(38px,12vw,70px)}.formBottom{display:flex;flex-direction:column;align-items:stretch}.sendBtn{justify-content:space-between}.videoToggle{bottom:20px;right:22px}.mobileNav a{min-height:48px}.featureFacts{grid-template-columns:1fr 1fr}.perspective{min-height:630px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}.videoToggle{display:none}}
 .mediaSwitch{position:absolute;bottom:24px;left:24px;z-index:4;color:#fff;background:#101415cc;border:1px solid #ffffff70;border-radius:30px;padding:12px 18px;min-height:44px;font:13px Arial,sans-serif;cursor:pointer}.page-yachts .heroMedia{transition:opacity .4s}.page-yachts .heroVideo{transition:opacity .4s}.hero.showPoster .heroMedia{opacity:1!important}.hero.showPoster .heroVideo{opacity:0}.hero.showPoster .videoToggle{visibility:hidden}@media(prefers-reduced-motion:reduce){.mediaSwitch{display:none}}
+/* Optional light palette: change surfaces and typography, retain original media. */
+.themeToggle{display:inline-grid;place-items:center;flex:0 0 40px;width:40px;height:44px;padding:0;margin-left:5px;border:0;border-radius:50%;background:transparent;color:inherit;cursor:pointer}.themeToggle:hover{background:#ffffff18}.themeToggle svg{transition:transform .25s ease}.themeToggle[aria-pressed="true"] svg{transform:rotate(180deg)}
+html[data-theme="light"]{color-scheme:light;--bg:#fff;--bg2:#f4f5f5;--panel:#f5f6f6;--ink:#182022;--muted:#596164;--line:rgba(24,32,34,.18);--paper:#f1f3f3}
+html[data-theme="light"] body{background:#fff!important;color:#182022!important}
+html[data-theme="light"] :is(header, .mobileNav){background:#fffffff5!important;color:#182022!important;border-color:#dce1e2!important}
+html[data-theme="light"] header :is(.brand,nav a,.menu,.languageSwitch){color:#182022!important;text-shadow:none}
+html[data-theme="light"] :is(.menu,.menuIcon)::before,html[data-theme="light"] :is(.menu,.menuIcon)::after{background:currentColor!important}
+html[data-theme="light"] .mobileNav a{border-color:#dce1e2;color:#182022}
+html[data-theme="light"] .themeToggle:hover{background:#1820220c}
+html[data-theme="light"] :is(.studio,.projects,.intro,.services,.capabilities,.team,.values,.contactMain,.specialties,.editorialProject,.gallery,.shot){background:#fff!important;color:#182022!important}
+html[data-theme="light"] :is(.service,.featureWrap,.process,.memberInfo,.network,.value,.specialty,.contactForm){background:#f4f6f6;color:#182022;border-color:#dce1e2}
+html[data-theme="light"] :is(.serviceGrid,.memberGrid,.valuesGrid,.specialtyGrid){background:#dce1e2}
+html[data-theme="light"] :is(.cta,.method,.projectNav,footer){background:#f0f3f3!important;color:#182022!important;border-color:#dce1e2!important}
+html[data-theme="light"] :is(.studio p,.introCopy,.introText,.intro p,.servicesHead p,.service p,.featureCopy p,.processHead p,.step p,.teamHead p,.memberInfo p,.skill,.networkCopy p,.value p,.contactInfo p,.specialty p,.cta p,.footerCopy,.footerLinks,.footerContact,.editorialDesc,.editorialCase p){color:#4b5559!important}
+html[data-theme="light"] :is(.editorialHead h1,.editorialCase strong,.deliverables strong,.fact strong,.contactInfo .socialLink){color:#182022!important}
+html[data-theme="light"] :is(.projectMeta small,.projectMeta span,.serviceNum,.fact span,.stepNum,.cap span,.memberRole,.skill span,.networkItem span,.valueNum,.directLabel,.field label,.formTop span,.formNote,.specialtyNum,.footerBottom,.editorialIndex,.editorialMeta,.shot figcaption,.shot figcaption span:first-child,.galleryHeader p,.projectNav small){color:#586368!important}
+html[data-theme="light"] :is(.editorialCase,.projectNav a+a,.deliverables,.values,.footerBottom,.footerContactLink,.approach,.field,.featureFacts){border-color:#cbd2d4!important}
+html[data-theme="light"] :is(.pill,.approach,.projectLink,.footerContactLink){color:#182022!important;border-color:#7a878b!important}
+html[data-theme="light"] :is(.field input,.field textarea,.field select,.field select option){color:#182022;background:transparent}
+html[data-theme="light"] .field select option{background:#fff}
+html[data-theme="light"] .sendBtn{background:#182022;color:#fff}
+html[data-theme="light"] :is(.hero,.contactHero,.perspective,.discipline,.g1,.g2){color:#f6f7f7}
+html[data-theme="light"] :is(.hero,.contactHero) :is(.pill,.heroSide,.heroSide p){color:#f6f7f7!important;border-color:#ffffff88!important}
+html[data-theme="light"] .pRight p{color:#f6f7f7}
+html[data-theme="light"] :is(.discipline,.g1,.g2){border-color:#fff}
+html[data-theme="light"] :is(a,button,input,select,textarea):focus-visible{outline-color:#397087}
+@media(max-width:780px){.languageSwitch{gap:0}.languageSwitch a{min-width:29px}.themeToggle{margin-left:2px;flex-basis:36px;width:36px}}
