@@ -69,9 +69,9 @@
   button.addEventListener('click', () => {
     const theme = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
     apply(theme);
-    try { localStorage.setItem('papoa-theme', theme); } catch {}
+    try { localStorage.setItem('papoa-theme-v2', theme); } catch {}
   });
-  window.addEventListener('storage', event => { if (event.key === 'papoa-theme') apply(event.newValue); });
+  window.addEventListener('storage', event => { if (event.key === 'papoa-theme-v2') apply(event.newValue); });
   host.append(button);
   apply(document.documentElement.dataset.theme);
 })();
