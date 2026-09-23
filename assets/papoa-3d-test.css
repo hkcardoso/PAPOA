@@ -2,8 +2,9 @@
 .site-header .brand{display:inline-block;font-family:Benzin,Arial,sans-serif;font-size:19px;font-weight:600;letter-spacing:-.07em;line-height:1;transform:scaleY(.74);transform-origin:left center;white-space:nowrap}
 .hero-3d,.hero-showcase,.hero-media{background:#000}
 .hero-showcase{position:relative;min-height:min(88svh,980px);overflow:hidden;color:#fff}
-.hero-showcase .hero-media{position:absolute;inset:0;background:#000 center/cover no-repeat}
-.hero-3d-frame{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:transparent}
+.hero-showcase .hero-media{position:absolute;inset:0;background:#000 center/cover no-repeat;pointer-events:auto}
+.hero-showcase .hero-media:after{pointer-events:none!important}
+.hero-3d-frame{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:transparent;pointer-events:auto}
 .hero-showcase-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(0,0,0,.76) 0%,rgba(0,0,0,.56) 22%,rgba(0,0,0,.22) 48%,rgba(0,0,0,.18) 100%),linear-gradient(180deg,rgba(0,0,0,.48) 0%,rgba(0,0,0,.15) 22%,rgba(0,0,0,.34) 100%);pointer-events:none}
 .hero-showcase-copy{position:relative;z-index:3;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;min-height:min(88svh,980px);padding:170px var(--pad) 120px;max-width:min(760px,70vw);pointer-events:none}
 .hero-showcase-copy a{pointer-events:auto}
