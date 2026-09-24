@@ -3,9 +3,9 @@
 .hero-3d,.hero-showcase,.hero-media{background:#000}
 .hero-showcase{position:relative;min-height:min(88svh,980px);overflow:hidden;color:#fff}
 .hero-showcase .hero-media{position:absolute;inset:0;background:#000 center/cover no-repeat;pointer-events:auto}
-.hero-showcase .hero-media:after{background:rgba(0,0,0,.12)!important;pointer-events:none!important}
+.hero-showcase .hero-media:after{background:transparent!important;pointer-events:none!important}
 .hero-3d-frame{position:absolute;top:0;bottom:0;left:10%;width:112%;height:100%;border:0;display:block;background:transparent;pointer-events:auto}
-.hero-showcase-overlay{position:absolute;inset:0;z-index:1;background:transparent;pointer-events:none}
+.hero-showcase-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.34) 0%,rgba(0,0,0,.26) 35%,rgba(0,0,0,.42) 100%);pointer-events:none}
 .hero-showcase-copy{position:relative;z-index:3;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;min-height:min(88svh,980px);padding:170px var(--pad) 120px;max-width:min(760px,70vw);pointer-events:none}
 .hero-showcase-copy a{pointer-events:auto}
 .hero-showcase-kicker{font-family:Benzin,Arial,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.88);margin-bottom:18px}
