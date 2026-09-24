@@ -34,13 +34,13 @@
 
   const globalStyle=document.createElement('style');
   globalStyle.textContent=`
-    .site-header .brand{display:inline-block!important;font-family:Benzin,Arial,sans-serif!important;font-size:19px!important;font-weight:600!important;letter-spacing:-.07em!important;line-height:1!important;transform:scaleY(.74)!important;transform-origin:left center!important;white-space:nowrap!important}
+    .site-header .brand{display:inline-block!important;font-family:Benzin,Arial,sans-serif!important;font-size:21px!important;font-weight:600!important;letter-spacing:-.055em!important;line-height:1!important;transform:scaleY(.82)!important;transform-origin:left center!important;white-space:nowrap!important}
     .footer-brand{display:inline-block!important;font-family:Benzin,Arial,sans-serif!important;font-weight:600!important;letter-spacing:-.07em!important;transform:scaleY(.78)!important;transform-origin:left center!important}
-    .hero-showcase-logo{letter-spacing:-.09em!important}
+    .hero-showcase-logo{letter-spacing:-.075em!important}
     main h1,main h2,main h3,.serif,.mobile-menu a,.studio-intro h2,.page-hero h1,.section h2,.featured h2,.materials-copy h2,.world-copy h2,.service h3,.project-info h3,.editorial-copy h2,.person h3,.contact-direct h2,.cta-copy h2{font-family:"Helvetica Neue",Arial,Helvetica,sans-serif!important;font-weight:300!important;letter-spacing:-.045em!important}
     .mobile-menu a{letter-spacing:-.035em!important}
-    @media(max-width:980px){.site-header .brand{font-size:18px!important}}
-    @media(max-width:640px){.site-header .brand{font-size:17px!important}}
+    @media(max-width:980px){.site-header .brand{font-size:19px!important}}
+    @media(max-width:640px){.site-header .brand{font-size:18px!important}}
   `;
   document.head.appendChild(globalStyle);
 
