@@ -75,3 +75,9 @@
   host.append(button);
   apply(document.documentElement.dataset.theme);
 })();
+// PAPOA wordmark spacing.
+(() => {
+  const style = document.createElement('style');
+  style.textContent = '.brand{letter-spacing:.50em!important}';
+  document.head.append(style);
+})();
