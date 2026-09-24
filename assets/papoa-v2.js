@@ -2,6 +2,7 @@
   const body=document.body;
   const toggle=document.querySelector('.menu-toggle');
   const menu=document.querySelector('.mobile-menu');
+  const header=document.querySelector('.site-header');
   const brand=document.querySelector('.site-header .brand');
   const mainNav=document.querySelector('.main-nav');
   const pt=(document.documentElement.lang||'').toLowerCase().startsWith('pt');
@@ -21,6 +22,18 @@
     if(menu&&!menu.querySelector('[data-home-link]'))menu.prepend(home.cloneNode(true));
   }
 
+  if(header&&!header.querySelector('.language-switch')){
+    const current=location.pathname;
+    const enPath=pt?(current.replace(/\/pt(?=\/|$)/,'')||'/'):current;
+    const ptPath=pt?current:(current==='/'?'/pt/':`/pt${current.startsWith('/')?current:`/${current}`}`);
+    const lang=document.createElement('div');
+    lang.className='language-switch';
+    lang.setAttribute('aria-label',pt?'Idioma':'Language');
+    lang.innerHTML=`<a href="${ptPath}" class="${pt?'active':''}">PT</a><span>/</span><a href="${enPath}" class="${pt?'':'active'}">ENG</a>`;
+    const cta=header.querySelector('.header-cta');
+    header.insertBefore(lang,cta||toggle||null);
+  }
+
   if(toggle&&menu){
     toggle.addEventListener('click',()=>{
       body.classList.toggle('menu-open');
@@ -34,13 +47,15 @@
 
   const globalStyle=document.createElement('style');
   globalStyle.textContent=`
-    .site-header .brand{display:inline-block!important;font-family:Benzin,Arial,sans-serif!important;font-size:21px!important;font-weight:600!important;letter-spacing:-.055em!important;line-height:1!important;transform:scaleY(.82)!important;transform-origin:left center!important;white-space:nowrap!important}
+    .site-header .brand{display:inline-block!important;font-family:Benzin,Arial,sans-serif!important;font-size:21px!important;font-weight:600!important;letter-spacing:-.105em!important;line-height:1!important;transform:scaleY(.82)!important;transform-origin:left center!important;white-space:nowrap!important}
     .footer-brand{display:inline-block!important;font-family:Benzin,Arial,sans-serif!important;font-weight:600!important;letter-spacing:-.07em!important;transform:scaleY(.78)!important;transform-origin:left center!important}
-    .hero-showcase-logo{letter-spacing:-.075em!important}
+    .hero-showcase-logo{letter-spacing:-.14em!important}
+    .language-switch{margin-left:22px;display:flex;align-items:center;gap:6px;font-family:Benzin,Arial,sans-serif;font-size:7px;letter-spacing:.12em;white-space:nowrap;color:rgba(255,255,255,.5)}
+    .language-switch a{opacity:.55;transition:opacity .2s ease;color:#fff}.language-switch a:hover,.language-switch a.active{opacity:1}.language-switch span{opacity:.34}
     main h1,main h2,main h3,.serif,.mobile-menu a,.studio-intro h2,.page-hero h1,.section h2,.featured h2,.materials-copy h2,.world-copy h2,.service h3,.project-info h3,.editorial-copy h2,.person h3,.contact-direct h2,.cta-copy h2{font-family:"Helvetica Neue",Arial,Helvetica,sans-serif!important;font-weight:300!important;letter-spacing:-.045em!important}
     .mobile-menu a{letter-spacing:-.035em!important}
-    @media(max-width:980px){.site-header .brand{font-size:19px!important}}
-    @media(max-width:640px){.site-header .brand{font-size:18px!important}}
+    @media(max-width:980px){.site-header .brand{font-size:19px!important}.site-header .language-switch{margin-left:auto;margin-right:10px}.menu-toggle{margin-left:0!important}}
+    @media(max-width:640px){.site-header .brand{font-size:18px!important}.language-switch{font-size:6px;gap:5px;margin-right:7px!important}}
   `;
   document.head.appendChild(globalStyle);
 
