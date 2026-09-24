@@ -15,3 +15,5 @@ The form posts to FormSubmit for `hello@papoa.pt`, with reCAPTCHA enabled by def
 ## Project credits
 
 Portfolio entries distinguish visualization work and speculative concepts from completed fabrication. Existing architectural credits are preserved. Do not add before/after claims without corresponding source photographs.
+
+<!-- Cloudflare deploy trigger 2026-09-24 -->
