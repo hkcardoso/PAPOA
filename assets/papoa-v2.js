@@ -5,6 +5,10 @@
   const header=document.querySelector('.site-header');
   const brand=document.querySelector('.site-header .brand');
   const mainNav=document.querySelector('.main-nav');
+  const removableMenuItems=/^(Projects?|Process|Projetos?|Processo)$/i;
+  document.querySelectorAll('.main-nav a,.mobile-menu a').forEach(link=>{
+    if(removableMenuItems.test((link.textContent||'').trim()))link.remove();
+  });
   const pt=(document.documentElement.lang||'').toLowerCase().startsWith('pt');
   const cssLink=document.querySelector('link[href*="papoa-v2.css"]');
   const assetsBase=cssLink?new URL('./',cssLink.href):new URL('../assets/',location.href);
