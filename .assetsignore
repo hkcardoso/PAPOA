@@ -1,3 +1,10 @@
 .git/
+.git/**
 .github/
+.github/**
 .wrangler/
+.wrangler/**
+wrangler.jsonc
+.assetsignore
+README.md
+scripts/
