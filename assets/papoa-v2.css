@@ -88,7 +88,7 @@
 :root{--display:'Cormorant Garamond','Bodoni MT',Georgia,serif;--paper:#fbfaf8;--pad:clamp(26px,7.1vw,110px)}
 .hero h1,.world-copy h2,.section h2,.featured h2,.materials h2,.page-hero h1,.service h3,.project-info h3,.editorial-copy h2,.person h3,.contact-direct h2,.cta-copy h2{font-family:var(--display);font-weight:400;letter-spacing:-.035em}
 .site-header{height:72px;padding:0 clamp(28px,3.4vw,54px);background:linear-gradient(180deg,rgba(0,0,0,.27),transparent)}
-.brand{font-size:clamp(22px,2.3vw,32px);letter-spacing:.38em;font-weight:400}
+.brand{font-size:clamp(22px,2.3vw,32px);letter-spacing:.44em;font-weight:400}
 .header-cta{margin-left:auto;padding:13px 17px;font-size:10px;white-space:nowrap}
 .main-nav{position:absolute;left:50%;transform:translateX(-50%);margin:0;gap:clamp(18px,2.2vw,33px);font-size:10px;white-space:nowrap}
 .main-nav a{position:relative;opacity:.94}
