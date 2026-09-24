@@ -91,9 +91,9 @@
         img.style.objectPosition='center 52%';
       }
       if(title==='Cars'){
-        img.src=asset('images/references/cars/car-wood-trim-garvin-villier.webp');
-        img.alt='Premium automotive interior detail';
-        img.style.objectPosition='center 56%';
+        img.src=asset('images/references/cars/porsche-cockpit.webp');
+        img.alt='Premium Porsche cockpit interior';
+        img.style.objectPosition='center 50%';
       }
     });
   }
