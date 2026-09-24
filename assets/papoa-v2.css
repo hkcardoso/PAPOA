@@ -169,3 +169,7 @@
   .materials-note,.materials-overlay{right:22px;bottom:25px;width:min(320px,80%)}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero-media img{animation:none}.reveal,.process .step,.world-card img,.project-card img,.btn,.header-cta{transition:none;transform:none}.reveal,.process .step{opacity:1}}
+
+/* Hide gallery labels in Homes and Cars. */
+.homes-page .homes-tile-copy,.cars-page .reference-copy{display:none!important}
+.homes-page .homes-tile:after,.cars-page .reference-tile:after{display:none!important}
