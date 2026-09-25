@@ -34,50 +34,71 @@
     height:clamp(400px,34vw,550px)!important;
   }
 
-  /* CARS — bigger rows and much less cropping */
-  body.cars-page .reference-gallery .reference-row{
-    height:clamp(380px,31vw,520px)!important;
+  /* CARS — true 3-column grid on desktop */
+  body.cars-page .reference-grid.justified-gallery{
+    display:grid!important;
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:16px!important;
   }
-  body.cars-page .reference-gallery .reference-row:nth-child(1),
-  body.cars-page .reference-gallery .reference-row:nth-child(4),
-  body.cars-page .reference-gallery .reference-row:nth-child(7){
-    height:clamp(430px,35vw,580px)!important;
+  body.cars-page .reference-grid.justified-gallery .reference-row{
+    display:contents!important;
+    height:auto!important;
   }
-  body.cars-page .reference-gallery .reference-row:nth-child(5){
-    height:clamp(470px,38vw,620px)!important;
-  }
-  body.cars-page .reference-tile{
+  body.cars-page .reference-grid.justified-gallery .reference-tile{
+    width:auto!important;
+    flex-grow:0!important;
+    aspect-ratio:4/3!important;
+    min-width:0!important;
     background:#151616!important;
   }
-  body.cars-page .reference-tile img{
+  body.cars-page .reference-grid.justified-gallery .reference-tile img{
+    width:100%!important;
+    height:100%!important;
     object-fit:contain!important;
     object-position:center center!important;
   }
 
-  /* Make selected images wider while the row still closes edge-to-edge */
-  .reference-gallery .reference-row:nth-child(2n):not(.is-last) .reference-tile:first-child{
+  /* Keep justified-row variation for Yachts only */
+  body:not(.cars-page) .reference-gallery .reference-row:nth-child(2n):not(.is-last) .reference-tile:first-child{
     flex-grow:1.85!important;
   }
-  .reference-gallery .reference-row:nth-child(3n):not(.is-last) .reference-tile:last-child{
+  body:not(.cars-page) .reference-gallery .reference-row:nth-child(3n):not(.is-last) .reference-tile:last-child{
     flex-grow:1.55!important;
   }
-  .reference-gallery .reference-row:nth-child(5):not(.is-last) .reference-tile:first-child{
+  body:not(.cars-page) .reference-gallery .reference-row:nth-child(5):not(.is-last) .reference-tile:first-child{
     flex-grow:2.2!important;
   }
 }
 
-@media(max-width:760px){
+@media(max-width:1100px) and (min-width:721px){
+  body.cars-page .reference-grid.justified-gallery{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+}
+
+@media(max-width:720px){
   body.about-page .refit-grid{display:grid!important;grid-template-columns:1fr!important;gap:8px!important}
   body.about-page .refit-card:nth-child(n){grid-column:1!important;grid-row:auto!important;height:auto!important;min-height:430px!important;margin:0!important}
 
-  /* CARS mobile — keep images large without cutting important details */
-  body.cars-page .reference-gallery .reference-row{
-    height:clamp(330px,88vw,500px)!important;
+  /* CARS mobile — one image per row */
+  body.cars-page .reference-grid.justified-gallery{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:10px!important;
   }
-  body.cars-page .reference-tile{
+  body.cars-page .reference-grid.justified-gallery .reference-row{
+    display:contents!important;
+    height:auto!important;
+  }
+  body.cars-page .reference-grid.justified-gallery .reference-tile{
+    width:auto!important;
+    flex-grow:0!important;
+    aspect-ratio:4/3!important;
     background:#151616!important;
   }
-  body.cars-page .reference-tile img{
+  body.cars-page .reference-grid.justified-gallery .reference-tile img{
+    width:100%!important;
+    height:100%!important;
     object-fit:contain!important;
     object-position:center center!important;
   }
