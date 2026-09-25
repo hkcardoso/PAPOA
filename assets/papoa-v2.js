@@ -5,23 +5,28 @@
   const header=document.querySelector('.site-header');
   const brand=document.querySelector('.site-header .brand');
   const mainNav=document.querySelector('.main-nav');
+  const pt=(document.documentElement.lang||'').toLowerCase().startsWith('pt');
+  const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const cssLink=document.querySelector('link[href*="papoa-v2.css"]');
+  const assetsBase=cssLink?new URL('./',cssLink.href):new URL('../assets/',location.href);
+  const asset=(path)=>new URL(path.replace(/^assets\//,''),assetsBase).href;
+
+  /* Navigation cleanup + home/language controls */
   const removableMenuItems=/^(Projects?|Process|Projetos?|Processo)$/i;
   document.querySelectorAll('.main-nav a,.mobile-menu a').forEach(link=>{
     if(removableMenuItems.test((link.textContent||'').trim()))link.remove();
   });
-  const pt=(document.documentElement.lang||'').toLowerCase().startsWith('pt');
-  const cssLink=document.querySelector('link[href*="papoa-v2.css"]');
-  const assetsBase=cssLink?new URL('./',cssLink.href):new URL('../assets/',location.href);
-  const asset=(path)=>new URL(path.replace(/^assets\//,''),assetsBase).href;
 
   if(brand&&mainNav&&!mainNav.querySelector('[data-home-link]')){
     const home=document.createElement('a');
     home.dataset.homeLink='';
     home.href=brand.getAttribute('href')||'./';
     home.textContent=pt?'Início':'Home';
-    const currentPath=location.pathname.replace(/index\.html$/,'').replace(/\/+$/,'/');
-    const homePath=new URL(home.href,location.href).pathname.replace(/index\.html$/,'').replace(/\/+$/,'/');
-    if(currentPath===homePath){home.classList.add('active');home.setAttribute('aria-current','page')}
+    const cleanPath=(value)=>value.replace(/index\.html$/,'').replace(/\/+$/,'/');
+    if(cleanPath(location.pathname)===cleanPath(new URL(home.href,location.href).pathname)){
+      home.classList.add('active');
+      home.setAttribute('aria-current','page');
+    }
     mainNav.prepend(home);
     if(menu&&!menu.querySelector('[data-home-link]'))menu.prepend(home.cloneNode(true));
   }
@@ -39,6 +44,7 @@
   }
 
   if(toggle&&menu){
+    toggle.setAttribute('aria-expanded','false');
     toggle.addEventListener('click',()=>{
       body.classList.toggle('menu-open');
       toggle.setAttribute('aria-expanded',body.classList.contains('menu-open')?'true':'false');
@@ -49,6 +55,7 @@
     }));
   }
 
+  /* Keep PAPOA identity and heading system uniform */
   const globalStyle=document.createElement('style');
   globalStyle.textContent=`
     .site-header .brand{display:inline-block!important;font-family:Benzin,Arial,sans-serif!important;font-size:21px!important;font-weight:600!important;letter-spacing:-.105em!important;line-height:1!important;transform:scaleY(.82)!important;transform-origin:left center!important;white-space:nowrap!important}
@@ -63,6 +70,16 @@
   `;
   document.head.appendChild(globalStyle);
 
+  /* Load the final polish layer after page-specific CSS so it can unify all pages. */
+  if(!document.querySelector('link[data-papoa-polish]')){
+    const polish=document.createElement('link');
+    polish.rel='stylesheet';
+    polish.href=asset('papoa-polish.css?v=20260925-1');
+    polish.dataset.papoaPolish='';
+    document.head.appendChild(polish);
+  }
+
+  /* Keep old page copy/location references aligned with the current studio positioning. */
   const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
   let node;
   while((node=walker.nextNode())){
@@ -84,23 +101,26 @@
       .replace(/Peniche/gi,'Vilamoura · Cascais');
   });
 
-  const homeHero=document.querySelector('body.homes-page .page-hero img');
-  if(homeHero){
-    homeHero.src='https://clasto.pt/projects/Giraldo/giraldo-exterior-horizontal.webp';
-    homeHero.alt='PAPOA Homes — Giraldo residential exterior';
-  }
+  const isHome=/^(\/|\/pt\/?)(?:index\.html)?$/.test(location.pathname);
+  const isTeam=/\/team\/(?:index\.html)?$/.test(location.pathname);
+  const isYachts=/\/yachts\/(?:index\.html)?$/.test(location.pathname);
+  const isCars=/\/automotive\/(?:index\.html)?$/.test(location.pathname);
+  const isContact=/\/contact\/(?:index\.html)?$/.test(location.pathname);
 
-  const homepageWorlds=document.querySelector('#worlds');
-  const heroShowcase=document.querySelector('.hero-showcase');
-  if(homepageWorlds&&heroShowcase){
-    const media=heroShowcase.querySelector('.hero-media');
+  if(isTeam)body.classList.add('about-page');
+  if(isContact)body.classList.add('contact-page');
+
+  /* Keep homepage hero exactly as the current static marina direction. */
+  if(isHome){
+    const heroShowcase=document.querySelector('.hero-showcase');
+    const media=heroShowcase?.querySelector('.hero-media');
     if(media){
       media.innerHTML='<img src="https://images.unsplash.com/photo-1622974261006-56c31d0c2220?auto=format&fit=crop&fm=jpg&q=88&w=2600" alt="Marina de Vilamoura" style="width:100%;height:100%;object-fit:cover;object-position:center 54%">';
       media.style.pointerEvents='none';
     }
-    heroShowcase.classList.remove('hero-3d');
-    heroShowcase.querySelector('.hero-3d-hint')?.remove();
-    homepageWorlds.querySelectorAll('.world-card').forEach(card=>{
+    heroShowcase?.classList.remove('hero-3d');
+    heroShowcase?.querySelector('.hero-3d-hint')?.remove();
+    document.querySelectorAll('#worlds .world-card').forEach(card=>{
       const title=card.querySelector('h2')?.textContent?.trim();
       const img=card.querySelector('img');
       if(!img)return;
@@ -117,14 +137,13 @@
     });
   }
 
-  const isTeam=/\/team\/(?:index\.html)?$/.test(location.pathname);
+  const homeHero=document.querySelector('body.homes-page .page-hero img');
+  if(homeHero){
+    homeHero.src='https://clasto.pt/projects/Giraldo/giraldo-exterior-horizontal.webp';
+    homeHero.alt='PAPOA Homes — Giraldo residential exterior';
+  }
+
   if(isTeam){
-    const hero=document.querySelector('.page-hero img');
-    if(hero){
-      hero.src='https://images.unsplash.com/photo-1763151427832-790f3dadc8de?auto=format&fit=crop&fm=jpg&q=88&w=2600';
-      hero.alt=pt?'Marina de Cascais':'Cascais Marina';
-      hero.style.objectPosition='center 52%';
-    }
     const editorial=document.querySelector('.editorial-split .media img');
     if(editorial){
       editorial.src='https://images.unsplash.com/photo-1622974261006-56c31d0c2220?auto=format&fit=crop&fm=jpg&q=88&w=2200';
@@ -139,7 +158,7 @@
     }
   }
 
-  const isYachts=/\/yachts\/(?:index\.html)?$/.test(location.pathname);
+  /* Yachts: keep the curated local set, but let the polish CSS create an editorial composition. */
   if(isYachts){
     const grid=document.querySelector('.reference-gallery .reference-grid');
     if(grid){
@@ -165,13 +184,9 @@
         ['yachts/PRESTIGE_M8EVO_PHOTOS_INTERIORS.webp',pt?'Sala principal Prestige M8 EVO':'Prestige M8 EVO main saloon']
       ];
       grid.innerHTML=yachtImages.map(([src,title])=>`<article class="reference-tile"><img src="${asset('images/'+src)}" alt="${title}" loading="lazy" decoding="async"><div class="reference-copy"><strong>${title}</strong></div></article>`).join('');
-      const galleryStyle=document.createElement('style');
-      galleryStyle.textContent=`.reference-gallery .reference-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:10px!important}.reference-gallery .reference-tile{aspect-ratio:4/3!important}.reference-gallery .reference-tile img{width:100%!important;height:100%!important;object-fit:cover!important}@media(max-width:1100px){.reference-gallery .reference-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}@media(max-width:720px){.reference-gallery .reference-grid{grid-template-columns:1fr!important;gap:6px!important}}`;
-      document.head.appendChild(galleryStyle);
     }
   }
 
-  const isContact=/\/contact\/(?:index\.html)?$/.test(location.pathname);
   if(isContact){
     const contactImages={
       Yachts:'images/yachts/PRESTIGE_M8EVO_PHOTOS_INTERIORS.webp',
@@ -187,22 +202,7 @@
       }
     });
 
-    const contactStyle=document.createElement('style');
-    contactStyle.textContent=`
-      .contact-wrap{grid-template-columns:minmax(300px,.78fr) minmax(0,1.22fr)!important;gap:clamp(48px,7vw,110px)!important;align-items:start!important}
-      .contact-direct,.form{min-width:0!important;position:relative!important}
-      .contact-direct h2{font-size:clamp(36px,4vw,60px)!important;line-height:1!important;overflow-wrap:anywhere!important}
-      .form-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important}
-      .project-options{display:flex;flex-wrap:wrap;gap:8px;padding-top:4px}
-      .project-option{position:relative;cursor:pointer}
-      .project-option input{position:absolute!important;opacity:0!important;pointer-events:none!important}
-      .project-option span{display:block;border:1px solid rgba(255,255,255,.22);padding:11px 15px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.74);transition:.2s ease}
-      .project-option input:checked+span{background:#fff;color:#111;border-color:#fff}
-      @media(max-width:1180px){.contact-wrap{grid-template-columns:1fr!important;gap:46px!important}.contact-direct{max-width:760px!important}.form{width:100%!important}}
-      @media(max-width:700px){.form-grid{grid-template-columns:1fr!important}.field.full{grid-column:auto!important}.project-options{gap:6px}.project-option span{padding:10px 12px}}
-    `;
-    document.head.appendChild(contactStyle);
-
+    /* Legacy PT/contact markup can still be converted into the same project pills. */
     const form=document.querySelector('form[data-mailto]');
     const select=form?.querySelector('select[name="Project"],select[name="Projeto"]');
     if(select){
@@ -221,8 +221,11 @@
   }
 
   document.querySelectorAll('.reference-copy span').forEach(el=>el.remove());
-  document.querySelectorAll('.homes-tile-copy span').forEach(el=>{if(/Diana Parracho|Manuel Tainha/i.test(el.textContent||''))el.remove()});
+  document.querySelectorAll('.homes-tile-copy span').forEach(el=>{
+    if(/Diana Parracho|Manuel Tainha/i.test(el.textContent||''))el.remove();
+  });
 
+  /* Lightbox shared by Yachts, Homes and Cars */
   const galleryImages=[...document.querySelectorAll('.reference-gallery .reference-tile img,.homes-gallery .homes-tile img')];
   if(galleryImages.length){
     const lightbox=document.createElement('div');
@@ -255,7 +258,6 @@
     const next=lightbox.querySelector('.gallery-lightbox-next');
     const closeButton=lightbox.querySelector('.gallery-lightbox-close');
     let activeIndex=0;
-
     const show=(index)=>{
       activeIndex=(index+galleryImages.length)%galleryImages.length;
       const source=galleryImages[activeIndex];
@@ -271,7 +273,6 @@
       lightbox.classList.remove('open');
       body.classList.remove('gallery-lightbox-open');
     };
-
     galleryImages.forEach((image,index)=>image.addEventListener('click',event=>{
       event.preventDefault();
       event.stopPropagation();
@@ -289,17 +290,108 @@
     });
   }
 
-  const io=new IntersectionObserver(entries=>entries.forEach(e=>{
-    if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}
-  }),{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  /* Original reveals */
+  if('IntersectionObserver' in window){
+    const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        revealObserver.unobserve(entry.target);
+      }
+    }),{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+  }else{
+    document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
+  }
 
-  document.querySelectorAll('form[data-mailto]').forEach(form=>form.addEventListener('submit',e=>{
-    e.preventDefault();
+  /* 03 — assign distinct motion behaviours by content type */
+  const titleTargets=document.querySelectorAll('.page-hero h1,.section h2,.featured h2,.materials-copy h2,.editorial-copy h2,.contact-direct h2,.reference-gallery-intro h2,.homes-gallery-intro h2,.studio-intro h2');
+  titleTargets.forEach(el=>el.classList.add('motion-title'));
+  document.querySelectorAll('.eyebrow').forEach(el=>el.classList.add('motion-kicker'));
+
+  const mediaTargets=document.querySelectorAll('.featured,.materials-image,.editorial-split .media');
+  mediaTargets.forEach(el=>el.classList.add('motion-media'));
+
+  const staggerGroups=document.querySelectorAll('.service-grid,.reference-grid,.refit-grid,.founders-grid');
+  staggerGroups.forEach(group=>{
+    group.classList.add('motion-stagger');
+    [...group.children].forEach((child,index)=>child.style.setProperty('--motion-i',String(index%8)));
+  });
+  document.querySelectorAll('.homes-gallery-row').forEach((row,index)=>{
+    row.classList.add('motion-stagger');
+    [...row.children].forEach((child,i)=>child.style.setProperty('--motion-i',String(i)));
+    if(index===2||index===6)row.classList.add('homes-feature-row');
+  });
+
+  const motionTargets=[...document.querySelectorAll('.motion-title,.motion-kicker,.motion-media,.motion-stagger')];
+  if(reducedMotion||!('IntersectionObserver' in window)){
+    motionTargets.forEach(el=>el.classList.add('motion-in'));
+  }else{
+    const motionObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('motion-in');
+        motionObserver.unobserve(entry.target);
+      }
+    }),{threshold:.08,rootMargin:'0px 0px -4% 0px'});
+    motionTargets.forEach(el=>motionObserver.observe(el));
+  }
+
+  /* 04 — process line progress follows the scroll position. */
+  const process=document.querySelector('.process');
+  const processSteps=process?[...process.querySelectorAll('.step')]:[];
+  const updateProcess=()=>{
+    if(!process)return;
+    if(reducedMotion){
+      process.style.setProperty('--process-progress','1');
+      processSteps.forEach(step=>step.classList.add('is-active'));
+      return;
+    }
+    const rect=process.getBoundingClientRect();
+    const start=window.innerHeight*.84;
+    const travel=Math.max(rect.height+window.innerHeight*.38,1);
+    const progress=Math.max(0,Math.min(1,(start-rect.top)/travel));
+    process.style.setProperty('--process-progress',progress.toFixed(3));
+    processSteps.forEach((step,index)=>{
+      const threshold=processSteps.length>1?(index/(processSteps.length-1))*.94:0;
+      step.classList.toggle('is-active',progress>=threshold);
+    });
+  };
+
+  /* 06 — very subtle image depth on Homes. */
+  const homeTiles=[...document.querySelectorAll('.homes-gallery .homes-tile img')];
+  const updateHomesParallax=()=>{
+    if(reducedMotion||!homeTiles.length)return;
+    const viewportCenter=window.innerHeight/2;
+    homeTiles.forEach(img=>{
+      const rect=img.parentElement.getBoundingClientRect();
+      if(rect.bottom<0||rect.top>window.innerHeight)return;
+      const center=rect.top+rect.height/2;
+      const offset=Math.max(-14,Math.min(14,(viewportCenter-center)*.022));
+      img.style.setProperty('--parallax-y',`${offset.toFixed(1)}px`);
+    });
+  };
+
+  let scrollTick=false;
+  const onScroll=()=>{
+    if(scrollTick)return;
+    scrollTick=true;
+    requestAnimationFrame(()=>{
+      updateProcess();
+      updateHomesParallax();
+      scrollTick=false;
+    });
+  };
+  updateProcess();
+  updateHomesParallax();
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+
+  /* Mailto fallback used by legacy forms; current AJAX contact form remains untouched. */
+  document.querySelectorAll('form[data-mailto]').forEach(form=>form.addEventListener('submit',event=>{
+    event.preventDefault();
     const data=new FormData(form);
     const subject=encodeURIComponent(data.get('subject')||'New PAPOA project enquiry');
     const lines=[];
-    for(const [k,v] of data.entries())if(k!=='subject'&&String(v).trim())lines.push(`${k}: ${v}`);
+    for(const [key,value] of data.entries())if(key!=='subject'&&String(value).trim())lines.push(`${key}: ${value}`);
     window.location.href=`mailto:hello@papoa.pt?subject=${subject}&body=${encodeURIComponent(lines.join('\n\n'))}`;
   }));
 })();
