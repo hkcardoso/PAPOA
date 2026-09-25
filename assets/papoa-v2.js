@@ -51,14 +51,15 @@
       const style=document.createElement('style');
       style.id='papoa-whatsapp-style';
       style.textContent=`
-        .papoa-whatsapp-float{position:fixed;right:18px;bottom:18px;z-index:9999;display:inline-flex;align-items:center;gap:9px;padding:12px 16px 12px 13px;border-radius:999px;background:#25d366;color:#092713!important;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:600;line-height:1;text-decoration:none!important;box-shadow:0 10px 30px rgba(0,0,0,.2);transition:transform .2s ease,box-shadow .2s ease}
-        .papoa-whatsapp-float:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(0,0,0,.28)}
-        .papoa-whatsapp-float svg{width:22px;height:22px;display:block;flex:none}
+        .papoa-whatsapp-float{position:fixed;right:18px;bottom:18px;z-index:9999;display:flex;align-items:center;justify-content:center;width:56px;height:56px;padding:0;border-radius:50%;background:#000;color:#fff!important;text-decoration:none!important;border:1px solid rgba(255,255,255,.12);box-shadow:0 10px 28px rgba(0,0,0,.28);transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+        .papoa-whatsapp-float:hover{transform:translateY(-2px);background:#111;box-shadow:0 14px 34px rgba(0,0,0,.34)}
+        .papoa-whatsapp-float span{display:none}
+        .papoa-whatsapp-float svg{width:28px;height:28px;display:block;flex:none}
         .footer-contact .papoa-whatsapp-link{display:inline-block;margin-top:5px;text-decoration:underline;text-underline-offset:3px}
         .contact-direct .papoa-whatsapp-direct{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:12px 16px;border:1px solid rgba(255,255,255,.34);color:#fff!important;text-decoration:none!important;text-transform:uppercase;font-size:10px;letter-spacing:.1em;transition:.2s ease}
         .contact-direct .papoa-whatsapp-direct:hover{background:#fff;color:#111!important}
         .contact-direct .papoa-whatsapp-direct svg{width:17px;height:17px;display:block}
-        @media(max-width:720px){.papoa-whatsapp-float{right:14px;bottom:14px;width:52px;height:52px;padding:0;justify-content:center}.papoa-whatsapp-float span{display:none}.papoa-whatsapp-float svg{width:25px;height:25px}}
+        @media(max-width:720px){.papoa-whatsapp-float{right:14px;bottom:14px;width:54px;height:54px}.papoa-whatsapp-float svg{width:27px;height:27px}}
       `;
       document.head.appendChild(style);
     }
