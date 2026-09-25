@@ -1,16 +1,26 @@
 @import url('./papoa-v2-core.css');
 @import url('./papoa-layout-fixes.css?v=20260925-1');
 
-/* Critical render gate: never expose the legacy HTML state before PAPOA finishes booting. */
+/* Cross-document navigation is declared in the blocking stylesheet so the browser
+   can prepare the transition before the next page starts rendering. */
+@view-transition{navigation:auto}
+::view-transition-group(root){animation-duration:.16s!important;animation-timing-function:ease-out!important}
+::view-transition-old(root){animation:papoa-fast-out .11s ease-out both!important;z-index:1}
+::view-transition-new(root){animation:papoa-fast-in .16s ease-out both!important;z-index:2}
+@keyframes papoa-fast-out{from{opacity:1}to{opacity:.88}}
+@keyframes papoa-fast-in{from{opacity:.35}to{opacity:1}}
+
+/* Critical render gate: hide only until the core script has corrected the legacy HTML. */
 html{background:#090a0a}
 body{opacity:0;visibility:hidden;background:#090a0a}
-body.site-ready{opacity:1;visibility:visible;transition:opacity .18s ease}
+body.site-ready{opacity:1;visibility:visible;transition:opacity .07s linear}
 
 /* Yachts/Cars are rebuilt into justified rows by the core script. Keep the raw legacy grid hidden. */
 .reference-gallery .reference-grid:not(.justified-gallery){opacity:0!important;visibility:hidden!important}
-.reference-gallery .reference-grid.justified-gallery{opacity:1!important;visibility:visible!important;transition:opacity .2s ease}
+.reference-gallery .reference-grid.justified-gallery{opacity:1!important;visibility:visible!important;transition:opacity .12s ease}
 
 @media(prefers-reduced-motion:reduce){
   body.site-ready{transition:none}
   .reference-gallery .reference-grid.justified-gallery{transition:none}
+  ::view-transition-old(root),::view-transition-new(root),::view-transition-group(root){animation:none!important}
 }
