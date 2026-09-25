@@ -41,6 +41,67 @@
     }
   };
 
+  const addWhatsAppContact=()=>{
+    const pt=(document.documentElement.lang||'').toLowerCase().startsWith('pt');
+    const text=pt?'Olá, gostaria de falar sobre um projeto PAPOA.':'Hello, I would like to talk about a PAPOA project.';
+    const whatsappHref=`https://wa.me/351925347982?text=${encodeURIComponent(text)}`;
+    const icon='<svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M19.11 17.41c-.28-.14-1.65-.81-1.91-.91-.26-.1-.45-.14-.64.14-.19.28-.73.91-.9 1.1-.16.19-.33.21-.61.07-.28-.14-1.18-.44-2.25-1.39-.83-.74-1.39-1.66-1.55-1.94-.16-.28-.02-.43.12-.57.13-.13.28-.33.42-.49.14-.16.19-.28.28-.47.09-.19.05-.35-.02-.49-.07-.14-.64-1.54-.87-2.11-.23-.55-.46-.48-.64-.49h-.54c-.19 0-.49.07-.75.35-.26.28-.99.97-.99 2.36s1.01 2.74 1.15 2.93c.14.19 1.99 3.04 4.82 4.26.67.29 1.2.46 1.61.59.68.22 1.29.19 1.78.12.54-.08 1.65-.68 1.89-1.33.23-.66.23-1.22.16-1.33-.07-.12-.26-.19-.54-.33zM16.03 5.33c-5.87 0-10.64 4.76-10.64 10.63 0 1.87.49 3.7 1.41 5.3l-1.5 5.47 5.6-1.47a10.61 10.61 0 0 0 5.13 1.31h.01c5.86 0 10.63-4.77 10.63-10.64 0-2.84-1.11-5.51-3.12-7.52a10.57 10.57 0 0 0-7.52-3.08zm0 19.45h-.01a8.79 8.79 0 0 1-4.48-1.23l-.32-.19-3.32.87.89-3.23-.21-.33a8.82 8.82 0 1 1 7.45 4.11z"/></svg>';
+
+    if(!document.getElementById('papoa-whatsapp-style')){
+      const style=document.createElement('style');
+      style.id='papoa-whatsapp-style';
+      style.textContent=`
+        .papoa-whatsapp-float{position:fixed;right:18px;bottom:18px;z-index:9999;display:inline-flex;align-items:center;gap:9px;padding:12px 16px 12px 13px;border-radius:999px;background:#25d366;color:#092713!important;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:600;line-height:1;text-decoration:none!important;box-shadow:0 10px 30px rgba(0,0,0,.2);transition:transform .2s ease,box-shadow .2s ease}
+        .papoa-whatsapp-float:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(0,0,0,.28)}
+        .papoa-whatsapp-float svg{width:22px;height:22px;display:block;flex:none}
+        .footer-contact .papoa-whatsapp-link{display:inline-block;margin-top:5px;text-decoration:underline;text-underline-offset:3px}
+        .contact-direct .papoa-whatsapp-direct{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:12px 16px;border:1px solid rgba(255,255,255,.34);color:#fff!important;text-decoration:none!important;text-transform:uppercase;font-size:10px;letter-spacing:.1em;transition:.2s ease}
+        .contact-direct .papoa-whatsapp-direct:hover{background:#fff;color:#111!important}
+        .contact-direct .papoa-whatsapp-direct svg{width:17px;height:17px;display:block}
+        @media(max-width:720px){.papoa-whatsapp-float{right:14px;bottom:14px;width:52px;height:52px;padding:0;justify-content:center}.papoa-whatsapp-float span{display:none}.papoa-whatsapp-float svg{width:25px;height:25px}}
+      `;
+      document.head.appendChild(style);
+    }
+
+    if(!document.querySelector('.papoa-whatsapp-float')){
+      const floating=document.createElement('a');
+      floating.className='papoa-whatsapp-float';
+      floating.href=whatsappHref;
+      floating.target='_blank';
+      floating.rel='noopener noreferrer';
+      floating.setAttribute('aria-label','WhatsApp');
+      floating.innerHTML=`${icon}<span>WhatsApp</span>`;
+      document.body.appendChild(floating);
+    }
+
+    document.querySelectorAll('.footer-contact').forEach(footer=>{
+      if(footer.querySelector('.papoa-whatsapp-link'))return;
+      const phone=footer.querySelector('a[href^="tel:"]')||footer.querySelector('a[href^="mailto:"]');
+      if(!phone)return;
+      const br=document.createElement('br');
+      const link=document.createElement('a');
+      link.className='papoa-whatsapp-link';
+      link.href=whatsappHref;
+      link.target='_blank';
+      link.rel='noopener noreferrer';
+      link.textContent='WhatsApp';
+      phone.insertAdjacentElement('afterend',br);
+      br.insertAdjacentElement('afterend',link);
+    });
+
+    const direct=document.querySelector('.contact-direct');
+    if(direct&&!direct.querySelector('.papoa-whatsapp-direct')){
+      const locationCopy=[...direct.querySelectorAll('.section-copy')].at(-1);
+      const button=document.createElement('a');
+      button.className='papoa-whatsapp-direct';
+      button.href=whatsappHref;
+      button.target='_blank';
+      button.rel='noopener noreferrer';
+      button.innerHTML=`${icon}<span>${pt?'Falar no WhatsApp':'Chat on WhatsApp'}</span>`;
+      (locationCopy||direct.lastElementChild)?.insertAdjacentElement('afterend',button);
+    }
+  };
+
   const prioritizeGallery=()=>{
     const grid=document.querySelector('.reference-gallery .reference-grid');
     if(!grid)return;
@@ -96,6 +157,7 @@
   core.addEventListener('load',()=>{
     prioritizeGallery();
     addPhoneContact();
+    addWhatsAppContact();
 
     /* Keep navigation extremely short. This style is appended after the polish layer link,
        so the slower legacy transition can never win the cascade. */
@@ -114,6 +176,7 @@
 
   core.addEventListener('error',()=>{
     addPhoneContact();
+    addWhatsAppContact();
     reveal();
   },{once:true});
   document.head.appendChild(core);
@@ -121,6 +184,7 @@
   /* Fallback only for a genuine asset failure, not part of the normal navigation path. */
   setTimeout(()=>{
     addPhoneContact();
+    addWhatsAppContact();
     reveal();
   },700);
 })();
