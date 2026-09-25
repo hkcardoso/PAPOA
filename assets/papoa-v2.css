@@ -1,5 +1,5 @@
 @import url('./papoa-v2-core.css');
-@import url('./papoa-layout-fixes.css?v=20260925-1');
+@import url('./papoa-layout-fixes.css?v=20260925-2');
 
 /* Cross-document navigation is declared in the blocking stylesheet so the browser
    can prepare the transition before the next page starts rendering. */

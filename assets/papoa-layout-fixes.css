@@ -19,15 +19,19 @@
   body.about-page .refit-card:nth-child(3){grid-column:1/span 5!important;grid-row:2!important}
   body.about-page .refit-card:nth-child(4){grid-column:6/span 7!important;grid-row:2!important}
 
-  /* YACHTS / CARS — keep justified rows, but introduce stronger portfolio moments */
+  /* YACHTS / CARS — larger gallery images across every row */
+  .reference-gallery .reference-row{
+    height:clamp(320px,27vw,450px)!important;
+  }
+
   .reference-gallery .reference-row:nth-child(1),
   .reference-gallery .reference-row:nth-child(4),
   .reference-gallery .reference-row:nth-child(7){
-    height:clamp(300px,27vw,430px)!important;
+    height:clamp(360px,31vw,500px)!important;
   }
 
   .reference-gallery .reference-row:nth-child(5){
-    height:clamp(340px,31vw,490px)!important;
+    height:clamp(400px,34vw,550px)!important;
   }
 
   /* Make selected images wider while the row still closes edge-to-edge */
