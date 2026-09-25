@@ -148,6 +148,13 @@
         ['yachts/124I0314_d.webp',pt?'Zona de jantar Prestige 620':'Prestige 620 dining area'],
         ['yachts/PR620-2015-006 moquette blanche_d.webp',pt?'Salão Prestige 620':'Prestige 620 saloon'],
         ['yachts/PR620-2015-011 moquette blanche_d.webp',pt?'Interior Prestige 620':'Prestige 620 interior'],
+        ['yachts/news/PRESTIGE_460S_PHOTOS_INTERIOR.webp',pt?'Interior Prestige 460S':'Prestige 460S interior'],
+        ['yachts/news/PRESTIGE_F4.9_HARD_TOP_VERSION_SHOOTING_NEWPORT_CALIFORNIA_2024 (1).webp',pt?'Prestige F4.9 hard top':'Prestige F4.9 hard top'],
+        ['yachts/news/PRESTIGE_F4.9_HARD_TOP_VERSION_SHOOTING_NEWPORT_CALIFORNIA_2024.webp',pt?'Exterior Prestige F4.9':'Prestige F4.9 exterior'],
+        ['yachts/news/PRESTIGE_M7_INTERIOR_DETAILS_PHOTOS.webp',pt?'Detalhe interior Prestige M7':'Prestige M7 interior detail'],
+        ['yachts/news/PRESTIGE_M7_PHOTOS_INTERIOR.webp',pt?'Interior Prestige M7':'Prestige M7 interior'],
+        ['yachts/news/PRESTIGE_M8_WARM SAND_PHOTOS_SHOOTING_HONG KONG (1).webp',pt?'Interior Prestige M8 Warm Sand':'Prestige M8 Warm Sand interior'],
+        ['yachts/news/PRESTIGE_M8_WARM SAND_PHOTOS_SHOOTING_HONG KONG.webp',pt?'Detalhe Prestige M8 Warm Sand':'Prestige M8 Warm Sand detail'],
         ['yachts/PRESTIGE_F6.7_PHOTOS_EXTERIOR (1).webp',pt?'Cockpit Prestige F6.7':'Prestige F6.7 cockpit'],
         ['yachts/PRESTIGE_F6.7_PHOTOS_EXTERIOR.webp',pt?'Lounge Prestige F6.7':'Prestige F6.7 lounge'],
         ['yachts/PRESTIGE_M8EVO_PHOTOS_EXTERIOR (1).webp',pt?'Flybridge Prestige M8 EVO':'Prestige M8 EVO flybridge'],
@@ -215,6 +222,72 @@
 
   document.querySelectorAll('.reference-copy span').forEach(el=>el.remove());
   document.querySelectorAll('.homes-tile-copy span').forEach(el=>{if(/Diana Parracho|Manuel Tainha/i.test(el.textContent||''))el.remove()});
+
+  const galleryImages=[...document.querySelectorAll('.reference-gallery .reference-tile img,.homes-gallery .homes-tile img')];
+  if(galleryImages.length){
+    const lightbox=document.createElement('div');
+    lightbox.className='gallery-lightbox';
+    lightbox.setAttribute('role','dialog');
+    lightbox.setAttribute('aria-modal','true');
+    lightbox.setAttribute('aria-label',pt?'Imagem ampliada':'Enlarged image');
+    lightbox.innerHTML=`<button class="gallery-lightbox-close" type="button" aria-label="${pt?'Fechar':'Close'}">×</button><button class="gallery-lightbox-nav gallery-lightbox-prev" type="button" aria-label="${pt?'Imagem anterior':'Previous image'}">‹</button><img alt=""><button class="gallery-lightbox-nav gallery-lightbox-next" type="button" aria-label="${pt?'Imagem seguinte':'Next image'}">›</button>`;
+    body.appendChild(lightbox);
+
+    const lightboxStyle=document.createElement('style');
+    lightboxStyle.textContent=`
+      .reference-gallery .reference-tile img,.homes-gallery .homes-tile img{cursor:zoom-in}
+      .gallery-lightbox{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;background:rgba(7,8,8,.95);opacity:0;visibility:hidden;transition:opacity .22s ease,visibility .22s ease;padding:32px}
+      .gallery-lightbox.open{opacity:1;visibility:visible}
+      .gallery-lightbox img{display:block;max-width:min(92vw,1800px);max-height:88vh;width:auto;height:auto;object-fit:contain;box-shadow:0 18px 60px rgba(0,0,0,.36)}
+      .gallery-lightbox-close,.gallery-lightbox-nav{position:absolute;z-index:2;border:0;background:transparent;color:#fff;cursor:pointer;font-family:Arial,sans-serif;font-weight:200;line-height:1;opacity:.78;transition:opacity .2s ease,transform .2s ease}
+      .gallery-lightbox-close{top:22px;right:28px;font-size:42px;padding:4px 8px}
+      .gallery-lightbox-nav{top:50%;transform:translateY(-50%);font-size:58px;padding:16px 20px}
+      .gallery-lightbox-prev{left:12px}.gallery-lightbox-next{right:12px}
+      .gallery-lightbox-close:hover,.gallery-lightbox-nav:hover{opacity:1}
+      .gallery-lightbox-nav:hover{transform:translateY(-50%) scale(1.05)}
+      @media(max-width:720px){.gallery-lightbox{padding:54px 8px 28px}.gallery-lightbox img{max-width:96vw;max-height:80vh}.gallery-lightbox-close{top:10px;right:12px;font-size:38px}.gallery-lightbox-nav{font-size:46px;padding:14px 10px}.gallery-lightbox-prev{left:0}.gallery-lightbox-next{right:0}}
+      @media(prefers-reduced-motion:reduce){.gallery-lightbox,.gallery-lightbox-close,.gallery-lightbox-nav{transition:none}}
+    `;
+    document.head.appendChild(lightboxStyle);
+
+    const modalImage=lightbox.querySelector('img');
+    const prev=lightbox.querySelector('.gallery-lightbox-prev');
+    const next=lightbox.querySelector('.gallery-lightbox-next');
+    const closeButton=lightbox.querySelector('.gallery-lightbox-close');
+    let activeIndex=0;
+
+    const show=(index)=>{
+      activeIndex=(index+galleryImages.length)%galleryImages.length;
+      const source=galleryImages[activeIndex];
+      modalImage.src=source.currentSrc||source.src;
+      modalImage.alt=source.alt||'';
+    };
+    const open=(index)=>{
+      show(index);
+      lightbox.classList.add('open');
+      body.classList.add('gallery-lightbox-open');
+    };
+    const close=()=>{
+      lightbox.classList.remove('open');
+      body.classList.remove('gallery-lightbox-open');
+    };
+
+    galleryImages.forEach((image,index)=>image.addEventListener('click',event=>{
+      event.preventDefault();
+      event.stopPropagation();
+      open(index);
+    }));
+    closeButton.addEventListener('click',close);
+    prev.addEventListener('click',event=>{event.stopPropagation();show(activeIndex-1)});
+    next.addEventListener('click',event=>{event.stopPropagation();show(activeIndex+1)});
+    lightbox.addEventListener('click',event=>{if(event.target===lightbox)close()});
+    document.addEventListener('keydown',event=>{
+      if(!lightbox.classList.contains('open'))return;
+      if(event.key==='Escape')close();
+      if(event.key==='ArrowLeft')show(activeIndex-1);
+      if(event.key==='ArrowRight')show(activeIndex+1);
+    });
+  }
 
   const io=new IntersectionObserver(entries=>entries.forEach(e=>{
     if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}
