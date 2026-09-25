@@ -1,6 +1,7 @@
 (()=>{
   const body=document.body;
   let revealed=false;
+  let enhanced=false;
 
   const reveal=()=>{
     if(revealed)return;
@@ -51,15 +52,15 @@
       const style=document.createElement('style');
       style.id='papoa-whatsapp-style';
       style.textContent=`
-        .papoa-whatsapp-float{position:fixed;right:18px;bottom:18px;z-index:9999;display:flex;align-items:center;justify-content:center;width:56px;height:56px;padding:0;border-radius:50%;background:#000;color:#fff!important;text-decoration:none!important;border:1px solid rgba(255,255,255,.12);box-shadow:0 10px 28px rgba(0,0,0,.28);transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
-        .papoa-whatsapp-float:hover{transform:translateY(-2px);background:#111;box-shadow:0 14px 34px rgba(0,0,0,.34)}
+        .papoa-whatsapp-float{position:fixed;right:18px;bottom:18px;z-index:9999;display:flex;align-items:center;justify-content:center;width:56px;height:56px;padding:0;border-radius:50%;background:#000;color:#fff!important;text-decoration:none!important;border:1px solid rgba(255,255,255,.16);box-shadow:0 10px 28px rgba(0,0,0,.34);transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+        .papoa-whatsapp-float:hover{transform:translateY(-2px);background:#111;box-shadow:0 14px 34px rgba(0,0,0,.4)}
         .papoa-whatsapp-float span{display:none}
-        .papoa-whatsapp-float svg{width:28px;height:28px;display:block;flex:none}
+        .papoa-whatsapp-float svg{width:27px;height:27px;display:block;flex:none;color:#fff}
         .footer-contact .papoa-whatsapp-link{display:inline-block;margin-top:5px;text-decoration:underline;text-underline-offset:3px}
         .contact-direct .papoa-whatsapp-direct{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:12px 16px;border:1px solid rgba(255,255,255,.34);color:#fff!important;text-decoration:none!important;text-transform:uppercase;font-size:10px;letter-spacing:.1em;transition:.2s ease}
         .contact-direct .papoa-whatsapp-direct:hover{background:#fff;color:#111!important}
         .contact-direct .papoa-whatsapp-direct svg{width:17px;height:17px;display:block}
-        @media(max-width:720px){.papoa-whatsapp-float{right:14px;bottom:14px;width:54px;height:54px}.papoa-whatsapp-float svg{width:27px;height:27px}}
+        @media(max-width:720px){.papoa-whatsapp-float{right:14px;bottom:14px;width:54px;height:54px}.papoa-whatsapp-float svg{width:26px;height:26px}}
       `;
       document.head.appendChild(style);
     }
@@ -100,6 +101,166 @@
       button.rel='noopener noreferrer';
       button.innerHTML=`${icon}<span>${pt?'Falar no WhatsApp':'Chat on WhatsApp'}</span>`;
       (locationCopy||direct.lastElementChild)?.insertAdjacentElement('afterend',button);
+    }
+  };
+
+  const addPresenceSection=()=>{
+    if(document.querySelector('.presence-section'))return;
+    if(!location.pathname.toLowerCase().includes('/contact'))return;
+    const pt=(document.documentElement.lang||'').toLowerCase().startsWith('pt');
+    const main=document.querySelector('main');
+    if(!main)return;
+    const anchor=main.querySelector('.worlds');
+    const section=document.createElement('section');
+    section.className='presence-section';
+    const mapUrl='https://share.google/JaUQrWTJerpotGVjS';
+    section.innerHTML=`
+      <div class="presence-copy">
+        <div class="eyebrow">${pt?'Presença':'Presence'}</div>
+        <h2>Cascais · Vilamoura · Portugal.</h2>
+        <p>${pt?'Trabalhamos a partir de Portugal, com foco em projetos de yachts, interiores e automotive em Cascais, Vilamoura e noutras localizações, em Portugal e no estrangeiro.':'We work from Portugal, with yacht, interior and automotive projects centred around Cascais, Vilamoura and other locations in Portugal and abroad.'}</p>
+        <div class="presence-locations"><span>Cascais</span><i></i><span>Vilamoura</span><i></i><span>${pt?'Portugal + exterior':'Portugal + beyond'}</span></div>
+        <a class="btn" href="${mapUrl}" target="_blank" rel="noopener noreferrer">${pt?'Abrir no Google Maps':'Open in Google Maps'} <span>→</span></a>
+      </div>
+      <a class="presence-map" href="${mapUrl}" target="_blank" rel="noopener noreferrer" aria-label="${pt?'Abrir localização PAPOA no Google Maps':'Open PAPOA location in Google Maps'}">
+        <div class="presence-map-grid"></div>
+        <div class="presence-map-line"></div>
+        <div class="presence-map-label">Atlantic · Portugal</div>
+        <div class="presence-pin presence-pin-cascais"><span>Cascais</span></div>
+        <div class="presence-pin presence-pin-vilamoura"><span>Vilamoura</span></div>
+        <div class="presence-map-cta">Google Maps ↗</div>
+      </a>`;
+    if(anchor)main.insertBefore(section,anchor);else main.appendChild(section);
+  };
+
+  const addLegalLinks=()=>{
+    const bottom=document.querySelector('.footer-bottom');
+    if(!bottom||bottom.querySelector('.footer-legal'))return;
+    const pt=(document.documentElement.lang||'').toLowerCase().startsWith('pt');
+    const legal=document.createElement('span');
+    legal.className='footer-legal';
+    legal.innerHTML=pt
+      ?'<a href="/pt/privacy/">Privacidade</a><a href="/pt/terms/">Termos</a>'
+      :'<a href="/privacy/">Privacy</a><a href="/terms/">Terms</a>';
+    bottom.appendChild(legal);
+  };
+
+  const enhanceSEO=()=>{
+    if(document.documentElement.dataset.papoaSeo==='1')return;
+    document.documentElement.dataset.papoaSeo='1';
+    const origin='https://papoa.pt';
+    let path=location.pathname.replace(/\/+/g,'/');
+    if(!path.startsWith('/'))path=`/${path}`;
+    if(!path.endsWith('/')&&!/\.[a-z0-9]+$/i.test(path))path+='/';
+    const isPt=path==='/pt/'||path.startsWith('/pt/');
+    const enPath=isPt?(path.replace(/^\/pt/,'')||'/'):path;
+    const ptPath=isPt?path:(path==='/'?'/pt/':`/pt${path}`);
+    const canonical=`${origin}${path}`;
+    const title=document.title||'PAPOA';
+    const description=document.querySelector('meta[name="description"]')?.content||'PAPOA — yacht refit, bespoke interiors, homes and automotive projects in Portugal.';
+    const image=`${origin}/assets/images/layout-featured-restored.webp`;
+
+    const setMeta=(selector,attrs)=>{
+      let el=document.head.querySelector(selector);
+      if(!el){el=document.createElement('meta');document.head.appendChild(el)}
+      Object.entries(attrs).forEach(([key,value])=>el.setAttribute(key,value));
+      return el;
+    };
+    const setLink=(selector,attrs)=>{
+      let el=document.head.querySelector(selector);
+      if(!el){el=document.createElement('link');document.head.appendChild(el)}
+      Object.entries(attrs).forEach(([key,value])=>el.setAttribute(key,value));
+      return el;
+    };
+
+    setLink('link[rel="canonical"]',{rel:'canonical',href:canonical});
+    setLink('link[rel="alternate"][hreflang="en"]',{rel:'alternate',hreflang:'en',href:`${origin}${enPath}`});
+    setLink('link[rel="alternate"][hreflang="pt-PT"]',{rel:'alternate',hreflang:'pt-PT',href:`${origin}${ptPath}`});
+    setLink('link[rel="alternate"][hreflang="x-default"]',{rel:'alternate',hreflang:'x-default',href:`${origin}${enPath}`});
+    setMeta('meta[name="robots"]',{name:'robots',content:'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'});
+    setMeta('meta[name="theme-color"]',{name:'theme-color',content:'#090a0a'});
+    setMeta('meta[property="og:site_name"]',{property:'og:site_name',content:'PAPOA'});
+    setMeta('meta[property="og:type"]',{property:'og:type',content:'website'});
+    setMeta('meta[property="og:title"]',{property:'og:title',content:title});
+    setMeta('meta[property="og:description"]',{property:'og:description',content:description});
+    setMeta('meta[property="og:url"]',{property:'og:url',content:canonical});
+    setMeta('meta[property="og:image"]',{property:'og:image',content:image});
+    setMeta('meta[property="og:image:alt"]',{property:'og:image:alt',content:'PAPOA — Yachts, Homes and Cars'});
+    setMeta('meta[property="og:locale"]',{property:'og:locale',content:isPt?'pt_PT':'en_GB'});
+    setMeta('meta[property="og:locale:alternate"]',{property:'og:locale:alternate',content:isPt?'en_GB':'pt_PT'});
+    setMeta('meta[name="twitter:card"]',{name:'twitter:card',content:'summary_large_image'});
+    setMeta('meta[name="twitter:title"]',{name:'twitter:title',content:title});
+    setMeta('meta[name="twitter:description"]',{name:'twitter:description',content:description});
+    setMeta('meta[name="twitter:image"]',{name:'twitter:image',content:image});
+
+    if(!document.getElementById('papoa-structured-data')){
+      const schema=document.createElement('script');
+      schema.id='papoa-structured-data';
+      schema.type='application/ld+json';
+      schema.textContent=JSON.stringify({
+        '@context':'https://schema.org',
+        '@type':'ProfessionalService',
+        name:'PAPOA',
+        url:`${origin}/`,
+        logo:`${origin}/assets/images/papoa-favicon.png`,
+        image,
+        email:'hello@papoa.pt',
+        telephone:'+351925347982',
+        description:'Design, yacht refit, bespoke interiors, homes and selected automotive projects.',
+        areaServed:[
+          {'@type':'City','name':'Cascais'},
+          {'@type':'Place','name':'Vilamoura'},
+          {'@type':'Country','name':'Portugal'}
+        ],
+        knowsLanguage:['en','pt-PT'],
+        sameAs:['https://share.google/JaUQrWTJerpotGVjS']
+      });
+      document.head.appendChild(schema);
+    }
+  };
+
+  const enhanceMotion=()=>{
+    if(document.documentElement.dataset.papoaMotion==='1')return;
+    document.documentElement.dataset.papoaMotion='1';
+    const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduce)return;
+
+    const elements=[...document.querySelectorAll('.service,.world-card,.reference-tile,.person,.studio-intro-values span,.footer-top>*,.footer-bottom,.materials-image,.presence-map')];
+    elements.forEach((el,index)=>{
+      el.setAttribute('data-papoa-motion','');
+      el.style.setProperty('--papoa-motion-delay',`${Math.min(index%6,5)*45}ms`);
+    });
+
+    if('IntersectionObserver'in window){
+      const observer=new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{
+          if(!entry.isIntersecting)return;
+          entry.target.classList.add('papoa-motion-in');
+          observer.unobserve(entry.target);
+        });
+      },{threshold:.08,rootMargin:'0px 0px -5% 0px'});
+      elements.forEach(el=>observer.observe(el));
+    }else elements.forEach(el=>el.classList.add('papoa-motion-in'));
+
+    if(matchMedia('(min-width: 769px)').matches){
+      const images=[...document.querySelectorAll('.hero-media img,.page-hero>img,.featured>img,.materials-image img')];
+      let ticking=false;
+      const parallax=()=>{
+        ticking=false;
+        images.forEach(img=>{
+          const host=img.parentElement;
+          if(!host)return;
+          const rect=host.getBoundingClientRect();
+          if(rect.bottom<0||rect.top>innerHeight)return;
+          const centre=rect.top+rect.height/2-innerHeight/2;
+          const offset=Math.max(-14,Math.min(14,-centre*.022));
+          img.style.setProperty('--papoa-parallax',`${offset.toFixed(2)}px`);
+        });
+      };
+      const requestParallax=()=>{if(ticking)return;ticking=true;requestAnimationFrame(parallax)};
+      addEventListener('scroll',requestParallax,{passive:true});
+      addEventListener('resize',requestParallax,{passive:true});
+      requestParallax();
     }
   };
 
@@ -155,10 +316,20 @@
     tiles.sort((a,b)=>rank(a)-rank(b)).forEach(tile=>grid.appendChild(tile));
   };
 
-  core.addEventListener('load',()=>{
+  const runEnhancements=()=>{
+    if(enhanced)return;
+    enhanced=true;
     prioritizeGallery();
     addPhoneContact();
     addWhatsAppContact();
+    addPresenceSection();
+    addLegalLinks();
+    enhanceSEO();
+    enhanceMotion();
+  };
+
+  core.addEventListener('load',()=>{
+    runEnhancements();
 
     /* Keep navigation extremely short. This style is appended after the polish layer link,
        so the slower legacy transition can never win the cascade. */
@@ -176,16 +347,14 @@
   },{once:true});
 
   core.addEventListener('error',()=>{
-    addPhoneContact();
-    addWhatsAppContact();
+    runEnhancements();
     reveal();
   },{once:true});
   document.head.appendChild(core);
 
   /* Fallback only for a genuine asset failure, not part of the normal navigation path. */
   setTimeout(()=>{
-    addPhoneContact();
-    addWhatsAppContact();
+    runEnhancements();
     reveal();
   },700);
 })();
