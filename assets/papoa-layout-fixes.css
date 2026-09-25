@@ -80,7 +80,7 @@
   body.about-page .refit-grid{display:grid!important;grid-template-columns:1fr!important;gap:8px!important}
   body.about-page .refit-card:nth-child(n){grid-column:1!important;grid-row:auto!important;height:auto!important;min-height:430px!important;margin:0!important}
 
-  /* CARS mobile — one image per row */
+  /* CARS mobile — one full-width image per row, using each image's natural ratio */
   body.cars-page .reference-grid.justified-gallery{
     display:grid!important;
     grid-template-columns:1fr!important;
@@ -91,15 +91,18 @@
     height:auto!important;
   }
   body.cars-page .reference-grid.justified-gallery .reference-tile{
-    width:auto!important;
+    width:100%!important;
     flex-grow:0!important;
-    aspect-ratio:4/3!important;
-    background:#151616!important;
+    aspect-ratio:auto!important;
+    min-height:0!important;
+    background:transparent!important;
   }
   body.cars-page .reference-grid.justified-gallery .reference-tile img{
+    display:block!important;
     width:100%!important;
-    height:100%!important;
-    object-fit:contain!important;
+    height:auto!important;
+    max-height:none!important;
+    object-fit:initial!important;
     object-position:center center!important;
   }
 }
