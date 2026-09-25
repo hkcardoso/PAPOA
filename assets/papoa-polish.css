@@ -80,13 +80,32 @@ html{background:#090a0a}
 .contact-page .page-hero:after{background:linear-gradient(90deg,rgba(0,0,0,.72),rgba(0,0,0,.18) 66%),linear-gradient(0deg,rgba(0,0,0,.52),transparent 55%)!important}
 .contact-page .page-hero-content{max-width:780px;padding-bottom:65px}
 .contact-page .page-hero h1{font-size:clamp(74px,9vw,145px)!important}
-.contact-page .form{background:rgba(255,255,255,.025)!important;border-color:rgba(255,255,255,.09)!important}
-.contact-page .field{position:relative;border-bottom-color:rgba(255,255,255,.16)!important;transition:border-color .3s ease}
-.contact-page .field:focus-within{border-bottom-color:rgba(255,255,255,.82)!important}
-.contact-page .field label{transition:color .25s ease,transform .25s ease}
-.contact-page .field:focus-within label{color:rgba(255,255,255,.95)!important;transform:translateY(-2px)}
-.contact-page .project-option span{transition:background .25s ease,color .25s ease,border-color .25s ease,transform .25s ease!important}
-.contact-page .project-option:hover span{border-color:rgba(255,255,255,.55);transform:translateY(-2px)}
+
+/* Contact form — clearer hierarchy without losing the dark premium look */
+.contact-page .form{background:#111313!important;border:1px solid rgba(255,255,255,.14)!important;padding:clamp(28px,3.2vw,46px)!important;box-shadow:0 26px 70px rgba(0,0,0,.18)}
+.contact-page .form-grid{gap:14px 14px!important}
+.contact-page .form-intro{grid-column:1/-1;padding:0 0 22px;margin-bottom:4px;border-bottom:1px solid rgba(255,255,255,.12)}
+.contact-page .form-intro .eyebrow{color:rgba(255,255,255,.62);margin-bottom:9px}
+.contact-page .form-intro p{margin:0;color:rgba(255,255,255,.88);font-size:15px;line-height:1.5;max-width:560px}
+.contact-page .field{position:relative!important;border:1px solid rgba(255,255,255,.15)!important;background:rgba(255,255,255,.025)!important;padding:14px 16px 15px!important;min-height:76px;transition:border-color .25s ease,background .25s ease,box-shadow .25s ease!important}
+.contact-page .field.full{grid-column:1/-1}
+.contact-page .field:focus-within{border-color:rgba(255,255,255,.68)!important;background:rgba(255,255,255,.045)!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)}
+.contact-page .field>label{display:block!important;font-family:Benzin,Arial,sans-serif!important;font-size:8px!important;line-height:1.2!important;letter-spacing:.13em!important;text-transform:uppercase;color:rgba(255,255,255,.72)!important;margin:0 0 10px!important;transition:color .25s ease!important}
+.contact-page .field:has(input[required])>label::after,.contact-page .field:has(textarea[required])>label::after{content:" *";color:rgba(255,255,255,.46)}
+.contact-page .field:focus-within>label{color:#fff!important;transform:none!important}
+.contact-page .field input,.contact-page .field textarea,.contact-page .field select{font-size:15px!important;line-height:1.45!important;color:#fff!important;min-height:24px}
+.contact-page .field input::placeholder,.contact-page .field textarea::placeholder{color:rgba(255,255,255,.34);opacity:1}
+.contact-page .field textarea{min-height:132px!important;resize:vertical}
+.contact-page .project-options{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px!important;padding-top:2px!important}
+.contact-page .project-option{display:block!important}
+.contact-page .project-option span{display:flex!important;align-items:center;justify-content:center;min-height:46px;border:1px solid rgba(255,255,255,.18)!important;background:rgba(255,255,255,.025);padding:11px 12px!important;font-family:Benzin,Arial,sans-serif;font-size:8px!important;letter-spacing:.1em!important;color:rgba(255,255,255,.72)!important;transition:background .25s ease,color .25s ease,border-color .25s ease,transform .25s ease!important}
+.contact-page .project-option:hover span{border-color:rgba(255,255,255,.48)!important;color:#fff!important;transform:translateY(-1px)}
+.contact-page .project-option input:checked+span{background:#f4f1ea!important;color:#111!important;border-color:#f4f1ea!important}
+.contact-page .form button{width:100%!important;min-height:54px!important;margin-top:18px!important;padding:16px 18px!important;background:#f4f1ea!important;color:#111!important;border-color:#f4f1ea!important;font-size:8px!important}
+.contact-page .form button:hover{background:#fff!important;border-color:#fff!important}
+.contact-page .form-status{margin-top:12px!important;min-height:18px!important;color:rgba(255,255,255,.62)!important}
+.contact-page .form-status[data-state="success"]{color:#fff!important}
+.contact-page .form-status[data-state="error"]{color:#ffb4b4!important}
 
 @media(max-width:760px){
   .worlds{display:grid!important;grid-template-columns:1fr!important}
@@ -100,6 +119,10 @@ html{background:#090a0a}
   .about-page .refit-card:nth-child(n){grid-column:1!important;margin-top:0!important;min-height:430px!important}
   .contact-page .page-hero{min-height:52svh!important}
   .contact-page .page-hero h1{font-size:clamp(66px,18vw,105px)!important}
+  .contact-page .form{padding:24px 16px!important}
+  .contact-page .form-grid{grid-template-columns:1fr!important;gap:10px!important}
+  .contact-page .field.full{grid-column:auto!important}
+  .contact-page .project-options{grid-template-columns:repeat(2,minmax(0,1fr))!important}
   .motion-stagger>*{transition-delay:calc(var(--motion-i,0) * 35ms)}
 }
 
