@@ -1,19 +1,27 @@
 # PAPOA
 
-Static bilingual website for PAPOA — Yachts, Automotive and Interiors.
+Static bilingual website for PAPOA — Yachts, Homes and Cars.
 
-- English pages live at the root; Portuguese pages live in `pt/`.
-- Shared typography and behaviour: `assets/refinement.css` and `assets/site.js`.
-- To regenerate Portuguese after English edits: update `scripts/pt-translations.json`, then run `python scripts/build-portuguese.py` (requires `beautifulsoup4`).
-- Validate internal navigation, assets, language links and forms with `python scripts/check-site.py`.
-- Pushes to `main` publish through the existing GitHub Pages workflow.
+## Current deployment
+
+- Production is deployed through Cloudflare Workers static assets.
+- Production branch: `main`.
+- English pages live at the repository root; Portuguese pages live in `pt/`.
+- Shared runtime: `assets/papoa-v2.css` and `assets/papoa-v2.js`.
+- `wrangler.jsonc` deploys the repository root as static assets.
+- `.assetsignore` keeps repository/development files out of the uploaded asset bundle.
+- GitHub Pages deployment has been removed; there should be no GitHub Actions deployment workflow.
+
+Every commit pushed to `main` can trigger a new Cloudflare deployment. Batch related edits where possible instead of making several production commits seconds apart.
+
+## Development utilities
+
+The `scripts/` directory is development-only and is excluded from Cloudflare assets.
 
 ## Contact delivery
 
-The form posts to FormSubmit for `hello@papoa.pt`, with reCAPTCHA enabled by default. It includes a reference-folder URL rather than uploading client files. The first submission triggers a recipient activation email. **The mailbox owner must confirm that email before delivery can be considered active.** No activation or delivery test was sent during implementation. FormSubmit provides its verification and response page; the site does not fabricate a success message. Direct email remains available.
+The contact form posts to FormSubmit for `hello@papoa.pt`. Direct email remains available as a fallback.
 
 ## Project credits
 
-Portfolio entries distinguish visualization work and speculative concepts from completed fabrication. Existing architectural credits are preserved. Do not add before/after claims without corresponding source photographs.
-
-<!-- Cloudflare deploy trigger 2026-09-24 -->
+Portfolio entries distinguish reference imagery, visualisation work and concepts from completed fabrication. Existing credits should be preserved where third-party photography is used.
