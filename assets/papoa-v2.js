@@ -55,7 +55,7 @@
     }));
   }
 
-  /* Keep PAPOA identity and heading system uniform */
+  /* Identity + global type system */
   const globalStyle=document.createElement('style');
   globalStyle.textContent=`
     .site-header .brand{display:inline-block!important;font-family:Benzin,Arial,sans-serif!important;font-size:21px!important;font-weight:600!important;letter-spacing:-.105em!important;line-height:1!important;transform:scaleY(.82)!important;transform-origin:left center!important;white-space:nowrap!important}
@@ -70,16 +70,15 @@
   `;
   document.head.appendChild(globalStyle);
 
-  /* Load the final polish layer after page-specific CSS so it can unify all pages. */
   if(!document.querySelector('link[data-papoa-polish]')){
     const polish=document.createElement('link');
     polish.rel='stylesheet';
-    polish.href=asset('papoa-polish.css?v=20260925-1');
+    polish.href=asset('papoa-polish.css?v=20260925-2');
     polish.dataset.papoaPolish='';
     document.head.appendChild(polish);
   }
 
-  /* Keep old page copy/location references aligned with the current studio positioning. */
+  /* Keep old copy/location references aligned */
   const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
   let node;
   while((node=walker.nextNode())){
@@ -104,13 +103,11 @@
   const isHome=/^(\/|\/pt\/?)(?:index\.html)?$/.test(location.pathname);
   const isTeam=/\/team\/(?:index\.html)?$/.test(location.pathname);
   const isYachts=/\/yachts\/(?:index\.html)?$/.test(location.pathname);
-  const isCars=/\/automotive\/(?:index\.html)?$/.test(location.pathname);
   const isContact=/\/contact\/(?:index\.html)?$/.test(location.pathname);
-
   if(isTeam)body.classList.add('about-page');
   if(isContact)body.classList.add('contact-page');
 
-  /* Keep homepage hero exactly as the current static marina direction. */
+  /* Homepage hero stays exactly as requested */
   if(isHome){
     const heroShowcase=document.querySelector('.hero-showcase');
     const media=heroShowcase?.querySelector('.hero-media');
@@ -158,7 +155,7 @@
     }
   }
 
-  /* Yachts: keep the curated local set, but let the polish CSS create an editorial composition. */
+  /* Yachts curated local set */
   if(isYachts){
     const grid=document.querySelector('.reference-gallery .reference-grid');
     if(grid){
@@ -201,23 +198,6 @@
         img.alt=`PAPOA ${title}`;
       }
     });
-
-    /* Legacy PT/contact markup can still be converted into the same project pills. */
-    const form=document.querySelector('form[data-mailto]');
-    const select=form?.querySelector('select[name="Project"],select[name="Projeto"]');
-    if(select){
-      const field=select.closest('.field');
-      const group=document.createElement('div');
-      group.className='project-options';
-      [...select.options].forEach((opt,i)=>{
-        const label=document.createElement('label');
-        label.className='project-option';
-        label.innerHTML=`<input type="radio" name="${select.name}" value="${opt.value||opt.textContent}" ${i===0?'checked':''}><span>${opt.textContent}</span>`;
-        group.appendChild(label);
-      });
-      select.replaceWith(group);
-      field?.classList.add('full');
-    }
   }
 
   document.querySelectorAll('.reference-copy span').forEach(el=>el.remove());
@@ -225,9 +205,78 @@
     if(/Diana Parracho|Manuel Tainha/i.test(el.textContent||''))el.remove();
   });
 
-  /* Lightbox shared by Yachts, Homes and Cars */
-  const galleryImages=[...document.querySelectorAll('.reference-gallery .reference-tile img,.homes-gallery .homes-tile img')];
-  if(galleryImages.length){
+  /* Build justified rows from the real image proportions. */
+  const waitForImage=(img)=>new Promise(resolve=>{
+    if(img.complete&&img.naturalWidth){resolve();return;}
+    img.addEventListener('load',resolve,{once:true});
+    img.addEventListener('error',resolve,{once:true});
+  });
+
+  const buildJustifiedGallery=(grid)=>{
+    if(!grid)return;
+    const tiles=[...grid.querySelectorAll('.reference-tile')];
+    if(!tiles.length)return;
+    const width=grid.clientWidth||grid.parentElement?.clientWidth||1200;
+    const gap=10;
+    const target=width>1400?285:width>1000?245:width>700?210:180;
+    const minHeight=150;
+    const maxHeight=330;
+    const rows=[];
+    let row=[];
+    let ratioSum=0;
+
+    tiles.forEach((tile,index)=>{
+      const img=tile.querySelector('img');
+      const ratio=(img?.naturalWidth&&img?.naturalHeight)?img.naturalWidth/img.naturalHeight:4/3;
+      tile.dataset.ratio=String(ratio);
+      row.push({tile,ratio});
+      ratioSum+=ratio;
+      const estimated=(width-gap*(row.length-1))/ratioSum;
+      if(estimated<=target||index===tiles.length-1){
+        rows.push({items:row,sum:ratioSum,last:index===tiles.length-1});
+        row=[];
+        ratioSum=0;
+      }
+    });
+
+    grid.innerHTML='';
+    grid.classList.add('justified-gallery');
+    rows.forEach(({items,sum,last})=>{
+      const rowEl=document.createElement('div');
+      rowEl.className='reference-row'+(last?' is-last':'');
+      let height=(width-gap*(items.length-1))/sum;
+      if(last&&height>target*1.18)height=target;
+      height=Math.max(minHeight,Math.min(maxHeight,height));
+      rowEl.style.height=`${Math.round(height)}px`;
+      items.forEach(({tile,ratio})=>{
+        if(last&&((width-gap*(items.length-1))/sum)>target*1.18){
+          tile.style.width=`${Math.round(ratio*height)}px`;
+          tile.style.flexGrow='0';
+        }else{
+          tile.style.width='';
+          tile.style.flexGrow=String(ratio);
+        }
+        rowEl.appendChild(tile);
+      });
+      grid.appendChild(rowEl);
+    });
+  };
+
+  const referenceGrid=document.querySelector('.reference-gallery .reference-grid');
+  if(referenceGrid){
+    const imgs=[...referenceGrid.querySelectorAll('img')];
+    Promise.all(imgs.map(waitForImage)).then(()=>buildJustifiedGallery(referenceGrid));
+    let resizeTimer;
+    window.addEventListener('resize',()=>{
+      clearTimeout(resizeTimer);
+      resizeTimer=setTimeout(()=>buildJustifiedGallery(referenceGrid),120);
+    },{passive:true});
+  }
+
+  /* Lightbox */
+  const setupLightbox=()=>{
+    const galleryImages=[...document.querySelectorAll('.reference-gallery .reference-tile img,.homes-gallery .homes-tile img')];
+    if(!galleryImages.length||document.querySelector('.gallery-lightbox'))return;
     const lightbox=document.createElement('div');
     lightbox.className='gallery-lightbox';
     lightbox.setAttribute('role','dialog');
@@ -235,24 +284,17 @@
     lightbox.setAttribute('aria-label',pt?'Imagem ampliada':'Enlarged image');
     lightbox.innerHTML=`<button class="gallery-lightbox-close" type="button" aria-label="${pt?'Fechar':'Close'}">×</button><button class="gallery-lightbox-nav gallery-lightbox-prev" type="button" aria-label="${pt?'Imagem anterior':'Previous image'}">‹</button><img alt=""><button class="gallery-lightbox-nav gallery-lightbox-next" type="button" aria-label="${pt?'Imagem seguinte':'Next image'}">›</button>`;
     body.appendChild(lightbox);
-
     const lightboxStyle=document.createElement('style');
     lightboxStyle.textContent=`
       .reference-gallery .reference-tile img,.homes-gallery .homes-tile img{cursor:pointer}
       .gallery-lightbox{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;background:rgba(7,8,8,.95);opacity:0;visibility:hidden;transition:opacity .22s ease,visibility .22s ease;padding:32px}
-      .gallery-lightbox.open{opacity:1;visibility:visible}
-      .gallery-lightbox img{display:block;max-width:min(92vw,1800px);max-height:88vh;width:auto;height:auto;object-fit:contain;box-shadow:0 18px 60px rgba(0,0,0,.36)}
+      .gallery-lightbox.open{opacity:1;visibility:visible}.gallery-lightbox img{display:block;max-width:min(92vw,1800px);max-height:88vh;width:auto;height:auto;object-fit:contain;box-shadow:0 18px 60px rgba(0,0,0,.36)}
       .gallery-lightbox-close,.gallery-lightbox-nav{position:absolute;z-index:2;border:0;background:transparent;color:#fff;cursor:pointer;font-family:Arial,sans-serif;font-weight:200;line-height:1;opacity:.78;transition:opacity .2s ease,transform .2s ease}
-      .gallery-lightbox-close{top:22px;right:28px;font-size:42px;padding:4px 8px}
-      .gallery-lightbox-nav{top:50%;transform:translateY(-50%);font-size:58px;padding:16px 20px}
-      .gallery-lightbox-prev{left:12px}.gallery-lightbox-next{right:12px}
-      .gallery-lightbox-close:hover,.gallery-lightbox-nav:hover{opacity:1}
-      .gallery-lightbox-nav:hover{transform:translateY(-50%) scale(1.05)}
+      .gallery-lightbox-close{top:22px;right:28px;font-size:42px;padding:4px 8px}.gallery-lightbox-nav{top:50%;transform:translateY(-50%);font-size:58px;padding:16px 20px}.gallery-lightbox-prev{left:12px}.gallery-lightbox-next{right:12px}
+      .gallery-lightbox-close:hover,.gallery-lightbox-nav:hover{opacity:1}.gallery-lightbox-nav:hover{transform:translateY(-50%) scale(1.05)}
       @media(max-width:720px){.gallery-lightbox{padding:54px 8px 28px}.gallery-lightbox img{max-width:96vw;max-height:80vh}.gallery-lightbox-close{top:10px;right:12px;font-size:38px}.gallery-lightbox-nav{font-size:46px;padding:14px 10px}.gallery-lightbox-prev{left:0}.gallery-lightbox-next{right:0}}
-      @media(prefers-reduced-motion:reduce){.gallery-lightbox,.gallery-lightbox-close,.gallery-lightbox-nav{transition:none}}
     `;
     document.head.appendChild(lightboxStyle);
-
     const modalImage=lightbox.querySelector('img');
     const prev=lightbox.querySelector('.gallery-lightbox-prev');
     const next=lightbox.querySelector('.gallery-lightbox-next');
@@ -264,20 +306,9 @@
       modalImage.src=source.currentSrc||source.src;
       modalImage.alt=source.alt||'';
     };
-    const open=(index)=>{
-      show(index);
-      lightbox.classList.add('open');
-      body.classList.add('gallery-lightbox-open');
-    };
-    const close=()=>{
-      lightbox.classList.remove('open');
-      body.classList.remove('gallery-lightbox-open');
-    };
-    galleryImages.forEach((image,index)=>image.addEventListener('click',event=>{
-      event.preventDefault();
-      event.stopPropagation();
-      open(index);
-    }));
+    const open=(index)=>{show(index);lightbox.classList.add('open');body.classList.add('gallery-lightbox-open')};
+    const close=()=>{lightbox.classList.remove('open');body.classList.remove('gallery-lightbox-open')};
+    galleryImages.forEach((image,index)=>image.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();open(index)}));
     closeButton.addEventListener('click',close);
     prev.addEventListener('click',event=>{event.stopPropagation();show(activeIndex-1)});
     next.addEventListener('click',event=>{event.stopPropagation();show(activeIndex+1)});
@@ -288,63 +319,49 @@
       if(event.key==='ArrowLeft')show(activeIndex-1);
       if(event.key==='ArrowRight')show(activeIndex+1);
     });
-  }
+  };
+  setupLightbox();
 
-  /* Original reveals */
+  /* Existing reveal */
   if('IntersectionObserver' in window){
     const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        entry.target.classList.add('in');
-        revealObserver.unobserve(entry.target);
-      }
+      if(entry.isIntersecting){entry.target.classList.add('in');revealObserver.unobserve(entry.target)}
     }),{threshold:.12});
     document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
-  }else{
-    document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
-  }
+  }else document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
 
-  /* 03 — assign distinct motion behaviours by content type */
-  const titleTargets=document.querySelectorAll('.page-hero h1,.section h2,.featured h2,.materials-copy h2,.editorial-copy h2,.contact-direct h2,.reference-gallery-intro h2,.homes-gallery-intro h2,.studio-intro h2');
-  titleTargets.forEach(el=>el.classList.add('motion-title'));
+  /* Motion variants */
+  document.querySelectorAll('.page-hero h1,.section h2,.featured h2,.materials-copy h2,.editorial-copy h2,.contact-direct h2,.reference-gallery-intro h2,.homes-gallery-intro h2,.studio-intro h2').forEach(el=>el.classList.add('motion-title'));
   document.querySelectorAll('.eyebrow').forEach(el=>el.classList.add('motion-kicker'));
-
-  const mediaTargets=document.querySelectorAll('.featured,.materials-image,.editorial-split .media');
-  mediaTargets.forEach(el=>el.classList.add('motion-media'));
-
-  const staggerGroups=document.querySelectorAll('.service-grid,.reference-grid,.refit-grid,.founders-grid');
-  staggerGroups.forEach(group=>{
+  document.querySelectorAll('.featured,.materials-image,.editorial-split .media').forEach(el=>el.classList.add('motion-media'));
+  document.querySelectorAll('.service-grid,.refit-grid,.founders-grid').forEach(group=>{
     group.classList.add('motion-stagger');
     [...group.children].forEach((child,index)=>child.style.setProperty('--motion-i',String(index%8)));
   });
-  document.querySelectorAll('.homes-gallery-row').forEach((row,index)=>{
+  document.querySelectorAll('.homes-gallery-row').forEach(row=>{
     row.classList.add('motion-stagger');
-    [...row.children].forEach((child,i)=>child.style.setProperty('--motion-i',String(i)));
-    if(index===2||index===6)row.classList.add('homes-feature-row');
+    [...row.children].forEach((child,index)=>child.style.setProperty('--motion-i',String(index)));
+  });
+  document.querySelectorAll('.reference-row').forEach(row=>{
+    row.classList.add('motion-stagger');
+    [...row.children].forEach((child,index)=>child.style.setProperty('--motion-i',String(index)));
   });
 
   const motionTargets=[...document.querySelectorAll('.motion-title,.motion-kicker,.motion-media,.motion-stagger')];
-  if(reducedMotion||!('IntersectionObserver' in window)){
-    motionTargets.forEach(el=>el.classList.add('motion-in'));
-  }else{
+  if(reducedMotion||!('IntersectionObserver' in window))motionTargets.forEach(el=>el.classList.add('motion-in'));
+  else{
     const motionObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        entry.target.classList.add('motion-in');
-        motionObserver.unobserve(entry.target);
-      }
+      if(entry.isIntersecting){entry.target.classList.add('motion-in');motionObserver.unobserve(entry.target)}
     }),{threshold:.08,rootMargin:'0px 0px -4% 0px'});
     motionTargets.forEach(el=>motionObserver.observe(el));
   }
 
-  /* 04 — process line progress follows the scroll position. */
+  /* Process progress */
   const process=document.querySelector('.process');
   const processSteps=process?[...process.querySelectorAll('.step')]:[];
   const updateProcess=()=>{
     if(!process)return;
-    if(reducedMotion){
-      process.style.setProperty('--process-progress','1');
-      processSteps.forEach(step=>step.classList.add('is-active'));
-      return;
-    }
+    if(reducedMotion){process.style.setProperty('--process-progress','1');processSteps.forEach(step=>step.classList.add('is-active'));return;}
     const rect=process.getBoundingClientRect();
     const start=window.innerHeight*.84;
     const travel=Math.max(rect.height+window.innerHeight*.38,1);
@@ -355,37 +372,17 @@
       step.classList.toggle('is-active',progress>=threshold);
     });
   };
-
-  /* 06 — very subtle image depth on Homes. */
-  const homeTiles=[...document.querySelectorAll('.homes-gallery .homes-tile img')];
-  const updateHomesParallax=()=>{
-    if(reducedMotion||!homeTiles.length)return;
-    const viewportCenter=window.innerHeight/2;
-    homeTiles.forEach(img=>{
-      const rect=img.parentElement.getBoundingClientRect();
-      if(rect.bottom<0||rect.top>window.innerHeight)return;
-      const center=rect.top+rect.height/2;
-      const offset=Math.max(-14,Math.min(14,(viewportCenter-center)*.022));
-      img.style.setProperty('--parallax-y',`${offset.toFixed(1)}px`);
-    });
-  };
-
   let scrollTick=false;
   const onScroll=()=>{
     if(scrollTick)return;
     scrollTick=true;
-    requestAnimationFrame(()=>{
-      updateProcess();
-      updateHomesParallax();
-      scrollTick=false;
-    });
+    requestAnimationFrame(()=>{updateProcess();scrollTick=false});
   };
   updateProcess();
-  updateHomesParallax();
   window.addEventListener('scroll',onScroll,{passive:true});
   window.addEventListener('resize',onScroll,{passive:true});
 
-  /* Mailto fallback used by legacy forms; current AJAX contact form remains untouched. */
+  /* Legacy mailto fallback */
   document.querySelectorAll('form[data-mailto]').forEach(form=>form.addEventListener('submit',event=>{
     event.preventDefault();
     const data=new FormData(form);
