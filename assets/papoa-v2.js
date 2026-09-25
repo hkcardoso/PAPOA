@@ -1,6 +1,7 @@
 (()=>{
   const body=document.body;
   let revealed=false;
+  let enhancementsLoaded=false;
 
   const reveal=()=>{
     if(revealed)return;
@@ -9,14 +10,33 @@
   };
 
   const current=document.currentScript;
+  const base=new URL('./',current?.src||location.href);
   const core=document.createElement('script');
-  core.src=new URL('./papoa-v2-core.js?v=20260925-1',current?.src||location.href).href;
+  core.src=new URL('./papoa-v2-core.js?v=20260925-1',base).href;
   core.async=false;
+
+  const loadEnhancements=()=>{
+    if(enhancementsLoaded)return;
+    enhancementsLoaded=true;
+    if(!document.querySelector('link[data-papoa-enhancements]')){
+      const css=document.createElement('link');
+      css.rel='stylesheet';
+      css.href=new URL('./papoa-enhancements.css?v=20260926-1',base).href;
+      css.dataset.papoaEnhancements='';
+      document.head.appendChild(css);
+    }
+    if(!document.querySelector('script[data-papoa-enhancements]')){
+      const script=document.createElement('script');
+      script.src=new URL('./papoa-enhancements.js?v=20260926-1',base).href;
+      script.defer=true;
+      script.dataset.papoaEnhancements='';
+      document.head.appendChild(script);
+    }
+  };
 
   const addPhoneContact=()=>{
     const phoneLabel='+351 925 347 982';
     const phoneHref='tel:+351925347982';
-
     document.querySelectorAll('.footer-contact').forEach(footer=>{
       if(footer.querySelector('a[href^="tel:"]'))return;
       const email=footer.querySelector('a[href^="mailto:"]');
@@ -28,7 +48,6 @@
       email.insertAdjacentElement('afterend',br);
       br.insertAdjacentElement('afterend',phone);
     });
-
     const directEmail=document.querySelector('.contact-direct .email');
     if(directEmail&&!document.querySelector('.contact-direct a[href^="tel:"]')){
       const phone=document.createElement('a');
@@ -122,41 +141,8 @@
     const grid=document.querySelector('.reference-gallery .reference-grid');
     if(!grid)return;
     const path=location.pathname.toLowerCase();
-    const yachtPriority=[
-      'prestige_m8evo_photos_exterior (1).webp',
-      'prestige_m8evo_photos_interiors.webp',
-      'prestige_m8_warm sand_photos_shooting_hong kong (1).webp',
-      'prestige_m7_photos_interior.webp',
-      'prestige_f6.7_photos_exterior.webp',
-      'prestige_m8evo_photos_exterior (2).webp',
-      'prestige_m8evo_photos_interior (1).webp',
-      'prestige_f4.9_hard_top_version_shooting_newport_california_2024.webp',
-      'prestige_m8evo_photos_interiors (1).webp',
-      'prestige_m8evo_photos_exterior.webp',
-      'prestige_m8_warm sand_photos_shooting_hong kong.webp',
-      'prestige_m7_interior_details_photos.webp',
-      'prestige_f6.7_photos_exterior (1).webp',
-      'prestige_f4.9_hard_top_version_shooting_newport_california_2024 (1).webp',
-      'prestige_460s_photos_interior.webp',
-      '124i0302_d.webp',
-      '124i0314_d.webp',
-      'pr620-2015-006 moquette blanche_d.webp',
-      'pr620-2015-011 moquette blanche_d.webp'
-    ];
-    const carPriority=[
-      '1773766487829-d1df4d487980',
-      '1760550818717-4b948c14c5de',
-      'car-wood-trim-garvin-villier.webp',
-      'car-stitched-seat-nick-flanagan.webp',
-      '1775500818778-d5bef5e56e21',
-      '1758391439365-ee4abc04027a',
-      'car-white-leather-garvin-villier.webp',
-      'car-dark-leather-garvin-villier.webp',
-      '1757926331188-cffceee50760',
-      '1652967786801-1b6ba8a00075',
-      '1756239772853-dd42ad5115c3',
-      '1675012813012-7c9fbe5664a2'
-    ];
+    const yachtPriority=['prestige_m8evo_photos_exterior (1).webp','prestige_m8evo_photos_interiors.webp','prestige_m8_warm sand_photos_shooting_hong kong (1).webp','prestige_m7_photos_interior.webp','prestige_f6.7_photos_exterior.webp','prestige_m8evo_photos_exterior (2).webp','prestige_m8evo_photos_interior (1).webp','prestige_f4.9_hard_top_version_shooting_newport_california_2024.webp','prestige_m8evo_photos_interiors (1).webp','prestige_m8evo_photos_exterior.webp','prestige_m8_warm sand_photos_shooting_hong kong.webp','prestige_m7_interior_details_photos.webp','prestige_f6.7_photos_exterior (1).webp','prestige_f4.9_hard_top_version_shooting_newport_california_2024 (1).webp','prestige_460s_photos_interior.webp','124i0302_d.webp','124i0314_d.webp','pr620-2015-006 moquette blanche_d.webp','pr620-2015-011 moquette blanche_d.webp'];
+    const carPriority=['1773766487829-d1df4d487980','1760550818717-4b948c14c5de','car-wood-trim-garvin-villier.webp','car-stitched-seat-nick-flanagan.webp','1775500818778-d5bef5e56e21','1758391439365-ee4abc04027a','car-white-leather-ammy-k.webp','car-dark-leather-garvin-villier.webp','1757926331188-cffceee50760','1652967786801-1b6ba8a00075','1756239772853-dd42ad5115c3','1675012813012-7c9fbe5664a2'];
     const priority=path.includes('/yachts/')?yachtPriority:path.includes('/automotive/')?carPriority:null;
     if(!priority)return;
     const tiles=[...grid.querySelectorAll('.reference-tile')];
@@ -170,37 +156,17 @@
     tiles.sort((a,b)=>rank(a)-rank(b)).forEach(tile=>grid.appendChild(tile));
   };
 
-  core.addEventListener('load',()=>{
+  const finish=()=>{
     prioritizeGallery();
     addPhoneContact();
     addInstagramLink();
     addWhatsAppContact();
-
-    const fastTransition=document.createElement('style');
-    fastTransition.textContent=`
-      ::view-transition-group(root){animation-duration:.16s!important;animation-timing-function:ease-out!important}
-      ::view-transition-old(root){animation:papoa-fast-out .11s ease-out both!important;z-index:1}
-      ::view-transition-new(root){animation:papoa-fast-in .16s ease-out both!important;z-index:2}
-      @keyframes papoa-fast-out{from{opacity:1}to{opacity:.88}}
-      @keyframes papoa-fast-in{from{opacity:.35}to{opacity:1}}
-      @media(prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root),::view-transition-group(root){animation:none!important}}
-    `;
-    document.head.appendChild(fastTransition);
     reveal();
-  },{once:true});
+    setTimeout(loadEnhancements,0);
+  };
 
-  core.addEventListener('error',()=>{
-    addPhoneContact();
-    addInstagramLink();
-    addWhatsAppContact();
-    reveal();
-  },{once:true});
+  core.addEventListener('load',finish,{once:true});
+  core.addEventListener('error',finish,{once:true});
   document.head.appendChild(core);
-
-  setTimeout(()=>{
-    addPhoneContact();
-    addInstagramLink();
-    addWhatsAppContact();
-    reveal();
-  },700);
+  setTimeout(finish,700);
 })();
