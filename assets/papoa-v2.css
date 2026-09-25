@@ -19,17 +19,70 @@ body.site-ready{opacity:1;visibility:visible;transition:opacity .07s linear}
 .reference-gallery .reference-grid:not(.justified-gallery){opacity:0!important;visibility:hidden!important}
 .reference-gallery .reference-grid.justified-gallery{opacity:1!important;visibility:visible!important;transition:opacity .12s ease}
 
-/* Keep the floating WhatsApp action clearly visible over dark photography and sections. */
-.papoa-whatsapp-float{
-  background:#25d366!important;
-  color:#fff!important;
-  border:1px solid rgba(255,255,255,.28)!important;
-  box-shadow:0 10px 30px rgba(0,0,0,.38)!important;
-}
+/* Floating contact action: restrained monochrome treatment. */
+.papoa-whatsapp-float{background:#000!important;color:#fff!important;border:1px solid rgba(255,255,255,.16)!important;box-shadow:0 10px 30px rgba(0,0,0,.38)!important}
 .papoa-whatsapp-float svg{color:#fff!important;fill:currentColor!important}
 
+/* Motion layer — subtle and intentionally slower than navigation. */
+[data-papoa-motion]{opacity:0;transform:translate3d(0,22px,0);transition:opacity .72s cubic-bezier(.22,.61,.36,1),transform .72s cubic-bezier(.22,.61,.36,1);transition-delay:var(--papoa-motion-delay,0ms)}
+[data-papoa-motion].papoa-motion-in{opacity:1;transform:none}
+.hero-media img,.page-hero>img,.featured>img,.materials-image img{will-change:transform;transform:translate3d(0,var(--papoa-parallax,0px),0) scale(1.035)}
+.btn span,.inline-link span,.world-arrow{display:inline-block;transition:transform .25s ease}
+.btn:hover span,.inline-link:hover span,.world-card:hover .world-arrow{transform:translateX(5px)}
+.world-card:before{content:"";position:absolute;z-index:3;inset:0;border:1px solid transparent;pointer-events:none;transition:border-color .35s ease}
+.world-card:hover:before{border-color:rgba(255,255,255,.18)}
+
+/* Presence / service-area block. The Google map opens only after a click, avoiding an embedded third-party tracker. */
+.presence-section{display:grid;grid-template-columns:minmax(0,.84fr) minmax(0,1.16fr);min-height:560px;background:#ece9e2;color:#111;border-top:1px solid rgba(17,18,17,.12)}
+.presence-copy{padding:clamp(58px,7vw,108px) var(--pad);display:flex;flex-direction:column;justify-content:center}
+.presence-copy h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(48px,5.5vw,86px);line-height:.92;font-weight:400;letter-spacing:-.055em;margin:15px 0 24px}
+.presence-copy p{max-width:520px;margin:0;color:#575853;font-size:14px;line-height:1.7}
+.presence-locations{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin:30px 0 32px;font-family:Benzin,Arial,sans-serif;font-size:7px;letter-spacing:.18em;text-transform:uppercase;color:#555752}
+.presence-locations i{width:28px;height:1px;background:rgba(17,18,17,.28)}
+.presence-copy .btn{border-color:rgba(17,18,17,.5);width:max-content;color:#111}
+.presence-copy .btn:hover{background:#111;color:#fff}
+.presence-map{position:relative;min-height:560px;overflow:hidden;background:#101111;color:#fff;isolation:isolate}
+.presence-map:before{content:"";position:absolute;inset:-20%;background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.13),transparent 18%),radial-gradient(circle at 62% 70%,rgba(255,255,255,.09),transparent 16%),linear-gradient(130deg,#151717 0%,#080909 75%);z-index:-3}
+.presence-map-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px);background-size:54px 54px;mask-image:linear-gradient(90deg,transparent,black 16%,black 84%,transparent);opacity:.48}
+.presence-map-line{position:absolute;left:24%;top:24%;width:52%;height:52%;border-left:1px solid rgba(255,255,255,.25);border-bottom:1px solid rgba(255,255,255,.17);transform:skew(-12deg) rotate(-8deg);border-radius:0 0 0 48%}
+.presence-map-label{position:absolute;left:8%;top:9%;font-family:Benzin,Arial,sans-serif;font-size:8px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.presence-map-cta{position:absolute;right:7%;bottom:7%;font-family:Benzin,Arial,sans-serif;font-size:7px;letter-spacing:.16em;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.55);padding-bottom:7px}
+.presence-pin{position:absolute;width:10px;height:10px;border-radius:50%;background:#fff;box-shadow:0 0 0 8px rgba(255,255,255,.09),0 0 0 18px rgba(255,255,255,.035)}
+.presence-pin:after{content:"";position:absolute;inset:-18px;border:1px solid rgba(255,255,255,.12);border-radius:50%;animation:papoa-pin 2.8s ease-out infinite}
+.presence-pin span{position:absolute;left:22px;top:-4px;white-space:nowrap;font-family:Benzin,Arial,sans-serif;font-size:7px;letter-spacing:.16em;text-transform:uppercase}
+.presence-pin-cascais{left:34%;top:38%}
+.presence-pin-vilamoura{left:57%;top:70%}
+@keyframes papoa-pin{0%{transform:scale(.55);opacity:0}35%{opacity:.7}100%{transform:scale(1.45);opacity:0}}
+
+/* Footer legal links. */
+.footer-legal{display:inline-flex;align-items:center;gap:16px;margin-left:auto}
+.footer-legal a{color:#8f908c;transition:color .2s ease}
+.footer-legal a:hover{color:#fff}
+
+/* Legal pages. */
+.legal-page .site-header{position:absolute}
+.legal-hero{padding:170px var(--pad) 72px;background:#0a0b0b;border-bottom:1px solid rgba(255,255,255,.12)}
+.legal-hero h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(58px,7vw,104px);line-height:.9;font-weight:400;letter-spacing:-.055em;margin:15px 0 18px}
+.legal-hero p{max-width:620px;color:#aaa;font-size:13px;line-height:1.65}
+.legal-shell{background:#f1eee7;color:#171817;padding:clamp(54px,7vw,100px) var(--pad)}
+.legal-content{max-width:920px;margin:0 auto}
+.legal-content h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(30px,3vw,46px);font-weight:400;letter-spacing:-.035em;margin:48px 0 14px}
+.legal-content h2:first-child{margin-top:0}
+.legal-content p,.legal-content li{font-size:14px;line-height:1.75;color:#4f514d}
+.legal-content ul{padding-left:20px}
+.legal-content a{text-decoration:underline;text-underline-offset:3px}
+.legal-updated{font-family:Benzin,Arial,sans-serif;font-size:7px!important;letter-spacing:.15em;text-transform:uppercase;color:#777!important;margin-bottom:38px}
+
+@media(max-width:900px){
+  .presence-section{grid-template-columns:1fr}.presence-map{min-height:430px}.presence-copy{padding-top:64px;padding-bottom:64px}
+  .footer-bottom{gap:18px;flex-wrap:wrap}.footer-legal{width:100%;margin-left:0}
+}
+@media(max-width:600px){
+  .presence-map{min-height:360px}.presence-map-grid{background-size:42px 42px}.presence-pin-cascais{left:29%;top:35%}.presence-pin-vilamoura{left:54%;top:68%}
+}
 @media(prefers-reduced-motion:reduce){
   body.site-ready{transition:none}
   .reference-gallery .reference-grid.justified-gallery{transition:none}
   ::view-transition-old(root),::view-transition-new(root),::view-transition-group(root){animation:none!important}
+  [data-papoa-motion]{opacity:1;transform:none;transition:none}.hero-media img,.page-hero>img,.featured>img,.materials-image img{transform:none!important}.presence-pin:after{animation:none}
 }
