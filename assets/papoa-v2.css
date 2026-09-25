@@ -1,4 +1,5 @@
 @import url('./papoa-v2-core.css');
+@import url('./papoa-layout-fixes.css?v=20260925-1');
 
 /* Critical render gate: never expose the legacy HTML state before PAPOA finishes booting. */
 html{background:#090a0a}
