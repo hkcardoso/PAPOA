@@ -45,21 +45,21 @@
     const pt=(document.documentElement.lang||'').toLowerCase().startsWith('pt');
     const text=pt?'Olá, gostaria de falar sobre um projeto PAPOA.':'Hello, I would like to talk about a PAPOA project.';
     const whatsappHref=`https://wa.me/351925347982?text=${encodeURIComponent(text)}`;
-    const icon='<svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M19.11 17.41c-.28-.14-1.65-.81-1.91-.91-.26-.1-.45-.14-.64.14-.19.28-.73.91-.9 1.1-.16.19-.33.21-.61.07-.28-.14-1.18-.44-2.25-1.39-.83-.74-1.39-1.66-1.55-1.94-.16-.28-.02-.43.12-.57.13-.13.28-.33.42-.49.14-.16.19-.28.28-.47.09-.19.05-.35-.02-.49-.07-.14-.64-1.54-.87-2.11-.23-.55-.46-.48-.64-.49h-.54c-.19 0-.49.07-.75.35-.26.28-.99.97-.99 2.36s1.01 2.74 1.15 2.93c.14.19 1.99 3.04 4.82 4.26.67.29 1.2.46 1.61.59.68.22 1.29.19 1.78.12.54-.08 1.65-.68 1.89-1.33.23-.66.23-1.22.16-1.33-.07-.12-.26-.19-.54-.33zM16.03 5.33c-5.87 0-10.64 4.76-10.64 10.63 0 1.87.49 3.7 1.41 5.3l-1.5 5.47 5.6-1.47a10.61 10.61 0 0 0 5.13 1.31h.01c5.86 0 10.63-4.77 10.63-10.64 0-2.84-1.11-5.51-3.12-7.52a10.57 10.57 0 0 0-7.52-3.08zm0 19.45h-.01a8.79 8.79 0 0 1-4.48-1.23l-.32-.19-3.32.87.89-3.23-.21-.33a8.82 8.82 0 1 1 7.45 4.11z"/></svg>';
+    const icon='<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.52 3.48A11.86 11.86 0 0 0 12.07 0C5.5 0 .15 5.35.15 11.93c0 2.1.55 4.15 1.6 5.96L0 24l6.28-1.65a11.9 11.9 0 0 0 5.79 1.48h.01c6.57 0 11.92-5.35 11.92-11.93 0-3.18-1.24-6.17-3.48-8.42ZM12.08 21.8h-.01a9.86 9.86 0 0 1-5.03-1.38l-.36-.21-3.73.98 1-3.63-.23-.37a9.83 9.83 0 0 1-1.51-5.26c0-5.49 4.47-9.96 9.97-9.96 2.66 0 5.16 1.04 7.04 2.92a9.88 9.88 0 0 1 2.91 7.03c0 5.5-4.47 9.97-9.95 9.97Zm5.46-7.43c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.19.29-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.88-.79-1.48-1.77-1.65-2.07-.17-.29-.02-.45.13-.6.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.08-.79.38-.27.29-1.04 1.01-1.04 2.46s1.06 2.86 1.2 3.06c.15.2 2.08 3.17 5.03 4.45.7.3 1.25.48 1.68.61.71.23 1.36.2 1.87.12.57-.08 1.77-.72 2.02-1.43.25-.7.25-1.3.17-1.42-.08-.12-.27-.2-.57-.35Z"/></svg>';
 
     if(!document.getElementById('papoa-whatsapp-style')){
       const style=document.createElement('style');
       style.id='papoa-whatsapp-style';
       style.textContent=`
-        .papoa-whatsapp-float{position:fixed;right:18px;bottom:18px;z-index:9999;display:flex;align-items:center;justify-content:center;width:56px;height:56px;padding:0;border-radius:50%;background:#000;color:#fff!important;text-decoration:none!important;border:1px solid rgba(255,255,255,.12);box-shadow:0 10px 28px rgba(0,0,0,.28);transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+        .papoa-whatsapp-float{position:fixed;right:18px;bottom:18px;z-index:9999;display:flex;align-items:center;justify-content:center;width:56px;height:56px;padding:0;border-radius:50%;background:#000;color:#fff!important;text-decoration:none!important;border:1px solid rgba(255,255,255,.12);box-shadow:0 10px 28px rgba(0,0,0,.28);transition:transform .2s ease,box-shadow .2s ease,background .2s ease;overflow:hidden}
         .papoa-whatsapp-float:hover{transform:translateY(-2px);background:#111;box-shadow:0 14px 34px rgba(0,0,0,.34)}
         .papoa-whatsapp-float span{display:none}
-        .papoa-whatsapp-float svg{width:28px;height:28px;display:block;flex:none}
+        .papoa-whatsapp-float svg{width:24px;height:24px;display:block;flex:none;color:#fff}
         .footer-contact .papoa-whatsapp-link{display:inline-block;margin-top:5px;text-decoration:underline;text-underline-offset:3px}
         .contact-direct .papoa-whatsapp-direct{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:12px 16px;border:1px solid rgba(255,255,255,.34);color:#fff!important;text-decoration:none!important;text-transform:uppercase;font-size:10px;letter-spacing:.1em;transition:.2s ease}
         .contact-direct .papoa-whatsapp-direct:hover{background:#fff;color:#111!important}
-        .contact-direct .papoa-whatsapp-direct svg{width:17px;height:17px;display:block}
-        @media(max-width:720px){.papoa-whatsapp-float{right:14px;bottom:14px;width:54px;height:54px}.papoa-whatsapp-float svg{width:27px;height:27px}}
+        .contact-direct .papoa-whatsapp-direct svg{width:16px;height:16px;display:block}
+        @media(max-width:720px){.papoa-whatsapp-float{right:14px;bottom:14px;width:54px;height:54px}.papoa-whatsapp-float svg{width:23px;height:23px}}
       `;
       document.head.appendChild(style);
     }
@@ -135,7 +135,7 @@
       'car-stitched-seat-nick-flanagan.webp',
       '1775500818778-d5bef5e56e21',
       '1758391439365-ee4abc04027a',
-      'car-white-leather-ammy-k.webp',
+      'car-white-leather-garvin-villier.webp',
       'car-dark-leather-garvin-villier.webp',
       '1757926331188-cffceee50760',
       '1652967786801-1b6ba8a00075',
