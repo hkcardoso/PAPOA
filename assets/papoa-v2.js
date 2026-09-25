@@ -32,6 +32,13 @@
       script.dataset.papoaEnhancements='';
       document.head.appendChild(script);
     }
+    if(!document.querySelector('script[data-papoa-ba-demo]')){
+      const demo=document.createElement('script');
+      demo.src=new URL('./papoa-before-after-demo.js?v=20260926-1',base).href;
+      demo.defer=true;
+      demo.dataset.papoaBaDemo='';
+      document.head.appendChild(demo);
+    }
   };
 
   const addPhoneContact=()=>{
