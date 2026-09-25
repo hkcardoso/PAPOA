@@ -1,0 +1,93 @@
+/* PAPOA progressive enhancement layer — safe to remove without affecting core layout. */
+
+:root{--papoa-ease:cubic-bezier(.22,.61,.36,1)}
+
+/* More visual worlds */
+.world-card{isolation:isolate}
+.world-card img{transition:transform .75s var(--papoa-ease),filter .45s ease}
+.world-card:after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.03) 30%,rgba(0,0,0,.42) 100%);pointer-events:none}
+.world-copy{z-index:2}
+@media(hover:hover){.world-card:hover img{transform:scale(1.035);filter:saturate(.94) contrast(1.02)}}
+
+/* Capabilities */
+.papoa-capabilities{background:#0b0c0c;color:#fff;padding:clamp(68px,8vw,116px) var(--pad);border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08)}
+.papoa-capabilities-head{display:grid;grid-template-columns:minmax(0,.8fr) minmax(300px,1.2fr);gap:clamp(40px,7vw,110px);align-items:end;margin-bottom:50px}
+.papoa-capabilities h2{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:clamp(48px,5.4vw,82px);line-height:.94;letter-spacing:-.055em;margin:12px 0 0}
+.papoa-capabilities-intro{max-width:560px;color:#aaa;font-size:14px;line-height:1.7;margin:0}
+.papoa-capabilities-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid rgba(255,255,255,.16);border-left:1px solid rgba(255,255,255,.16)}
+.papoa-capability{min-height:190px;padding:26px;border-right:1px solid rgba(255,255,255,.16);border-bottom:1px solid rgba(255,255,255,.16);display:flex;flex-direction:column;justify-content:space-between;transition:background .25s ease}
+.papoa-capability small{font-family:Benzin,Arial,sans-serif;font-size:7px;letter-spacing:.17em;color:#777}
+.papoa-capability h3{font-family:"Helvetica Neue",Arial,sans-serif;font-weight:300;font-size:clamp(23px,2.2vw,34px);letter-spacing:-.035em;margin:18px 0 0}
+@media(hover:hover){.papoa-capability:hover{background:#121414}}
+
+/* Subtle testimonials */
+.testimonials-section{background:#f1eee7!important;color:#171817!important;padding-top:clamp(64px,7vw,104px)!important;padding-bottom:clamp(64px,7vw,104px)!important}
+.testimonials-grid{gap:0!important;border-top:1px solid rgba(17,18,17,.16)!important;border-left:1px solid rgba(17,18,17,.16)!important}
+.testimonial-card{background:transparent!important;border:0!important;border-right:1px solid rgba(17,18,17,.16)!important;border-bottom:1px solid rgba(17,18,17,.16)!important;min-height:270px!important}
+.testimonial-card blockquote{font-family:Georgia,'Times New Roman',serif!important;font-size:clamp(23px,2.25vw,34px)!important;line-height:1.15!important;font-weight:400!important;color:#272825!important}
+.testimonial-meta span{color:#7a7c77!important}
+
+/* Scroll indicator */
+.papoa-scroll-cue{position:absolute;z-index:8;left:50%;bottom:22px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:9px;color:rgba(255,255,255,.66);font-family:Benzin,Arial,sans-serif;font-size:6px;letter-spacing:.2em;text-transform:uppercase;pointer-events:none}
+.papoa-scroll-cue i{display:block;width:1px;height:34px;background:linear-gradient(#fff,transparent);animation:papoa-scroll-line 1.9s ease-in-out infinite;transform-origin:top}
+@keyframes papoa-scroll-line{0%,100%{transform:scaleY(.35);opacity:.35}50%{transform:scaleY(1);opacity:.9}}
+
+/* Gallery affordance */
+.reference-tile,.homes-tile{cursor:zoom-in}
+.reference-tile:before,.homes-tile:before{content:"View";position:absolute;z-index:4;right:13px;top:13px;padding:7px 9px;background:rgba(0,0,0,.54);backdrop-filter:blur(8px);color:#fff;font-family:Benzin,Arial,sans-serif;font-size:6px;letter-spacing:.15em;text-transform:uppercase;opacity:0;transform:translateY(-4px);transition:.22s ease;pointer-events:none}
+@media(hover:hover){.reference-tile:hover:before,.homes-tile:hover:before{opacity:1;transform:none}}
+
+/* Fullscreen gallery */
+.papoa-lightbox{position:fixed;inset:0;z-index:20000;background:rgba(7,8,8,.97);display:none;align-items:center;justify-content:center;overflow:hidden}
+.papoa-lightbox.is-open{display:flex}
+.papoa-lightbox-stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:76px clamp(20px,6vw,100px) 82px}
+.papoa-lightbox-image{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;user-select:none;-webkit-user-drag:none}
+.papoa-lightbox-top{position:absolute;z-index:2;left:0;right:0;top:0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;border-bottom:1px solid rgba(255,255,255,.1);color:#fff}
+.papoa-lightbox-count,.papoa-lightbox-caption{font-family:Benzin,Arial,sans-serif;font-size:7px;letter-spacing:.14em;text-transform:uppercase;color:#a9aaa6}
+.papoa-lightbox-caption{position:absolute;left:50%;transform:translateX(-50%);max-width:45vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.papoa-lightbox-close,.papoa-lightbox-prev,.papoa-lightbox-next{appearance:none;border:0;background:rgba(255,255,255,.06);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s ease,transform .2s ease}
+.papoa-lightbox-close{width:42px;height:42px;font-size:25px;font-weight:200}
+.papoa-lightbox-prev,.papoa-lightbox-next{position:absolute;z-index:2;top:50%;width:48px;height:70px;transform:translateY(-50%);font-size:27px}
+.papoa-lightbox-prev{left:14px}.papoa-lightbox-next{right:14px}
+@media(hover:hover){.papoa-lightbox-close:hover,.papoa-lightbox-prev:hover,.papoa-lightbox-next:hover{background:rgba(255,255,255,.13)}}
+
+/* Before / after component — activates when a verified image pair is marked up. */
+.papoa-before-after{position:relative;overflow:hidden;aspect-ratio:16/9;background:#111;--split:50%}
+.papoa-before-after img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.papoa-before-after .papoa-ba-after{clip-path:inset(0 calc(100% - var(--split)) 0 0)}
+.papoa-ba-handle{position:absolute;z-index:3;left:var(--split);top:0;bottom:0;width:2px;background:#fff;transform:translateX(-1px);pointer-events:none}
+.papoa-ba-handle:after{content:"↔";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#fff;color:#111;font-size:17px;box-shadow:0 5px 25px rgba(0,0,0,.25)}
+.papoa-ba-range{position:absolute;z-index:4;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize}
+.papoa-ba-label{position:absolute;z-index:3;bottom:16px;padding:7px 9px;background:rgba(0,0,0,.56);color:#fff;font-family:Benzin,Arial,sans-serif;font-size:6px;letter-spacing:.16em;text-transform:uppercase;pointer-events:none}
+.papoa-ba-label.before{left:16px}.papoa-ba-label.after{right:16px}
+
+/* Contact form upgrades */
+.papoa-contact-extra{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px 24px}
+.papoa-file-field input[type=file]{display:block;width:100%;border:1px dashed rgba(255,255,255,.3);padding:17px;color:#b8b9b5;background:rgba(255,255,255,.025);font-size:12px}
+.papoa-file-note{font-size:10px;line-height:1.5;color:#7e807b;margin-top:8px}
+
+/* Premium compact footer */
+.site-footer.papoa-footer-minimal .footer-top{grid-template-columns:minmax(0,1.35fr) repeat(3,minmax(150px,.7fr))!important;gap:clamp(28px,5vw,76px)!important}
+.site-footer.papoa-footer-minimal .footer-note{max-width:310px}
+.site-footer.papoa-footer-minimal .footer-title{margin-bottom:14px}
+.site-footer.papoa-footer-minimal .footer-bottom{align-items:center}
+.papoa-footer-socials{display:flex;flex-direction:column;gap:7px}
+.papoa-footer-socials a{text-decoration:none}
+
+/* Better mobile menu */
+@media(max-width:900px){
+  .papoa-capabilities-head{grid-template-columns:1fr}.papoa-capabilities-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .site-footer.papoa-footer-minimal .footer-top{grid-template-columns:1fr 1fr!important}
+}
+@media(max-width:700px){
+  .papoa-capabilities{padding-left:18px;padding-right:18px}.papoa-capabilities-grid{grid-template-columns:1fr}
+  .papoa-capability{min-height:145px}.papoa-scroll-cue{display:none}
+  .papoa-lightbox-stage{padding:66px 10px 72px}.papoa-lightbox-prev,.papoa-lightbox-next{width:42px;height:58px;background:rgba(0,0,0,.35)}
+  .papoa-lightbox-prev{left:4px}.papoa-lightbox-next{right:4px}.papoa-lightbox-caption{display:none}
+  .papoa-contact-extra{grid-template-columns:1fr}
+  .site-footer.papoa-footer-minimal .footer-top{grid-template-columns:1fr!important}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .papoa-scroll-cue i{animation:none}.world-card img{transition:none}
+}
