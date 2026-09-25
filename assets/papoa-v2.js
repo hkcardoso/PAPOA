@@ -13,6 +13,34 @@
   core.src=new URL('./papoa-v2-core.js?v=20260925-1',current?.src||location.href).href;
   core.async=false;
 
+  const addPhoneContact=()=>{
+    const phoneLabel='+351 925 347 982';
+    const phoneHref='tel:+351925347982';
+
+    document.querySelectorAll('.footer-contact').forEach(footer=>{
+      if(footer.querySelector('a[href^="tel:"]'))return;
+      const email=footer.querySelector('a[href^="mailto:"]');
+      if(!email)return;
+      const br=document.createElement('br');
+      const phone=document.createElement('a');
+      phone.href=phoneHref;
+      phone.textContent=phoneLabel;
+      email.insertAdjacentElement('afterend',br);
+      br.insertAdjacentElement('afterend',phone);
+    });
+
+    const directEmail=document.querySelector('.contact-direct .email');
+    if(directEmail&&!document.querySelector('.contact-direct a[href^="tel:"]')){
+      const phone=document.createElement('a');
+      phone.href=phoneHref;
+      phone.textContent=phoneLabel;
+      phone.className='email';
+      phone.style.display='block';
+      phone.style.marginTop='8px';
+      directEmail.insertAdjacentElement('afterend',phone);
+    }
+  };
+
   const prioritizeGallery=()=>{
     const grid=document.querySelector('.reference-gallery .reference-grid');
     if(!grid)return;
@@ -67,6 +95,7 @@
 
   core.addEventListener('load',()=>{
     prioritizeGallery();
+    addPhoneContact();
 
     /* Keep navigation extremely short. This style is appended after the polish layer link,
        so the slower legacy transition can never win the cascade. */
@@ -83,9 +112,15 @@
     reveal();
   },{once:true});
 
-  core.addEventListener('error',reveal,{once:true});
+  core.addEventListener('error',()=>{
+    addPhoneContact();
+    reveal();
+  },{once:true});
   document.head.appendChild(core);
 
   /* Fallback only for a genuine asset failure, not part of the normal navigation path. */
-  setTimeout(reveal,700);
+  setTimeout(()=>{
+    addPhoneContact();
+    reveal();
+  },700);
 })();
