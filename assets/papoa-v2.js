@@ -235,7 +235,7 @@
 
     const lightboxStyle=document.createElement('style');
     lightboxStyle.textContent=`
-      .reference-gallery .reference-tile img,.homes-gallery .homes-tile img{cursor:zoom-in}
+      .reference-gallery .reference-tile img,.homes-gallery .homes-tile img{cursor:pointer}
       .gallery-lightbox{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;background:rgba(7,8,8,.95);opacity:0;visibility:hidden;transition:opacity .22s ease,visibility .22s ease;padding:32px}
       .gallery-lightbox.open{opacity:1;visibility:visible}
       .gallery-lightbox img{display:block;max-width:min(92vw,1800px);max-height:88vh;width:auto;height:auto;object-fit:contain;box-shadow:0 18px 60px rgba(0,0,0,.36)}
