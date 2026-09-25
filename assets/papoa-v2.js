@@ -41,6 +41,21 @@
     }
   };
 
+  const addInstagramLink=()=>{
+    const href='https://www.instagram.com/papoa.pt/';
+    document.querySelectorAll('.footer-contact').forEach(footer=>{
+      if(footer.querySelector('.papoa-instagram-link'))return;
+      const link=document.createElement('a');
+      link.className='papoa-instagram-link';
+      link.href=href;
+      link.target='_blank';
+      link.rel='me noopener noreferrer';
+      link.textContent='Instagram';
+      footer.appendChild(document.createElement('br'));
+      footer.appendChild(link);
+    });
+  };
+
   const addWhatsAppContact=()=>{
     const pt=(document.documentElement.lang||'').toLowerCase().startsWith('pt');
     const text=pt?'Olá, gostaria de falar sobre um projeto PAPOA.':'Hello, I would like to talk about a PAPOA project.';
@@ -158,6 +173,7 @@
   core.addEventListener('load',()=>{
     prioritizeGallery();
     addPhoneContact();
+    addInstagramLink();
     addWhatsAppContact();
 
     const fastTransition=document.createElement('style');
@@ -175,6 +191,7 @@
 
   core.addEventListener('error',()=>{
     addPhoneContact();
+    addInstagramLink();
     addWhatsAppContact();
     reveal();
   },{once:true});
@@ -182,6 +199,7 @@
 
   setTimeout(()=>{
     addPhoneContact();
+    addInstagramLink();
     addWhatsAppContact();
     reveal();
   },700);
