@@ -19,6 +19,15 @@ body.site-ready{opacity:1;visibility:visible;transition:opacity .07s linear}
 .reference-gallery .reference-grid:not(.justified-gallery){opacity:0!important;visibility:hidden!important}
 .reference-gallery .reference-grid.justified-gallery{opacity:1!important;visibility:visible!important;transition:opacity .12s ease}
 
+/* Keep the floating WhatsApp action clearly visible over dark photography and sections. */
+.papoa-whatsapp-float{
+  background:#25d366!important;
+  color:#fff!important;
+  border:1px solid rgba(255,255,255,.28)!important;
+  box-shadow:0 10px 30px rgba(0,0,0,.38)!important;
+}
+.papoa-whatsapp-float svg{color:#fff!important;fill:currentColor!important}
+
 @media(prefers-reduced-motion:reduce){
   body.site-ready{transition:none}
   .reference-gallery .reference-grid.justified-gallery{transition:none}
