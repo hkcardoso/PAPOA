@@ -27,7 +27,7 @@
     }
     if(!document.querySelector('script[data-papoa-enhancements]')){
       const script=document.createElement('script');
-      script.src=new URL('./papoa-enhancements.js?v=20260926-1',base).href;
+      script.src=new URL('./papoa-enhancements.js?v=20260926-2',base).href;
       script.defer=true;
       script.dataset.papoaEnhancements='';
       document.head.appendChild(script);
