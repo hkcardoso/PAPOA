@@ -37,6 +37,17 @@
 .reference-tile:before,.homes-tile:before{content:"View";position:absolute;z-index:4;right:13px;top:13px;padding:7px 9px;background:rgba(0,0,0,.54);backdrop-filter:blur(8px);color:#fff;font-family:Benzin,Arial,sans-serif;font-size:6px;letter-spacing:.15em;text-transform:uppercase;opacity:0;transform:translateY(-4px);transition:.22s ease;pointer-events:none}
 @media(hover:hover){.reference-tile:hover:before,.homes-tile:hover:before{opacity:1;transform:none}}
 
+/* Keep the fallback gallery visible while image proportions are still loading. */
+.reference-gallery .reference-grid:not(.justified-gallery){opacity:1!important;visibility:visible!important}
+
+/* Cars: same visual logic as Homes — natural image proportions, no black letterboxing. */
+.cars-page .reference-gallery .reference-grid{display:block!important;columns:3;column-gap:10px}
+.cars-page .reference-gallery .reference-row{display:contents!important}
+.cars-page .reference-gallery .reference-tile{display:inline-block!important;width:100%!important;height:auto!important;aspect-ratio:auto!important;margin:0 0 10px!important;break-inside:avoid;vertical-align:top;background:transparent!important}
+.cars-page .reference-gallery .reference-tile img{display:block!important;width:100%!important;height:auto!important;max-height:none!important;object-fit:cover!important;object-position:center!important;background:transparent!important}
+@media(max-width:1100px){.cars-page .reference-gallery .reference-grid{columns:2}}
+@media(max-width:720px){.cars-page .reference-gallery .reference-grid{columns:1;column-gap:0}.cars-page .reference-gallery .reference-tile{margin-bottom:6px!important}}
+
 /* Fullscreen gallery */
 .papoa-lightbox{position:fixed;inset:0;z-index:20000;background:rgba(7,8,8,.97);display:none;align-items:center;justify-content:center;overflow:hidden}
 .papoa-lightbox.is-open{display:flex}
