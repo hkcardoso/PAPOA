@@ -15,9 +15,10 @@ html{background:#090a0a}
 body{opacity:0;visibility:hidden;background:#090a0a}
 body.site-ready{opacity:1;visibility:visible;transition:opacity .07s linear}
 
-/* Yachts/Cars are rebuilt into justified rows by the core script. Keep the raw legacy grid hidden. */
-.reference-gallery .reference-grid:not(.justified-gallery){opacity:0!important;visibility:hidden!important}
+/* Yachts/Cars use justified rows when JS is ready, but the raw gallery remains visible as a safe fallback. */
+.reference-gallery .reference-grid:not(.justified-gallery){opacity:1!important;visibility:visible!important}
 .reference-gallery .reference-grid.justified-gallery{opacity:1!important;visibility:visible!important;transition:opacity .12s ease}
+.cars-page .reference-tile img{object-fit:cover!important}
 
 /* Floating contact action: restrained monochrome treatment. */
 .papoa-whatsapp-float{background:#000!important;color:#fff!important;border:1px solid rgba(255,255,255,.16)!important;box-shadow:0 10px 30px rgba(0,0,0,.38)!important}
