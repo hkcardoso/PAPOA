@@ -126,6 +126,11 @@
   }
 }
 
+/* Use only the newer PAPOA lightbox. The legacy lightbox is still wired in JS,
+   but is fully suppressed here so one click produces one visible gallery only. */
+.gallery-lightbox{display:none!important;visibility:hidden!important;pointer-events:none!important}
+body.gallery-lightbox-open{overflow:auto!important}
+
 /* WhatsApp — neutral PAPOA treatment */
 .papoa-whatsapp-float{
   background:rgba(20,21,21,.94)!important;
