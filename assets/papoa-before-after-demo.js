@@ -12,8 +12,8 @@
   if(!before||!after)return;
 
   const pt=(document.documentElement.lang||'').toLowerCase().startsWith('pt');
-  before.src='/assets/images/yachts/before.webp';
-  after.src='/assets/images/yachts/PRESTIGE_M8EVO_PHOTOS_INTERIORS.webp';
+  before.src='/assets/images/yachts/PRESTIGE_M8EVO_PHOTOS_INTERIORS.webp';
+  after.src='/assets/images/yachts/before.webp';
   before.alt=pt?'Interior do yacht antes do refit':'Yacht interior before refit';
   after.alt=pt?'Interior do yacht depois do refit':'Yacht interior after refit';
   before.decoding='async';
