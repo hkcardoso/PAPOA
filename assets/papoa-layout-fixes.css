@@ -54,6 +54,33 @@
   object-position:center!important;
 }
 
+/* YACHTS — fixed 3 images per row on desktop */
+@media (min-width:1101px){
+  body.yachts-page .reference-grid,
+  body.yachts-page .reference-grid.justified-gallery{
+    display:grid!important;
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:10px!important;
+  }
+  body.yachts-page .reference-grid.justified-gallery .reference-row{
+    display:contents!important;
+  }
+  body.yachts-page .reference-grid .reference-tile,
+  body.yachts-page .reference-grid.justified-gallery .reference-tile{
+    width:auto!important;
+    height:auto!important;
+    flex-grow:0!important;
+    aspect-ratio:4/3!important;
+    background:transparent!important;
+  }
+  body.yachts-page .reference-grid .reference-tile img,
+  body.yachts-page .reference-grid.justified-gallery .reference-tile img{
+    width:100%!important;
+    height:100%!important;
+    object-fit:cover!important;
+  }
+}
+
 /* Before the JS converts the gallery into justified rows, keep it clean and visible. */
 .reference-gallery .reference-grid:not(.justified-gallery){
   display:grid!important;
@@ -72,6 +99,10 @@
 
 @media(max-width:1100px) and (min-width:721px){
   .reference-gallery .reference-grid:not(.justified-gallery){grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  body.yachts-page .reference-grid.justified-gallery{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+  body.yachts-page .reference-grid.justified-gallery .reference-row{display:contents!important}
+  body.yachts-page .reference-grid.justified-gallery .reference-tile{width:auto!important;height:auto!important;aspect-ratio:4/3!important;flex-grow:0!important}
+  body.yachts-page .reference-grid.justified-gallery .reference-tile img{width:100%!important;height:100%!important;object-fit:cover!important}
 }
 
 @media(max-width:720px){
