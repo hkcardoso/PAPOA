@@ -1,4 +1,4 @@
-/* PAPOA layout refinements — ordered About grid + varied justified galleries */
+/* PAPOA layout refinements — ordered About grid + Homes-style media galleries */
 
 @media (min-width:761px){
   /* ABOUT — clean two-row composition, no staggered offsets */
@@ -18,92 +18,80 @@
   body.about-page .refit-card:nth-child(2){grid-column:8/span 5!important;grid-row:1!important}
   body.about-page .refit-card:nth-child(3){grid-column:1/span 5!important;grid-row:2!important}
   body.about-page .refit-card:nth-child(4){grid-column:6/span 7!important;grid-row:2!important}
+}
 
-  /* YACHTS / CARS — larger gallery images across every row */
-  .reference-gallery .reference-row{
-    height:clamp(320px,27vw,450px)!important;
-  }
+/* YACHTS / CARS — same clean justified mosaic language as Homes.
+   The raw grid stays visible immediately, so Yachts never sits on a blank white block
+   while the image dimensions are still loading. */
+.reference-gallery .reference-grid{
+  opacity:1!important;
+  visibility:visible!important;
+}
+.reference-gallery .reference-grid.justified-gallery{
+  display:block!important;
+}
+.reference-gallery .reference-row{
+  display:flex!important;
+  gap:10px!important;
+  margin-bottom:10px!important;
+  align-items:stretch!important;
+  width:100%!important;
+}
+.reference-gallery .reference-row .reference-tile{
+  position:relative!important;
+  min-width:0!important;
+  height:100%!important;
+  aspect-ratio:auto!important;
+  overflow:hidden!important;
+  background:#d2cec7!important;
+}
+.reference-gallery .reference-row .reference-tile img{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  max-height:none!important;
+  object-fit:cover!important;
+  object-position:center!important;
+}
 
-  .reference-gallery .reference-row:nth-child(1),
-  .reference-gallery .reference-row:nth-child(4),
-  .reference-gallery .reference-row:nth-child(7){
-    height:clamp(360px,31vw,500px)!important;
-  }
-
-  .reference-gallery .reference-row:nth-child(5){
-    height:clamp(400px,34vw,550px)!important;
-  }
-
-  /* CARS — true 3-column grid on desktop */
-  body.cars-page .reference-grid.justified-gallery{
-    display:grid!important;
-    grid-template-columns:repeat(3,minmax(0,1fr))!important;
-    gap:16px!important;
-  }
-  body.cars-page .reference-grid.justified-gallery .reference-row{
-    display:contents!important;
-    height:auto!important;
-  }
-  body.cars-page .reference-grid.justified-gallery .reference-tile{
-    width:auto!important;
-    flex-grow:0!important;
-    aspect-ratio:4/3!important;
-    min-width:0!important;
-    background:#151616!important;
-  }
-  body.cars-page .reference-grid.justified-gallery .reference-tile img{
-    width:100%!important;
-    height:100%!important;
-    object-fit:contain!important;
-    object-position:center center!important;
-  }
-
-  /* Keep justified-row variation for Yachts only */
-  body:not(.cars-page) .reference-gallery .reference-row:nth-child(2n):not(.is-last) .reference-tile:first-child{
-    flex-grow:1.85!important;
-  }
-  body:not(.cars-page) .reference-gallery .reference-row:nth-child(3n):not(.is-last) .reference-tile:last-child{
-    flex-grow:1.55!important;
-  }
-  body:not(.cars-page) .reference-gallery .reference-row:nth-child(5):not(.is-last) .reference-tile:first-child{
-    flex-grow:2.2!important;
-  }
+/* Before the JS converts the gallery into justified rows, keep it clean and visible. */
+.reference-gallery .reference-grid:not(.justified-gallery){
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:10px!important;
+}
+.reference-gallery .reference-grid:not(.justified-gallery) .reference-tile{
+  aspect-ratio:auto!important;
+  background:transparent!important;
+}
+.reference-gallery .reference-grid:not(.justified-gallery) .reference-tile img{
+  width:100%!important;
+  height:auto!important;
+  object-fit:initial!important;
 }
 
 @media(max-width:1100px) and (min-width:721px){
-  body.cars-page .reference-grid.justified-gallery{
-    grid-template-columns:repeat(2,minmax(0,1fr))!important;
-  }
+  .reference-gallery .reference-grid:not(.justified-gallery){grid-template-columns:repeat(2,minmax(0,1fr))!important}
 }
 
 @media(max-width:720px){
   body.about-page .refit-grid{display:grid!important;grid-template-columns:1fr!important;gap:8px!important}
   body.about-page .refit-card:nth-child(n){grid-column:1!important;grid-row:auto!important;height:auto!important;min-height:430px!important;margin:0!important}
 
-  /* CARS mobile — one full-width image per row, using each image's natural ratio */
-  body.cars-page .reference-grid.justified-gallery{
-    display:grid!important;
-    grid-template-columns:1fr!important;
-    gap:10px!important;
-  }
-  body.cars-page .reference-grid.justified-gallery .reference-row{
-    display:contents!important;
-    height:auto!important;
-  }
-  body.cars-page .reference-grid.justified-gallery .reference-tile{
-    width:100%!important;
-    flex-grow:0!important;
-    aspect-ratio:auto!important;
-    min-height:0!important;
-    background:transparent!important;
-  }
-  body.cars-page .reference-grid.justified-gallery .reference-tile img{
+  .reference-gallery .reference-grid:not(.justified-gallery){grid-template-columns:1fr!important;gap:6px!important}
+  .reference-gallery .reference-row{display:block!important;height:auto!important;margin-bottom:6px!important}
+  .reference-gallery .reference-row .reference-tile{
     display:block!important;
     width:100%!important;
     height:auto!important;
-    max-height:none!important;
+    margin-bottom:6px!important;
+    flex-grow:0!important;
+    background:transparent!important;
+  }
+  .reference-gallery .reference-row .reference-tile img{
+    width:100%!important;
+    height:auto!important;
     object-fit:initial!important;
-    object-position:center center!important;
   }
 }
 
