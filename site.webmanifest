@@ -1,0 +1,16 @@
+{
+  "name": "PAPOA",
+  "short_name": "PAPOA",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f6f2",
+  "theme_color": "#f6f6f2",
+  "icons": [
+    {
+      "src": "/assets/images/papoa-favicon.png",
+      "sizes": "2048x2048",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
