@@ -8,6 +8,7 @@
   const {projects,rows}=data;
   const filters=document.querySelector('.project-filters');
   let category=new URLSearchParams(location.search).get('category')||'all';
+  let initialGalleryPosition=true;
   function render(){
     portfolio.replaceChildren();
     const matching=rows.map(items=>items.filter(item=>{
@@ -38,6 +39,15 @@
         row.append(link);
       });portfolio.append(row);
     });
+    if(initialGalleryPosition){
+      initialGalleryPosition=false;
+      if(!new URLSearchParams(location.search).has('category')){
+        requestAnimationFrame(()=>{
+          const secondRow=portfolio.querySelector('.portfolio-row:nth-child(2)');
+          if(secondRow)window.scrollTo(0,secondRow.getBoundingClientRect().top+window.scrollY);
+        });
+      }
+    }
   }
   if(filters){filters.addEventListener('click',e=>{const button=e.target.closest('[data-category]');if(!button)return;category=button.dataset.category;filters.querySelectorAll('[data-category]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));render();});}
   window.addEventListener('papoa:languagechange',render);
