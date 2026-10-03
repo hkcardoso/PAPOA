@@ -32,22 +32,22 @@
 <a class="skip" href="#main">Saltar para o conteúdo</a>
 <header class="site-header">
   <a href="/" class="brand" aria-label="PAPOA, início"><img src="/assets/images/papoa-wordmark-source.png?v=2" alt="PAPOA"></a>
-  <div class="language-switch" role="group" aria-label="Language"><button type="button" data-language="pt" aria-pressed="true">PT</button><span aria-hidden="true">|</span><button type="button" data-language="en" aria-pressed="false">ENG</button></div>
   <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menu</button>
   <nav id="main-nav" aria-label="Main navigation">
-    <a href="/" aria-current="page">Projects</a>
-    <a href="/capabilities">Capabilities</a>
-    <a href="/sobre">About</a>
-    <a href="/contacto">Contact</a>
+    <div class="language-switch" role="group" aria-label="Language"><button type="button" data-language="pt" aria-pressed="true">PT</button><span aria-hidden="true">|</span><button type="button" data-language="en" aria-pressed="false">ENG</button></div>
+    <a href="/" aria-current="page" data-pt="Projetos" data-en="Projects">Projects</a>
+    <a href="/capabilities" data-pt="Áreas de atuação" data-en="Capabilities">Capabilities</a>
+    <a href="/sobre" data-pt="Sobre" data-en="About">About</a>
+    <a href="/contacto" data-pt="Contacto" data-en="Contact">Contact</a>
   </nav>
 </header>
 <main id="main">
   <section class="home-intro" aria-labelledby="home-title">
-    <div><h1 id="home-title">Beyond design, into experience.</h1><p data-pt="Conceito · Espaço · Imagem · Execução" data-en="Concept · Space · Image · Delivery">Conceito · Espaço · Imagem · Execução</p></div>
+    <div><h1 id="home-title" data-pt="Para lá do design, a experiência." data-en="Beyond design, into experience.">Beyond design, into experience.</h1><p data-pt="Conceito · Espaço · Imagem · Execução" data-en="Concept · Space · Image · Delivery">Conceito · Espaço · Imagem · Execução</p></div>
     <a href="/contacto" data-pt="Falar sobre um projecto →" data-en="Start a conversation →">Falar sobre um projecto →</a>
   </section>
   <section class="project-filters" role="group" aria-label="Project categories">
-    <button type="button" data-category="all" aria-pressed="true">All</button><button type="button" data-category="residential" aria-pressed="false">Residential</button><button type="button" data-category="yachts" aria-pressed="false">Yachts</button><button type="button" data-category="automotive" aria-pressed="false">Automotive</button>
+    <button type="button" data-category="all" aria-pressed="true" data-pt="Todos" data-en="All">All</button><button type="button" data-category="residential" aria-pressed="false" data-pt="Residencial" data-en="Residential">Residential</button><button type="button" data-category="yachts" aria-pressed="false" data-pt="Iates" data-en="Yachts">Yachts</button><button type="button" data-category="automotive" aria-pressed="false" data-pt="Automóvel" data-en="Automotive">Automotive</button>
   </section>
   <section id="portfolio" class="portfolio" aria-label="Projects"></section>
 
