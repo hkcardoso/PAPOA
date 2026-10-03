@@ -395,3 +395,11 @@ body{animation:papoaPageIn .45s cubic-bezier(.22,.61,.36,1) both}
 
 /* Keep the language control directly before the first navigation link. */
 .site-header nav .language-switch{margin-right:0}
+
+
+/* Keep the language selector beside the PAPOA wordmark. */
+.brand-group{display:flex;align-items:center;gap:22px;flex:0 0 auto}
+.brand-group .brand{flex:0 0 auto}
+.brand-group .language-switch{margin-right:0}
+@media(max-width:900px){.brand-group{gap:18px}}
+@media(max-width:430px){.brand-group{gap:12px}.brand-group .brand{width:150px}}
