@@ -398,8 +398,9 @@ body{animation:papoaPageIn .45s cubic-bezier(.22,.61,.36,1) both}
 
 
 /* Keep PT | ENG close to the visible edge of the PAPOA wordmark. */
-.brand-group{gap:0}
-.brand-group .language-switch{margin-left:-28px}
+.brand-group{display:flex;align-items:center;gap:0;flex:0 0 auto}
+.brand-group .brand{flex:0 0 auto}
+.brand-group .language-switch{margin-left:-28px;margin-right:0}
 @media(max-width:1100px){.brand-group .language-switch{margin-left:-23px}}
 @media(max-width:900px){.brand-group .language-switch{margin-left:-18px}}
 @media(max-width:650px){.brand-group .language-switch{margin-left:-14px}}
