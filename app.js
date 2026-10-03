@@ -1,6 +1,6 @@
 (()=> {
   const legacy=location.hash.slice(1);
-  const legacyRoutes={portfolio:'/',arquitectura:'/arquitectura',construcao:'/construcao',visualizacao3d:'/visualizacao-3d','visualizacao-3d':'/visualizacao-3d',sobre:'/sobre',contacto:'/contacto'};
+  const legacyRoutes={portfolio:'/',arquitectura:'/arquitectura',construcao:'/construcao',visualizacao3d:'/visualizacao-3d','visualizacao-3d':'/visualizacao-3d',sobre:'/studio',contacto:'/contact'};
   if(legacyRoutes[legacy]){location.replace(legacyRoutes[legacy]+location.search);return;}
   const data=window.PAPOA_PORTFOLIO;
   const portfolio=document.querySelector('#portfolio');
