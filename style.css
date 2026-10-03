@@ -405,3 +405,12 @@ body{animation:papoaPageIn .45s cubic-bezier(.22,.61,.36,1) both}
 @media(max-width:900px){.brand-group .language-switch{margin-left:-18px}}
 @media(max-width:650px){.brand-group .language-switch{margin-left:-14px}}
 @media(max-width:430px){.brand-group .brand{width:150px}.brand-group .language-switch{margin-left:-11px}}
+
+/* Leave room for the next gallery row within the initial desktop viewport. */
+@media(min-width:651px){
+  #portfolio > .portfolio-row:first-child .picture img{
+    max-height:clamp(180px, calc(100svh - 450px), 420px);
+    object-fit:cover;
+    object-position:center;
+  }
+}

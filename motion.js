@@ -47,7 +47,7 @@
   };
 
   addReveal('.home-intro, .home-services, .home-local',0);
-  addReveal('.portfolio-row',70);
+  addReveal('.portfolio-row:nth-child(n+3)',70);
   addReveal('.service-block',70);
   addReveal('.about-page > p',70);
   addReveal('.service-heading, .about-heading, .service-links, .about-contact, .project-buttons, .map-frame, .contact-details, .contact-form, .project-heading, .service-cta, .project-meta, .project-nav, .process-section, .project-case, .footer-legal',60);
