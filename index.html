@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PAPOA — Arquitectura, Construção e Visualização 3D</title>
+<title>PAPOA — Projects, Capabilities & Design</title>
 <link rel="preload" as="image" href="/projects/Casa_Adega/casa-adega-02.webp" fetchpriority="high"><link rel="canonical" href="https://papoa.pt/">
-<meta name="description" content="Estúdio de design em Portugal. Desenvolvemos projectos de arquitectura, executamos obras de construção e remodelação e criamos imagens 3D para apresentar cada projecto.">
+<meta name="description" content="PAPOA is a project-led design studio connecting concept, spatial design, visualisation and delivery.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_PT">
 <meta property="og:site_name" content="PAPOA">
@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/style.css?v=28">
+<link rel="stylesheet" href="/style.css?v=29">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":"https://papoa.pt/#business","name":"PAPOA","url":"https://papoa.pt/","description":"Estúdio de design em Portugal dedicado a arquitectura, construção, remodelação e visualização 3D.","image":"https://papoa.pt/projects/Santa_Iria/santa-iria-01.webp","telephone":"+351925347982","email":"hello@papoa.pt","areaServed":[{"@type":"AdministrativeArea","name":"Cascais"},{"@type":"AdministrativeArea","name":"Vilamoura"}],"sameAs":["https://www.instagram.com/papoa.pt/"]},{"@type":"WebSite","@id":"https://papoa.pt/#website","url":"https://papoa.pt/","name":"PAPOA","publisher":{"@id":"https://papoa.pt/#business"}}]}</script>
 
 </head>
@@ -32,39 +32,32 @@
 <a class="skip" href="#main">Saltar para o conteúdo</a>
 <header class="site-header">
   <a href="/" class="brand" aria-label="PAPOA, início"><img src="/assets/images/papoa-wordmark-source.png?v=2" alt="PAPOA"></a>
+  <div class="language-switch" role="group" aria-label="Language"><button type="button" data-language="pt" aria-pressed="true">PT</button><span aria-hidden="true">|</span><button type="button" data-language="en" aria-pressed="false">ENG</button></div>
   <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menu</button>
-  <nav id="main-nav" aria-label="Navegação principal">
-    <a href="/" aria-current="page">Portfólio</a>
-    <a href="/arquitectura">Arquitectura</a>
-    <a href="/construcao">Construção</a>
-    <a href="/visualizacao-3d">Visualização 3D</a>
-    <a href="/sobre">Sobre</a>
-    <a href="/contacto">Contacto</a>
+  <nav id="main-nav" aria-label="Main navigation">
+    <a href="/" aria-current="page">Projects</a>
+    <a href="/capabilities">Capabilities</a>
+    <a href="/sobre">About</a>
+    <a href="/contacto">Contact</a>
   </nav>
 </header>
 <main id="main">
   <section class="home-intro" aria-labelledby="home-title">
-    <div><h1 id="home-title">Arquitectura · Construção · Visualização 3D</h1><p>Do projecto à obra, em Cascais · Vilamoura.</p></div>
-    <a href="/contacto">Falar sobre um projecto →</a>
+    <div><h1 id="home-title" data-pt="Projectos com intenção, do conceito à concretização." data-en="Projects with intent, from concept to completion.">Projectos com intenção, do conceito à concretização.</h1><p data-pt="Conceito · Espaço · Imagem · Execução" data-en="Concept · Space · Image · Delivery">Conceito · Espaço · Imagem · Execução</p></div>
+    <a href="/contacto" data-pt="Falar sobre um projecto →" data-en="Start a conversation →">Falar sobre um projecto →</a>
   </section>
-  <section id="portfolio" class="portfolio" aria-label="Portefólio de projetos"></section>
-  <section class="home-services" aria-label="Serviços PAPOA">
-    <span>Do projecto à obra</span>
-    <div class="home-services-grid">
-      <a class="home-service" href="/arquitectura"><small>01</small><strong>Projecto</strong><p>Arquitectura, licenciamento e desenvolvimento técnico para preparar cada solução para obra.</p><span>Arquitectura →</span></a>
-      <a class="home-service" href="/visualizacao-3d"><small>02</small><strong>Visualização</strong><p>Imagens 3D para estudar materiais, luz e espaços e comunicar o projecto antes da execução.</p><span>Visualização 3D →</span></a>
-      <a class="home-service" href="/construcao"><small>03</small><strong>Construção</strong><p>Construção, remodelação e acompanhamento de obra com ligação directa ao projecto.</p><span>Construção →</span></a>
-    </div>
+  <section class="project-filters" role="group" aria-label="Project categories">
+    <button type="button" data-category="all" aria-pressed="true">All</button><button type="button" data-category="residential" aria-pressed="false">Residential</button><button type="button" data-category="yachts" aria-pressed="false">Yachts</button><button type="button" data-category="automotive" aria-pressed="false">Automotive</button>
   </section>
-  <section class="home-local" aria-labelledby="local-title">
-    <h2 id="local-title">Arquitectura, construção e visualização 3D em Cascais · Vilamoura</h2>
-    <p>A PAPOA desenvolve projectos de arquitectura, construção e visualização 3D em Cascais e Vilamoura, e noutros locais por projecto.</p>
-    <div class="home-local-links"><a href="/arquitectura">Arquitectura</a><a href="/construcao">Construção e remodelação</a><a href="/visualizacao-3d">Visualização 3D</a><a href="/contacto">Pedir orçamento</a></div>
+  <section id="portfolio" class="portfolio" aria-label="Projects"></section>
+  <section class="home-services" aria-label="Capabilities">
+    <span data-pt="CAPACIDADES" data-en="CAPABILITIES">CAPACIDADES</span>
+    <div class="home-services-grid"><a class="home-service" href="/capabilities"><strong data-pt="Da ideia à entrega" data-en="From idea to delivery">Da ideia à entrega</strong><p data-pt="Um conjunto de capacidades coordenadas, reunidas à medida de cada projecto." data-en="A connected set of capabilities, brought together around each project.">Um conjunto de capacidades coordenadas, reunidas à medida de cada projecto.</p><span data-pt="Conhecer capacidades →" data-en="Explore capabilities →">Conhecer capacidades →</span></a></div>
   </section>
   <section class="home-cta" aria-labelledby="home-cta-title">
     <div class="home-cta-title"><span>Challenge us<br>to go beyond</span></div>
-    <div class="home-cta-contact"><h2 id="home-cta-title">Would you like to know more?</h2>
-      <p>Contact us at: <a href="mailto:hello@papoa.pt">hello@papoa.pt</a> or <a href="tel:+351925347982">+351 925 347 982</a></p>
+    <div class="home-cta-contact"><h2 id="home-cta-title" data-pt="Quer saber mais?" data-en="Would you like to know more?">Quer saber mais?</h2>
+      <p><span data-pt="Contacte-nos:" data-en="Contact us at:">Contacte-nos:</span> <a href="mailto:hello@papoa.pt">hello@papoa.pt</a> <span data-pt="ou" data-en="or">ou</span> <a href="tel:+351925347982">+351 925 347 982</a></p>
       <div class="home-cta-links"><a href="https://www.instagram.com/papoa.pt/" target="_blank" rel="noopener">Instagram</a><a href="https://share.google/RWvmUUL19kc6QkC8s" target="_blank" rel="noopener">Google</a></div>
     </div>
   </section>
@@ -80,7 +73,8 @@
   <div class="footer-legal"><span>© 2026 PAPOA · Portugal</span><a href="/privacidade">Privacidade</a></div>
 </footer>
 <script src="/portfolio.js?v=12"></script>
-<script src="/app.js?v=20"></script>
+<script src="/i18n.js?v=1"></script>
+<script src="/app.js?v=21"></script>
 <script src="/motion.js?v=6"></script>
 </body>
 </html>

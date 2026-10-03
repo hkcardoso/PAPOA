@@ -2,6 +2,7 @@
 window.PAPOA_PORTFOLIO = {
   "projects": {
     "adega": {
+      "category": "residential",
       "title": "Casa Adega",
       "author": "Diana Parracho",
       "href": "/projetos/casa-adega/",
@@ -9,6 +10,7 @@ window.PAPOA_PORTFOLIO = {
       "prefix": "casa-adega-"
     },
     "iria": {
+      "category": "residential",
       "title": "Arcos de Santa Iria",
       "author": "Manuel Tainha",
       "href": "/projetos/santa-iria/",
@@ -16,6 +18,7 @@ window.PAPOA_PORTFOLIO = {
       "prefix": "santa-iria-"
     },
     "giraldo": {
+      "category": "residential",
       "title": "Giraldo",
       "author": "Geraldes, Peniche",
       "href": "/projetos/giraldo/",
@@ -23,6 +26,7 @@ window.PAPOA_PORTFOLIO = {
       "prefix": "Giraldo-"
     },
     "portuguesa": {
+      "category": "residential",
       "title": "Casa Portuguesa",
       "author": "Serra d'El-Rei",
       "href": "/projetos/casa-portuguesa/",
@@ -30,6 +34,7 @@ window.PAPOA_PORTFOLIO = {
       "prefix": "casa-portuguesa-"
     },
     "terracotta": {
+      "category": "residential",
       "title": "Terracotta",
       "author": "Serra d'El-Rei",
       "href": "/projetos/terracotta/",
@@ -181,7 +186,8 @@ window.PAPOA_PORTFOLIO = {
         "image": "/projects/consolacao_01.webp",
         "width": 1637,
         "height": 2048,
-        "title": "Edifício com varandas",
+        "category": "residential",
+      "title": "Edifício com varandas",
         "author": ""
       },
       {
