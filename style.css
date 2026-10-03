@@ -386,3 +386,8 @@ body{animation:papoaPageIn .45s cubic-bezier(.22,.61,.36,1) both}
 .capabilities-cta a{border-bottom:1px solid currentColor;padding-bottom:3px}
 @media(max-width:900px){.site-header nav{gap:16px}.language-switch{margin-right:0}.capability-list{margin:36px 12px 0;grid-template-columns:1fr}.capabilities-cta{margin:36px 12px 0}}
 @media(max-width:650px){.project-filters{gap:16px;margin-left:4px}.capabilities-intro{text-align:left;padding:0 6px}.capabilities-intro h1{font-size:20px}.capability-list{margin:30px 6px 0}.capabilities-cta{align-items:flex-start;flex-direction:column;gap:10px}}
+
+
+/* Center the About process content in each card. */
+.process-grid>div{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:200px;padding:20px 18px}
+.process-grid p{max-width:260px}
