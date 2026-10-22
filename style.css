@@ -473,15 +473,9 @@ body{animation:papoaPageIn .45s cubic-bezier(.22,.61,.36,1) both}
   width:100%;height:auto;max-width:none;
   object-fit:initial;object-position:initial;
   transform:translate3d(0,var(--teaser-scroll-y),0);
-  transition:transform .3s ease-out;
+  transition:none;
   will-change:transform;
-  animation:papoa-armeria-auto 24s ease-in-out infinite
-}
-.tile-armeria.is-pointer-controlled .teaser-browser-screen img{animation:none}
-@keyframes papoa-armeria-auto{
-  0%,10%{transform:translate3d(0,0,0)}
-  45%,55%{transform:translate3d(0,var(--teaser-max-scroll),0)}
-  90%,100%{transform:translate3d(0,0,0)}
+  animation:none
 }
 .tile-armeria .tile-copy{z-index:3}
 @media(max-width:900px){
