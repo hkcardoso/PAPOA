@@ -117,8 +117,8 @@
       const state=armeriaMotion.get(tile);
       if(!state||!state.active)return;
       // Aproximação progressiva ao destino para um movimento mais fluido.
-      state.current+=(state.target-state.current)*0.075;
-      if(Math.abs(state.target-state.current)<0.35){
+      state.current+=(state.target-state.current)*0.025;
+      if(Math.abs(state.target-state.current)<0.12){
         state.current=state.target;
       }else{
         needsFrame=true;
