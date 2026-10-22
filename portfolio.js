@@ -57,8 +57,11 @@ window.PAPOA_PORTFOLIO = {
         "height": 2701
       },
       {
-        "placeholder": true,
-        "category": "all",
+        "placeholder": "armeria",
+        "category": "residential",
+        "title": "Armeria Baleal",
+        "author": "Website · CGI · Interactive",
+        "image": "/assets/images/armeria-teaser.webp",
         "width": 1500,
         "height": 1000
       }
