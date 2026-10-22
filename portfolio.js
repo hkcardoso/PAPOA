@@ -62,7 +62,7 @@ window.PAPOA_PORTFOLIO = {
         "title": "Armeria Baleal",
         "author": "Website · CGI · Interactive",
         "image": "/assets/images/armeria-teaser2.webp",
-        "width": 1500,
+        "width": 1580,
         "height": 1000
       }
     ],
