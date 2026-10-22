@@ -30,7 +30,7 @@
           const tile=document.createElement('a');
           tile.className='tile tile-armeria';
           tile.href=p.href||'https://armeriabaleal.com/';
-          tile.target='_blank';tile.rel='noopener noreferrer';
+          if(!p.href){tile.target='_blank';tile.rel='noopener noreferrer';}
           tile.style.flex=(p.width/p.height)+' 1 0';
           tile.style.aspectRatio=p.width+'/'+p.height;
           tile.setAttribute('aria-label',p.title+' — site');
