@@ -46,7 +46,7 @@
           const shot=document.createElement('img');shot.src=p.image;
           shot.alt='Homepage do website Armeria Baleal';
           shot.loading='eager';shot.decoding='async';shot.fetchPriority='low';
-          shot.width=256;shot.height=838;
+          shot.width=626;shot.height=2048;
           screen.append(shot);browser.append(chrome,screen);
           floating.append(browser);tile.append(floating);
           const copy=document.createElement('div');copy.className='tile-copy';
@@ -83,30 +83,61 @@
         row.append(link);
       });portfolio.append(row);
     });
-    updateTeaserPointer();
+    // Actualiza o limite do scroll depois de trocar filtros/idioma.
+    bindArmeriaImage();
   }
-  // Responde à posição do rato em todo o ecrã, não apenas quando passa no cartão.
-  let pointerX=window.innerWidth/2;
-  let pointerY=window.innerHeight/2;
+  // O rato controla o scroll interno da imagem ao longo de toda a altura do ecrã.
+  let pointerY=0;
+  let pointerActive=false;
   let pointerFrame=0;
   const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
-  function updateTeaserPointer(){
-    pointerFrame=0;
-    const x=reducedMotion.matches?0:Math.max(-1,Math.min(1,(pointerX/window.innerWidth-.5)*2));
-    const y=reducedMotion.matches?0:Math.max(-1,Math.min(1,(pointerY/window.innerHeight-.5)*2));
+
+  function updateArmeriaBounds(){
     portfolio.querySelectorAll('.tile-armeria').forEach(tile=>{
-      tile.style.setProperty('--teaser-x',(x*14).toFixed(2)+'px');
-      tile.style.setProperty('--teaser-y',(y*11).toFixed(2)+'px');
-      tile.style.setProperty('--teaser-rx',(-y*2.4).toFixed(2)+'deg');
-      tile.style.setProperty('--teaser-ry',(x*2.7).toFixed(2)+'deg');
+      const screen=tile.querySelector('.teaser-browser-screen');
+      const img=screen&&screen.querySelector('img');
+      if(!screen||!img)return;
+      const width=screen.clientWidth;
+      const height=screen.clientHeight;
+      const naturalWidth=img.naturalWidth||img.width||626;
+      const naturalHeight=img.naturalHeight||img.height||2048;
+      const scrollOverflow=Math.max(0,width*naturalHeight/naturalWidth-height);
+      tile.dataset.scrollOverflow=String(scrollOverflow);
+      tile.style.setProperty('--teaser-max-scroll',(-scrollOverflow).toFixed(1)+'px');
     });
   }
+
+  function updateTeaserPointer(){
+    pointerFrame=0;
+    const position=reducedMotion.matches?0:Math.max(0,Math.min(1,pointerY/Math.max(1,window.innerHeight)));
+    portfolio.querySelectorAll('.tile-armeria').forEach(tile=>{
+      const overflow=Number(tile.dataset.scrollOverflow||0);
+      tile.style.setProperty('--teaser-scroll-y',(-overflow*position).toFixed(1)+'px');
+      tile.classList.toggle('is-pointer-controlled',pointerActive&&!reducedMotion.matches);
+    });
+  }
+
+  function bindArmeriaImage(){
+    portfolio.querySelectorAll('.tile-armeria img').forEach(img=>{
+      if(!img.complete){
+        img.addEventListener('load',()=>{
+          updateArmeriaBounds();
+          updateTeaserPointer();
+        },{once:true});
+      }
+    });
+    updateArmeriaBounds();
+    updateTeaserPointer();
+  }
+
   window.addEventListener('pointermove',event=>{
     if(event.pointerType==='touch'||reducedMotion.matches)return;
-    pointerX=event.clientX;pointerY=event.clientY;
+    pointerY=event.clientY;
+    pointerActive=true;
     if(!pointerFrame)pointerFrame=requestAnimationFrame(updateTeaserPointer);
   },{passive:true});
   window.addEventListener('resize',()=>{
+    updateArmeriaBounds();
     if(!pointerFrame)pointerFrame=requestAnimationFrame(updateTeaserPointer);
   },{passive:true});
   if(filters){filters.addEventListener('click',e=>{const button=e.target.closest('[data-category]');if(!button)return;category=button.dataset.category;filters.querySelectorAll('[data-category]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));render();});}
