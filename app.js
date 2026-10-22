@@ -25,6 +25,21 @@
       const row=document.createElement('div');row.className='portfolio-row';
       items.forEach((item,itemIndex)=>{
         const p=Object.assign({},projects[item.project]||{},item);
+        if(p.placeholder){
+          const pending=document.createElement('div');
+          pending.className='tile tile-placeholder';
+          pending.style.flex=(p.width/p.height)+' 1 0';
+          pending.style.aspectRatio=p.width+'/'+p.height;
+          pending.setAttribute('role','img');
+          pending.setAttribute('aria-label',window.PAPOA_LANG==='en'?'Project to be announced':'Projeto a anunciar');
+          const mark=document.createElement('span');
+          mark.className='placeholder-symbol';
+          mark.textContent='?';
+          mark.setAttribute('aria-hidden','true');
+          pending.append(mark);
+          row.append(pending);
+          return;
+        }
         const link=document.createElement(p.href?'a':'div');link.className='tile';if(p.href)link.href=p.href;
         link.style.flex=(p.width/p.height)+' 1 0';
         link.setAttribute('aria-label',p.href?'View project '+p.title:p.title);
