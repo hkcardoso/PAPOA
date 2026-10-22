@@ -29,7 +29,7 @@
           // Cartão interactivo com a captura real da homepage.
           const tile=document.createElement('a');
           tile.className='tile tile-armeria';
-          tile.href='https://armeriabaleal.com/';
+          tile.href=p.href||'https://armeriabaleal.com/';
           tile.target='_blank';tile.rel='noopener noreferrer';
           tile.style.flex=(p.width/p.height)+' 1 0';
           tile.style.aspectRatio=p.width+'/'+p.height;
