@@ -409,3 +409,8 @@ body{animation:papoaPageIn .45s cubic-bezier(.22,.61,.36,1) both}
 
 /* Neutral focus on form fields, without an outer coloured frame. */
 .contact-form input:focus,.contact-form textarea:focus,.contact-form select:focus{outline:none;box-shadow:none;border-color:#a0a39e}
+
+/* Placeholder reservado ao terceiro projecto da primeira linha. */
+.tile-placeholder{display:flex;align-items:center;justify-content:center;background:#222425;border:1px solid #353839;line-height:1}
+.tile-placeholder:after{display:none}
+.placeholder-symbol{font-family:'Benzin','Montserrat',Arial,sans-serif;font-size:clamp(70px,9vw,170px);font-weight:400;color:#757a79;user-select:none}
