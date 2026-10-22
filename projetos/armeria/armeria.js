@@ -32,7 +32,7 @@
   const caption=gallery.querySelector('[data-gallery-caption]');
   const dots=gallery.querySelector('[data-gallery-dots]');
   const images=[1,2,3,4,5,6,7].map(n=>({
-    src:'https://raw.githubusercontent.com/hkcardoso/ARMERIA/main/assets/apartamentos/T3-E/'+n+'.webp',
+    src:'/assets/armeria/interior-'+String(n).padStart(2,'0')+'.webp',
     alt:'Armeria Baleal Residence — visualização 3D do interior, vista '+n
   }));
   let index=0;

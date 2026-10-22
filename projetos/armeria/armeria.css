@@ -130,3 +130,20 @@
   .ac-hero-media img,.ac-web-device,.ac-render-row img,.ac-gallery-stage img{transition:none!important}
   .ac-web-device.is-in-view .ac-web-frame img{animation:none!important}
 }
+/* Armeria editorial refinement: warm print chapter in PAPOA's visual language */
+.ac-communication{background:#f1f0ec;color:#232525;margin:0 0 110px;padding:92px clamp(22px,5.4vw,90px) 110px}
+.ac-communication .ac-section-label{color:#6a716e}
+.ac-communication .ac-section-header h2{color:#202525}
+.ac-communication .ac-section-header p,.ac-communication .ac-brochure figcaption{color:#606965}
+.ac-communication .ac-brochure-canvas{background:#e2e1dc;min-height:0}
+.ac-communication .ac-future{background:#e6e7e2;border-color:#d1d4cf}
+.ac-communication .ac-future:before{border-color:rgba(26,37,35,.08)}
+.ac-communication .ac-placeholder-question{color:#a9b0a9}
+.ac-communication .ac-future>div{color:#4d5853}
+.ac-perspectives{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.ac-perspectives figure{position:relative;margin:0;min-width:0;overflow:hidden;background:#e1e3df}
+.ac-perspectives img{display:block;width:100%;aspect-ratio:1.54;object-fit:cover;transition:transform .8s cubic-bezier(.22,.61,.36,1)}
+.ac-perspectives figure:hover img{transform:scale(1.025)}
+.ac-perspectives figcaption{position:absolute;left:22px;bottom:18px;font-size:10px;letter-spacing:.08em;color:#fff;text-shadow:0 1px 7px #0008}
+@media(max-width:700px){.ac-communication{margin-bottom:70px;padding:55px 18px 65px}.ac-perspectives{grid-template-columns:1fr;gap:9px}}
+@media(prefers-reduced-motion:reduce){.ac-perspectives img{transition:none!important}}
