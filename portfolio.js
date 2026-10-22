@@ -60,6 +60,7 @@ window.PAPOA_PORTFOLIO = {
         "placeholder": "armeria",
         "category": "residential",
         "title": "Armeria Baleal",
+        "href": "/projetos/armeria/",
         "author": "Website · CGI · Interactive",
         "image": "/assets/images/armeria-teaser2.webp",
         "width": 1580,
