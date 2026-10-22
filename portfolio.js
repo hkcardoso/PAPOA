@@ -57,18 +57,18 @@ window.PAPOA_PORTFOLIO = {
         "height": 2701
       },
       {
-        "project": "iria",
-        "image": "/projects/Santa_Iria/santa-iria-01.webp",
+        "placeholder": true,
+        "category": "all",
         "width": 1500,
         "height": 1000
       }
     ],
     [
       {
-        "project": "giraldo",
-        "image": "https://clasto.pt/projects/Giraldo/Giraldo-05.webp",
-        "width": 3840,
-        "height": 2160
+        "project": "iria",
+        "image": "/projects/Santa_Iria/santa-iria-01.webp",
+        "width": 1500,
+        "height": 1000
       },
       {
         "project": "giraldo",
