@@ -119,9 +119,9 @@
     portfolio.querySelectorAll('.tile-armeria').forEach(tile=>{
       const state=armeriaMotion.get(tile);
       if(!state||!state.active)return;
-      // Velocidade máxima reduzida e aceleração/travagem gradual.
-      const desiredSpeed=state.direction*80; // px/s
-      const alpha=1-Math.exp(-dt/680);
+      // Subida mais rápida e descida ainda mais rápida, com aceleração/travagem progressiva.
+      const desiredSpeed=state.direction*(state.direction>0?250:145); // px/s
+      const alpha=1-Math.exp(-dt/580);
       state.speed+=(desiredSpeed-state.speed)*alpha;
       state.current=Math.max(0,Math.min(state.overflow,state.current+state.speed*dt/1000));
       tile.style.setProperty('--teaser-scroll-y',(-state.current).toFixed(2)+'px');
@@ -143,7 +143,7 @@
     const rect=tile.getBoundingClientRect();
     const relativeY=Math.max(0,Math.min(1,(event.clientY-rect.top)/Math.max(1,rect.height)));
     const axis=(relativeY-.5)*2;
-    const deadZone=.10;
+    const deadZone=.035;
     const magnitude=Math.max(0,(Math.abs(axis)-deadZone)/(1-deadZone));
     state.direction=Math.sign(axis)*Math.pow(magnitude,1.3);
     state.active=true;
