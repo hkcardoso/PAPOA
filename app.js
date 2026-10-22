@@ -86,10 +86,12 @@
     // Actualiza o limite do scroll depois de trocar filtros/idioma.
     bindArmeriaImage();
   }
-  // O scroll da página só responde ao movimento do rato dentro do cartão.
+  // A metade superior sobe a página; a inferior desce. Centro = zona neutra.
+  // O movimento só responde ao rato dentro do cartão da Armeria.
   const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
   const armeriaMotion=new WeakMap();
   let armeriaFrame=0;
+  let armeriaLastFrame=0;
 
   function updateArmeriaBounds(){
     portfolio.querySelectorAll('.tile-armeria').forEach(tile=>{
@@ -103,52 +105,65 @@
       const state=armeriaMotion.get(tile);
       if(state){
         state.overflow=overflow;
-        state.current=Math.min(state.current,overflow);
-        state.target=Math.min(state.target,overflow);
+        state.current=Math.max(0,Math.min(state.current,overflow));
         tile.style.setProperty('--teaser-scroll-y',(-state.current).toFixed(2)+'px');
       }
     });
   }
 
-  function animateArmeria(){
+  function animateArmeria(now){
     armeriaFrame=0;
-    let needsFrame=false;
+    const dt=armeriaLastFrame?Math.min(48,now-armeriaLastFrame):16.67;
+    armeriaLastFrame=now;
+    let keepAnimating=false;
     portfolio.querySelectorAll('.tile-armeria').forEach(tile=>{
       const state=armeriaMotion.get(tile);
       if(!state||!state.active)return;
-      // Aproximação progressiva ao destino para um movimento mais fluido.
-      state.current+=(state.target-state.current)*0.025;
-      if(Math.abs(state.target-state.current)<0.12){
-        state.current=state.target;
-      }else{
-        needsFrame=true;
-      }
+      // Velocidade máxima reduzida e aceleração/travagem gradual.
+      const desiredSpeed=state.direction*125; // px/s
+      const alpha=1-Math.exp(-dt/550);
+      state.speed+=(desiredSpeed-state.speed)*alpha;
+      state.current=Math.max(0,Math.min(state.overflow,state.current+state.speed*dt/1000));
       tile.style.setProperty('--teaser-scroll-y',(-state.current).toFixed(2)+'px');
+      const atEnd=state.current<=0&&state.speed<0;
+      const atBottom=state.current>=state.overflow&&state.speed>0;
+      if(atEnd||atBottom)state.speed=0;
+      if(!atEnd&&!atBottom&&(Math.abs(state.speed)>.3||Math.abs(desiredSpeed)>.3)){
+        keepAnimating=true;
+      }
     });
-    if(needsFrame)armeriaFrame=requestAnimationFrame(animateArmeria);
+    if(keepAnimating)armeriaFrame=requestAnimationFrame(animateArmeria);
+    else armeriaLastFrame=0;
   }
 
-  function setArmeriaTarget(tile,event){
+  function setArmeriaDirection(tile,event){
     if(reducedMotion.matches||event.pointerType==='touch')return;
     const state=armeriaMotion.get(tile);
     if(!state)return;
     const rect=tile.getBoundingClientRect();
     const relativeY=Math.max(0,Math.min(1,(event.clientY-rect.top)/Math.max(1,rect.height)));
-    state.target=relativeY*state.overflow;
+    const axis=(relativeY-.5)*2;
+    const deadZone=.14;
+    const magnitude=Math.max(0,(Math.abs(axis)-deadZone)/(1-deadZone));
+    state.direction=Math.sign(axis)*Math.pow(magnitude,1.3);
     state.active=true;
-    if(!armeriaFrame)armeriaFrame=requestAnimationFrame(animateArmeria);
+    if(!armeriaFrame){
+      armeriaLastFrame=0;
+      armeriaFrame=requestAnimationFrame(animateArmeria);
+    }
   }
 
   function bindArmeriaImage(){
     portfolio.querySelectorAll('.tile-armeria').forEach(tile=>{
-      const state={active:false,current:0,target:0,overflow:0};
+      const state={active:false,current:0,speed:0,direction:0,overflow:0};
       armeriaMotion.set(tile,state);
-      tile.addEventListener('pointerenter',event=>setArmeriaTarget(tile,event));
-      tile.addEventListener('pointermove',event=>setArmeriaTarget(tile,event),{passive:true});
+      tile.addEventListener('pointerenter',event=>setArmeriaDirection(tile,event));
+      tile.addEventListener('pointermove',event=>setArmeriaDirection(tile,event),{passive:true});
       tile.addEventListener('pointerleave',()=>{
-        // Fora do cartão a imagem permanece na última posição.
+        // Fora do cartão, pára e mantém a última posição.
         state.active=false;
-        state.target=state.current;
+        state.speed=0;
+        state.direction=0;
       });
       const img=tile.querySelector('.teaser-browser-screen img');
       if(img&&!img.complete){
