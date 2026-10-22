@@ -86,11 +86,10 @@
     // Actualiza o limite do scroll depois de trocar filtros/idioma.
     bindArmeriaImage();
   }
-  // O rato controla o scroll interno da imagem ao longo de toda a altura do ecrã.
-  let pointerY=0;
-  let pointerActive=false;
-  let pointerFrame=0;
+  // O scroll da página só responde ao movimento do rato dentro do cartão.
   const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+  const armeriaMotion=new WeakMap();
+  let armeriaFrame=0;
 
   function updateArmeriaBounds(){
     portfolio.querySelectorAll('.tile-armeria').forEach(tile=>{
@@ -98,48 +97,68 @@
       const img=screen&&screen.querySelector('img');
       if(!screen||!img)return;
       const width=screen.clientWidth;
-      const height=screen.clientHeight;
       const naturalWidth=img.naturalWidth||img.width||626;
       const naturalHeight=img.naturalHeight||img.height||2048;
-      const scrollOverflow=Math.max(0,width*naturalHeight/naturalWidth-height);
-      tile.dataset.scrollOverflow=String(scrollOverflow);
-      tile.style.setProperty('--teaser-max-scroll',(-scrollOverflow).toFixed(1)+'px');
+      const overflow=Math.max(0,width*naturalHeight/naturalWidth-screen.clientHeight);
+      const state=armeriaMotion.get(tile);
+      if(state){
+        state.overflow=overflow;
+        state.current=Math.min(state.current,overflow);
+        state.target=Math.min(state.target,overflow);
+        tile.style.setProperty('--teaser-scroll-y',(-state.current).toFixed(2)+'px');
+      }
     });
   }
 
-  function updateTeaserPointer(){
-    pointerFrame=0;
-    const position=reducedMotion.matches?0:Math.max(0,Math.min(1,pointerY/Math.max(1,window.innerHeight)));
+  function animateArmeria(){
+    armeriaFrame=0;
+    let needsFrame=false;
     portfolio.querySelectorAll('.tile-armeria').forEach(tile=>{
-      const overflow=Number(tile.dataset.scrollOverflow||0);
-      tile.style.setProperty('--teaser-scroll-y',(-overflow*position).toFixed(1)+'px');
-      tile.classList.toggle('is-pointer-controlled',pointerActive&&!reducedMotion.matches);
+      const state=armeriaMotion.get(tile);
+      if(!state||!state.active)return;
+      // Aproximação progressiva ao destino para um movimento mais fluido.
+      state.current+=(state.target-state.current)*0.075;
+      if(Math.abs(state.target-state.current)<0.35){
+        state.current=state.target;
+      }else{
+        needsFrame=true;
+      }
+      tile.style.setProperty('--teaser-scroll-y',(-state.current).toFixed(2)+'px');
     });
+    if(needsFrame)armeriaFrame=requestAnimationFrame(animateArmeria);
+  }
+
+  function setArmeriaTarget(tile,event){
+    if(reducedMotion.matches||event.pointerType==='touch')return;
+    const state=armeriaMotion.get(tile);
+    if(!state)return;
+    const rect=tile.getBoundingClientRect();
+    const relativeY=Math.max(0,Math.min(1,(event.clientY-rect.top)/Math.max(1,rect.height)));
+    state.target=relativeY*state.overflow;
+    state.active=true;
+    if(!armeriaFrame)armeriaFrame=requestAnimationFrame(animateArmeria);
   }
 
   function bindArmeriaImage(){
-    portfolio.querySelectorAll('.tile-armeria img').forEach(img=>{
-      if(!img.complete){
-        img.addEventListener('load',()=>{
-          updateArmeriaBounds();
-          updateTeaserPointer();
-        },{once:true});
+    portfolio.querySelectorAll('.tile-armeria').forEach(tile=>{
+      const state={active:false,current:0,target:0,overflow:0};
+      armeriaMotion.set(tile,state);
+      tile.addEventListener('pointerenter',event=>setArmeriaTarget(tile,event));
+      tile.addEventListener('pointermove',event=>setArmeriaTarget(tile,event),{passive:true});
+      tile.addEventListener('pointerleave',()=>{
+        // Fora do cartão a imagem permanece na última posição.
+        state.active=false;
+        state.target=state.current;
+      });
+      const img=tile.querySelector('.teaser-browser-screen img');
+      if(img&&!img.complete){
+        img.addEventListener('load',updateArmeriaBounds,{once:true});
       }
     });
     updateArmeriaBounds();
-    updateTeaserPointer();
   }
 
-  window.addEventListener('pointermove',event=>{
-    if(event.pointerType==='touch'||reducedMotion.matches)return;
-    pointerY=event.clientY;
-    pointerActive=true;
-    if(!pointerFrame)pointerFrame=requestAnimationFrame(updateTeaserPointer);
-  },{passive:true});
-  window.addEventListener('resize',()=>{
-    updateArmeriaBounds();
-    if(!pointerFrame)pointerFrame=requestAnimationFrame(updateTeaserPointer);
-  },{passive:true});
+  window.addEventListener('resize',updateArmeriaBounds,{passive:true});
   if(filters){filters.addEventListener('click',e=>{const button=e.target.closest('[data-category]');if(!button)return;category=button.dataset.category;filters.querySelectorAll('[data-category]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));render();});}
   window.addEventListener('papoa:languagechange',render);
   render();
