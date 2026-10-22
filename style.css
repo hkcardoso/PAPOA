@@ -415,75 +415,84 @@ body{animation:papoaPageIn .45s cubic-bezier(.22,.61,.36,1) both}
 .tile-placeholder:after{display:none}
 .placeholder-symbol{font-family:'Benzin','Montserrat',Arial,sans-serif;font-size:clamp(70px,9vw,170px);font-weight:400;color:#757a79;user-select:none}
 
-/* Armeria Baleal: portfolio homepage screenshot with continuous scroll and viewport parallax. */
+/* Armeria Baleal — imagem em full bleed e scroll guiado pelo rato. */
 .tile-armeria{
-  display:block;
   position:relative;
+  display:block;
   overflow:hidden;
-  background:radial-gradient(ellipse at 55% 27%,#343b3a 0%,#1c2121 67%,#17191a 100%);
   isolation:isolate;
-  --teaser-x:0px;--teaser-y:0px;--teaser-rx:0deg;--teaser-ry:0deg
+  background:#162222;
+  --teaser-scroll-y:0px;
+  --teaser-max-scroll:0px
 }
-.tile-armeria::before{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse at 50% 70%,rgba(255,255,255,.09),transparent 65%);
-  opacity:.7
-}
+.tile-armeria::before{display:none}
 .tile-armeria::after{
-  inset:56% 0 0;opacity:0;
-  background:linear-gradient(transparent,rgba(0,0,0,.62))
+  content:"";position:absolute;inset:62% 0 0;pointer-events:none;
+  background:linear-gradient(transparent,rgba(0,0,0,.48));opacity:0;
+  transition:opacity .24s ease
 }
 .tile-armeria:hover::after,.tile-armeria:focus-visible::after{opacity:1}
 .teaser-floating{
-  position:absolute;inset:7% 6%;
-  display:flex;align-items:center;justify-content:center;
+  position:absolute;
+  inset:0;
+  display:block;
   pointer-events:none;
-  transform:perspective(1100px) translate3d(var(--teaser-x),var(--teaser-y),0)
-    rotateX(var(--teaser-rx)) rotateY(var(--teaser-ry));
-  transition:transform .32s cubic-bezier(.22,.61,.36,1);
-  will-change:transform
+  transform:none;
+  transition:none
 }
 .teaser-browser{
-  display:flex;flex-direction:column;width:100%;height:100%;
-  overflow:hidden;border:6px solid #101414;border-radius:12px;
-  background:#f5f4ef;
-  box-shadow:0 22px 52px rgba(0,0,0,.44),0 2px 10px rgba(0,0,0,.32);
+  display:flex;flex-direction:column;
+  width:100%;height:100%;
+  overflow:hidden;
+  border:3px solid #101819;
+  border-radius:0;
+  background:#f6f5f1;
+  box-shadow:none
 }
 .teaser-browser-chrome{
-  flex:0 0 23px;display:flex;align-items:center;gap:12px;
+  display:flex;flex:0 0 24px;align-items:center;gap:11px;
   padding:0 10px;line-height:1;
-  background:#102f33;color:#bcc6c4;
+  background:#102d32;color:#c1c9c6;
   border-bottom:1px solid rgba(255,255,255,.08)
 }
 .teaser-browser-dots{
-  width:5px;height:5px;border-radius:50%;
-  background:#8ba2a2;
-  box-shadow:9px 0 0 #8ba2a2,18px 0 0 #8ba2a2
+  flex:0 0 auto;width:5px;height:5px;border-radius:50%;
+  background:#9bafad;box-shadow:9px 0 0 #9bafad,18px 0 0 #9bafad
 }
 .teaser-browser-address{
-  flex:1;text-align:center;padding-right:26px;
+  flex:1;text-align:center;padding-right:28px;
   font:500 9px "Montserrat",Arial,sans-serif;
-  letter-spacing:.03em;opacity:.8
+  letter-spacing:.03em;opacity:.84
 }
-.teaser-browser-screen{flex:1;min-height:0;overflow:hidden;background:#f7f6f3}
+.teaser-browser-screen{
+  position:relative;flex:1;min-height:0;
+  overflow:hidden;background:#f7f6f3
+}
 .teaser-browser-screen img{
-  display:block;width:100%;height:100%;max-width:none;object-fit:cover;
-  object-position:50% 0%;
-  animation:papoa-site-scroll 19s ease-in-out infinite;
-  will-change:object-position
+  display:block;position:absolute;top:0;left:0;
+  width:100%;height:auto;max-width:none;
+  object-fit:initial;object-position:initial;
+  transform:translate3d(0,var(--teaser-scroll-y),0);
+  transition:transform .3s ease-out;
+  will-change:transform;
+  animation:papoa-armeria-auto 24s ease-in-out infinite
 }
-@keyframes papoa-site-scroll{
-  0%,9%{object-position:50% 0%}
-  45%,55%{object-position:50% 100%}
-  91%,100%{object-position:50% 0%}
+.tile-armeria.is-pointer-controlled .teaser-browser-screen img{animation:none}
+@keyframes papoa-armeria-auto{
+  0%,10%{transform:translate3d(0,0,0)}
+  45%,55%{transform:translate3d(0,var(--teaser-max-scroll),0)}
+  90%,100%{transform:translate3d(0,0,0)}
 }
 .tile-armeria .tile-copy{z-index:3}
 @media(max-width:900px){
-  .teaser-floating{inset:6% 5%}
-  .teaser-browser{border-width:4px;border-radius:9px}
-  .teaser-browser-chrome{flex-basis:18px}
+  .teaser-floating{inset:0}
+  .teaser-browser{border-width:2px}
+  .teaser-browser-chrome{flex-basis:20px}
 }
 @media(prefers-reduced-motion:reduce){
-  .teaser-floating{transform:none!important;transition:none!important}
-  .teaser-browser-screen img{animation:none!important;object-position:50% 0%}
+  .teaser-browser-screen img{
+    animation:none!important;
+    transform:translate3d(0,0,0)!important;
+    transition:none!important
+  }
 }
