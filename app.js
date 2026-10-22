@@ -120,7 +120,7 @@
       const state=armeriaMotion.get(tile);
       if(!state||!state.active)return;
       // Subida mais rápida e descida ainda mais rápida, com aceleração/travagem progressiva.
-      const desiredSpeed=state.direction*(state.direction>0?250:145); // px/s
+      const desiredSpeed=state.direction*(state.direction>0?450:250); // px/s
       const alpha=1-Math.exp(-dt/580);
       state.speed+=(desiredSpeed-state.speed)*alpha;
       state.current=Math.max(0,Math.min(state.overflow,state.current+state.speed*dt/1000));
