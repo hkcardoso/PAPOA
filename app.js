@@ -26,29 +26,28 @@
       items.forEach((item,itemIndex)=>{
         const p=Object.assign({},projects[item.project]||{},item);
         if(p.placeholder==='armeria'){
-          // Cartão interactivo com a captura real da homepage.
+          // Um render do projecto ocupa todo o cartão; a página interactiva revela-se no hover.
           const tile=document.createElement('a');
           tile.className='tile tile-armeria';
           tile.href=p.href||'https://armeriabaleal.com/';
           if(!p.href){tile.target='_blank';tile.rel='noopener noreferrer';}
           tile.style.flex=(p.width/p.height)+' 1 0';
           tile.style.aspectRatio=p.width+'/'+p.height;
-          tile.setAttribute('aria-label',p.title+' — site');
+          tile.setAttribute('aria-label',p.title+' — website e projecto');
           const floating=document.createElement('div');floating.className='teaser-floating';
           const browser=document.createElement('div');browser.className='teaser-browser';
-          const chrome=document.createElement('div');chrome.className='teaser-browser-chrome';
-          const dots=document.createElement('span');dots.className='teaser-browser-dots';
-          dots.setAttribute('aria-hidden','true');
-          const address=document.createElement('span');address.className='teaser-browser-address';
-          address.textContent='armeriabaleal.com';
-          chrome.append(dots,address);
           const screen=document.createElement('div');screen.className='teaser-browser-screen';
           const shot=document.createElement('img');shot.src=p.image;
           shot.alt='Homepage do website Armeria Baleal';
           shot.loading='eager';shot.decoding='async';shot.fetchPriority='low';
           shot.width=626;shot.height=2048;
-          screen.append(shot);browser.append(chrome,screen);
-          floating.append(browser);tile.append(floating);
+          screen.append(shot);browser.append(screen);floating.append(browser);
+          const cover=document.createElement('div');cover.className='teaser-cover';
+          const coverImage=document.createElement('img');
+          coverImage.src=p.cover||'/assets/armeria/Armeria_Video_Capa.avif';
+          coverImage.alt='';coverImage.loading='eager';coverImage.decoding='async';
+          cover.append(coverImage);
+          tile.append(floating,cover);
           const copy=document.createElement('div');copy.className='tile-copy';
           const title=document.createElement('strong');title.textContent=p.title;
           const subtitle=document.createElement('span');subtitle.textContent=p.author||'';
