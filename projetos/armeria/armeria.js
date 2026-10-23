@@ -103,9 +103,8 @@
   }
 
 
-  // Accessible project lightbox: one sequence for editorial mockups and another for renders.
+  // Lightbox applies only to the renders gallery. Editorial design mockups remain static.
   const lightboxGroups=[
-    [...document.querySelectorAll('.ac-mockup-card .ac-mockup-media img')],
     [...document.querySelectorAll('.ac-gallery-card img')]
   ].filter(group=>group.length);
   if(lightboxGroups.length&&typeof HTMLDialogElement!=='undefined'){
