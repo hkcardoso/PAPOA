@@ -102,22 +102,110 @@
     updateFilmState();
   }
 
-  // Show newly supplied photographs only after their assets exist; no broken-image tiles.
-  document.querySelectorAll('[data-gallery-pending]').forEach(card=>{
-    const image=card.querySelector('img');
-    if(!image)return;
-    const probe=new Image();
-    probe.onload=()=>{card.hidden=false;};
-    probe.src=image.getAttribute('src');
-  });
 
-  // Keep the current video cover as a fallback until the new facade image is available.
-  if(film){
-    const candidate=film.getAttribute('data-poster-candidate');
-    if(candidate){
-      const facadePreview=new Image();
-      facadePreview.onload=()=>{film.poster=candidate;};
-      facadePreview.src=candidate;
-    }
+  // Accessible project lightbox: one sequence for editorial mockups and another for renders.
+  const lightboxGroups=[
+    [...document.querySelectorAll('.ac-mockup-card .ac-mockup-media img')],
+    [...document.querySelectorAll('.ac-gallery-card img')]
+  ].filter(group=>group.length);
+  if(lightboxGroups.length&&typeof HTMLDialogElement!=='undefined'){
+    const dialog=document.createElement('dialog');
+    dialog.className='ac-lightbox';
+    dialog.setAttribute('aria-label','Galeria Armeria Baleal Residence');
+    dialog.innerHTML=`
+      <div class="ac-lightbox-top"><span class="ac-lightbox-index" aria-live="polite"></span><button type="button" class="ac-lightbox-close" aria-label="Fechar galeria" title="Fechar">×</button></div>
+      <div class="ac-lightbox-stage">
+        <button type="button" class="ac-lightbox-prev" aria-label="Imagem anterior">‹</button>
+        <img class="ac-lightbox-image" alt="">
+        <button type="button" class="ac-lightbox-next" aria-label="Imagem seguinte">›</button>
+      </div>
+      <div class="ac-lightbox-bottom"><p class="ac-lightbox-caption"></p><div class="ac-lightbox-thumbs" aria-label="Miniaturas da galeria"></div></div>
+    `;
+    document.body.append(dialog);
+    const fullImage=dialog.querySelector('.ac-lightbox-image');
+    const counter=dialog.querySelector('.ac-lightbox-index');
+    const caption=dialog.querySelector('.ac-lightbox-caption');
+    const thumbs=dialog.querySelector('.ac-lightbox-thumbs');
+    const closeButton=dialog.querySelector('.ac-lightbox-close');
+    let items=[],selected=0,returnFocus=null;
+
+    const showImage=index=>{
+      if(!items.length)return;
+      selected=(index+items.length)%items.length;
+      const chosen=items[selected];
+      fullImage.src=chosen.currentSrc||chosen.src;
+      fullImage.alt=chosen.alt;
+      caption.textContent=chosen.alt;
+      counter.textContent=String(selected+1).padStart(2,'0')+' / '+String(items.length).padStart(2,'0');
+      [...thumbs.children].forEach((btn,i)=>{
+        const active=i===selected;
+        btn.classList.toggle('is-selected',active);
+        if(active){btn.setAttribute('aria-current','true');btn.scrollIntoView({block:'nearest',inline:'nearest'});}
+        else btn.removeAttribute('aria-current');
+      });
+      // Load the next image early for fluid navigation.
+      const next=items[(selected+1)%items.length];
+      if(next){const preload=new Image();preload.src=next.currentSrc||next.src;}
+    };
+    const openGallery=(group,index,trigger)=>{
+      items=group;
+      returnFocus=trigger;
+      thumbs.replaceChildren();
+      group.forEach((img,i)=>{
+        const thumb=document.createElement('button');
+        thumb.type='button';
+        thumb.className='ac-lightbox-thumb';
+        thumb.setAttribute('aria-label','Ver imagem '+(i+1));
+        const preview=document.createElement('img');
+        preview.src=img.currentSrc||img.src;
+        preview.alt='';
+        preview.loading='lazy';
+        thumb.append(preview);
+        thumb.addEventListener('click',()=>showImage(i));
+        thumbs.append(thumb);
+      });
+      dialog.showModal();
+      document.documentElement.classList.add('ac-lightbox-open');
+      showImage(index);
+      closeButton.focus();
+    };
+    const closeGallery=()=>dialog.close();
+    dialog.querySelector('.ac-lightbox-prev').addEventListener('click',()=>showImage(selected-1));
+    dialog.querySelector('.ac-lightbox-next').addEventListener('click',()=>showImage(selected+1));
+    closeButton.addEventListener('click',closeGallery);
+    dialog.querySelector('.ac-lightbox-stage').addEventListener('click',e=>{
+      if(e.target.classList.contains('ac-lightbox-stage'))closeGallery();
+    });
+    dialog.addEventListener('keydown',e=>{
+      if(e.key==='ArrowRight'||e.key==='ArrowLeft'){
+        e.preventDefault();
+        showImage(selected+(e.key==='ArrowRight'?1:-1));
+      }
+    });
+    let touchX=null;
+    dialog.querySelector('.ac-lightbox-stage').addEventListener('touchstart',e=>{
+      touchX=e.touches.length===1?e.touches[0].clientX:null;
+    },{passive:true});
+    dialog.querySelector('.ac-lightbox-stage').addEventListener('touchend',e=>{
+      if(touchX===null||!e.changedTouches.length)return;
+      const delta=e.changedTouches[0].clientX-touchX;
+      touchX=null;
+      if(Math.abs(delta)>55)showImage(selected+(delta<0?1:-1));
+    },{passive:true});
+    dialog.addEventListener('close',()=>{
+      document.documentElement.classList.remove('ac-lightbox-open');
+      fullImage.removeAttribute('src');
+      if(returnFocus?.isConnected)returnFocus.focus({preventScroll:true});
+    });
+
+    lightboxGroups.forEach(group=>group.forEach((img,index)=>{
+      const button=document.createElement('button');
+      button.type='button';
+      button.className='ac-photo-trigger';
+      button.setAttribute('aria-label','Ampliar imagem: '+img.alt);
+      img.before(button);
+      button.append(img);
+      button.addEventListener('click',()=>openGallery(group,index,button));
+    }));
   }
 })();
