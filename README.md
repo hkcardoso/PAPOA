@@ -17,4 +17,4 @@ Static portfolio site, rebranded from the CLASTO site and published through Clou
 - `fonts/`: site fonts.
 - `_headers`: static asset response headers.
 
-The contact form sends to `hello@papoa.pt`. Twenty large original images are temporarily served from `clasto.pt` until those source files can be transferred here.
+The contact form sends to `studio@papoa.pt`. Twenty large original images are temporarily served from `clasto.pt` until those source files can be transferred here.
