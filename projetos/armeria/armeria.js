@@ -2,8 +2,6 @@
   const device=document.querySelector('.ac-web-device');
   const webFrame=device?.querySelector('.ac-web-frame');
   const webImage=webFrame?.querySelector('img');
-  const previewVideo=webFrame?.querySelector('.ac-web-preview-video');
-  const previewSource=previewVideo?.querySelector('source');
   const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
   const finePointer=window.matchMedia('(hover: hover) and (pointer: fine)');
 
@@ -12,7 +10,6 @@
     const state={active:false,current:0,speed:0,direction:0,overflow:0};
     let frameId=0;
     let lastFrame=0;
-    let inView=false;
 
     const updateBounds=()=>{
       const width=webFrame.clientWidth;
@@ -51,50 +48,18 @@
       if(!frameId){lastFrame=0;frameId=requestAnimationFrame(animationFrame);}
     };
 
-    const playPreview=()=>{
-      if(!previewVideo||!previewSource||!finePointer.matches||reducedMotion.matches||!inView||device.matches(':hover')||document.hidden)return;
-      if(!previewSource.getAttribute('src')){
-        previewSource.src=previewSource.dataset.src;
-        previewVideo.load();
-      }
-      previewVideo.play().catch(()=>{});
-    };
-
-    device.addEventListener('pointerenter',event=>{
-      if(event.pointerType==='touch')return;
-      previewVideo?.pause();
-      setDirection(event);
-    });
+    device.addEventListener('pointerenter',setDirection);
     device.addEventListener('pointermove',setDirection,{passive:true});
     device.addEventListener('pointerleave',()=>{
       state.active=false;
       state.speed=0;
       state.direction=0;
-      playPreview();
     });
-    device.addEventListener('focusin',()=>previewVideo?.pause());
-    device.addEventListener('focusout',()=>playPreview());
 
     if(webImage.complete)updateBounds();
     else webImage.addEventListener('load',updateBounds,{once:true});
     window.addEventListener('resize',updateBounds,{passive:true});
-    document.addEventListener('visibilitychange',()=>{
-      if(document.hidden)previewVideo?.pause();
-      else playPreview();
-    });
-    if('IntersectionObserver' in window){
-      const observer=new IntersectionObserver(entries=>{
-        for(const entry of entries){
-          inView=entry.isIntersecting;
-          if(inView)playPreview();
-          else previewVideo?.pause();
-        }
-      },{rootMargin:'140px 0px',threshold:0});
-      observer.observe(device);
-    }else{
-      inView=true;
-      playPreview();
-    }
+
   }
 
   const heroVideo=document.querySelector('.ac-hero-video');
@@ -114,7 +79,7 @@
     });
     heroVideo.addEventListener('play',updateButton);
     heroVideo.addEventListener('pause',updateButton);
-    if(reduce.matches)heroVideo.pause();
+    if(reducedMotion.matches)heroVideo.pause();
     updateButton();
   }
 })();
