@@ -101,4 +101,23 @@
     film.addEventListener('error',()=>filmPlayer.classList.remove('is-playing'));
     updateFilmState();
   }
+
+  // Show newly supplied photographs only after their assets exist; no broken-image tiles.
+  document.querySelectorAll('[data-gallery-pending]').forEach(card=>{
+    const image=card.querySelector('img');
+    if(!image)return;
+    const probe=new Image();
+    probe.onload=()=>{card.hidden=false;};
+    probe.src=image.getAttribute('src');
+  });
+
+  // Keep the current video cover as a fallback until the new facade image is available.
+  if(film){
+    const candidate=film.getAttribute('data-poster-candidate');
+    if(candidate){
+      const facadePreview=new Image();
+      facadePreview.onload=()=>{film.poster=candidate;};
+      facadePreview.src=candidate;
+    }
+  }
 })();
