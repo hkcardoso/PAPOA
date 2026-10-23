@@ -183,3 +183,19 @@
 .ac-website-footer{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:18px;padding:36px 0 30px}
 .ac-website-footer a{display:inline-flex;align-items:center;justify-content:center;align-self:center;margin:0 auto}
 @media(max-width:700px){.ac-website-footer{align-items:center;justify-content:center;text-align:center;gap:14px}.ac-website-footer a{align-self:center}}
+
+/* Live Website — small outlined pill, consistent with PAPOA service tags. */
+.armeria-case .ac-website-footer a{
+  display:inline-flex;align-items:center;justify-content:center;align-self:center;
+  width:max-content;min-height:36px;margin:0 auto;padding:9px 17px;
+  border:1px solid rgba(235,238,233,.4);border-radius:999px;
+  background:transparent;color:#e1e2de;box-shadow:none;
+  font-family:"Montserrat",Arial,sans-serif;font-size:11px;font-weight:400;
+  line-height:1.35;letter-spacing:0;white-space:nowrap;
+  transition:border-color .22s ease,background .22s ease,color .22s ease;
+}
+.armeria-case .ac-website-footer a:hover,
+.armeria-case .ac-website-footer a:focus-visible{
+  border-color:rgba(245,246,242,.8);background:rgba(255,255,255,.06);color:#fff;
+}
+@media(prefers-reduced-motion:reduce){.armeria-case .ac-website-footer a{transition:none}}
