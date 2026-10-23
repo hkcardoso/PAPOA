@@ -3,7 +3,7 @@
 .armeria-case main.armeria-main{width:100%;max-width:none;margin:0;overflow:hidden}
 .armeria-case .site-header{position:relative;z-index:10}
 .ac-hero{display:grid;grid-template-columns:56% 44%;width:calc(100% - var(--gallery-gutter,69px)*2);margin:10px auto 0;min-height:clamp(460px,65vh,740px);background:#1d2021}
-.ac-hero-media{position:relative;min-height:460px;overflow:hidden;background:#282d2a}
+.ac-hero-media{position:relative;min-height:460px;overflow:hidden;background:#282d2a url('/assets/armeria/Facade_00209.png') center center / cover no-repeat}
 .ac-hero-media img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform 1.4s cubic-bezier(.22,.61,.36,1);filter:saturate(.87)}
 .ac-hero-media:hover img{transform:scale(1.025)}
 .ac-hero-media-credit{position:absolute;bottom:23px;left:28px;color:#fff;font-size:9px;font-weight:500;letter-spacing:.15em;text-shadow:0 1px 5px rgba(0,0,0,.5)}
@@ -149,7 +149,7 @@
 
 /* 2026-10-23: hero motion, complete stills grid, updated brochure */
 .ac-hero-media{isolation:isolate}
-.ac-hero-media .ac-hero-video{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:center;background:#202b2e}
+.ac-hero-media .ac-hero-video{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:center;background:transparent url('/assets/armeria/Facade_00209.png') center center / cover no-repeat}
 .ac-hero-media-credit{z-index:2;pointer-events:none}
 .ac-video-control{position:absolute;z-index:3;right:18px;bottom:18px;display:grid;place-items:center;width:36px;height:36px;border:1px solid rgba(255,255,255,.48);border-radius:50%;background:rgba(16,28,29,.28);color:white;font:400 14px/1 Arial,sans-serif;cursor:pointer;backdrop-filter:blur(7px);transition:background .25s ease}
 .ac-video-control:hover,.ac-video-control:focus-visible{background:rgba(16,28,29,.7)}

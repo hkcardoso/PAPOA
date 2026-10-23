@@ -464,7 +464,7 @@ body{animation:papoaPageIn .45s cubic-bezier(.22,.61,.36,1) both}
   z-index:2;
   pointer-events:none;
   overflow:hidden;
-  background:#e8e5df;
+  background:#e8e5df url('/assets/armeria/Facade_00209.png') center center / cover no-repeat;
   opacity:1;
   transition:opacity .16s ease-out
 }
