@@ -63,6 +63,7 @@ window.PAPOA_PORTFOLIO = {
         "href": "/projetos/armeria/",
         "author": "Website · CGI · Interactive",
         "image": "/assets/images/armeria-teaser2.webp",
+        "cover": "/assets/armeria/Armeria_Video_Capa.avif",
         "width": 1580,
         "height": 1000
       }
