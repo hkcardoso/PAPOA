@@ -166,9 +166,9 @@
 /* Editorial portfolio mockups: four slots */
 .ac-mockup-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:16px;row-gap:44px;align-items:start}
 .ac-mockup-card{margin:0;min-width:0}
-.ac-mockup-media{width:100%;aspect-ratio:4/3;overflow:hidden;display:grid;place-items:center;background:#deddd7}
+.ac-mockup-media{width:100%;aspect-ratio:3/2;overflow:hidden;display:grid;place-items:center;background:transparent}
 .ac-mockup-media img{display:block;width:100%;height:100%;object-fit:contain;transition:transform .65s cubic-bezier(.22,.61,.36,1)}
-.ac-mockup-card:hover .ac-mockup-media img{transform:scale(1.02)}
+.ac-mockup-card:hover .ac-mockup-media img{transform:none}
 .ac-mockup-empty{background:#e1e3de;border:1px solid #cfd3cd;position:relative}
 .ac-mockup-empty:before{content:"";position:absolute;inset:17px;border:1px solid rgba(26,37,35,.08)}
 .ac-mockup-empty .ac-placeholder-question{font-size:clamp(86px,11vw,172px);color:#a8b0a9}
