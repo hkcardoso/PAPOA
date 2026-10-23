@@ -39,7 +39,7 @@
           const screen=document.createElement('div');screen.className='teaser-browser-screen';
           const shot=document.createElement('img');shot.src=p.image;
           shot.alt='Homepage do website Armeria Baleal';
-          shot.loading='eager';shot.decoding='async';shot.fetchPriority='low';
+          shot.loading='eager';shot.decoding='async';shot.fetchPriority='auto';
           shot.width=626;shot.height=2048;
           screen.append(shot);browser.append(screen);floating.append(browser);
           const cover=document.createElement('div');cover.className='teaser-cover';
