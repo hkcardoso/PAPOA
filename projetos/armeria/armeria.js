@@ -82,4 +82,23 @@
     if(reducedMotion.matches)heroVideo.pause();
     updateButton();
   }
+
+  // A film player above the still-image gallery; native controls provide seek, volume and fullscreen.
+  const filmPlayer=document.querySelector('[data-film-player]');
+  const film=filmPlayer?.querySelector('.ac-film-video');
+  const filmPlay=filmPlayer?.querySelector('[data-film-play]');
+  if(film&&filmPlay){
+    const updateFilmState=()=>filmPlayer.classList.toggle('is-playing',!film.paused&&!film.ended);
+    filmPlay.addEventListener('click',async()=>{
+      try{await film.play();}catch(error){/* Native video controls remain usable if playback fails. */}
+    });
+    film.addEventListener('play',()=>{
+      updateFilmState();
+      if(heroVideo&&!heroVideo.paused)heroVideo.pause();
+    });
+    film.addEventListener('pause',updateFilmState);
+    film.addEventListener('ended',updateFilmState);
+    film.addEventListener('error',()=>filmPlayer.classList.remove('is-playing'));
+    updateFilmState();
+  }
 })();
