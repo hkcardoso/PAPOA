@@ -1,30 +1,101 @@
 (()=> {
   const device=document.querySelector('.ac-web-device');
-  const webImage=device?.querySelector('.ac-web-frame img');
   const webFrame=device?.querySelector('.ac-web-frame');
-  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)');
-  const updateDeviceScroll=()=>{
-    if(!webImage||!webFrame)return;
-    const imageWidth=webImage.naturalWidth||626;
-    const imageHeight=webImage.naturalHeight||2048;
-    const renderedHeight=webFrame.clientWidth*imageHeight/imageWidth;
-    const overflow=Math.max(0,renderedHeight-webFrame.clientHeight);
-    device.style.setProperty('--ac-web-scroll',(-overflow).toFixed(1)+'px');
-  };
-  if(device&&webImage){
-    if(webImage.complete)updateDeviceScroll();
-    else webImage.addEventListener('load',updateDeviceScroll,{once:true});
-    window.addEventListener('resize',updateDeviceScroll,{passive:true});
+  const webImage=webFrame?.querySelector('img');
+  const previewVideo=webFrame?.querySelector('.ac-web-preview-video');
+  const previewSource=previewVideo?.querySelector('source');
+  const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+  const finePointer=window.matchMedia('(hover: hover) and (pointer: fine)');
+
+  // O mesmo movimento guiado pelo rato usado no cartão da homepage.
+  if(device&&webFrame&&webImage){
+    const state={active:false,current:0,speed:0,direction:0,overflow:0};
+    let frameId=0;
+    let lastFrame=0;
+    let inView=false;
+
+    const updateBounds=()=>{
+      const width=webFrame.clientWidth;
+      const imageWidth=webImage.naturalWidth||626;
+      const imageHeight=webImage.naturalHeight||2048;
+      state.overflow=Math.max(0,width*imageHeight/imageWidth-webFrame.clientHeight);
+      state.current=Math.max(0,Math.min(state.current,state.overflow));
+      webFrame.style.setProperty('--ac-web-position',(-state.current).toFixed(2)+'px');
+    };
+
+    const animationFrame=now=>{
+      frameId=0;
+      if(!state.active||!finePointer.matches||reducedMotion.matches){lastFrame=0;return;}
+      const dt=lastFrame?Math.min(48,now-lastFrame):16.67;
+      lastFrame=now;
+      const desired=state.direction*(state.direction>0?620:380);
+      state.speed+=(desired-state.speed)*(1-Math.exp(-dt/350));
+      state.current=Math.max(0,Math.min(state.overflow,state.current+state.speed*dt/1000));
+      webFrame.style.setProperty('--ac-web-position',(-state.current).toFixed(2)+'px');
+      const atEdge=(state.current<=0&&state.speed<0)||(state.current>=state.overflow&&state.speed>0);
+      if(atEdge)state.speed=0;
+      if(!atEdge&&(Math.abs(state.speed)>.3||Math.abs(desired)>.3)){
+        frameId=requestAnimationFrame(animationFrame);
+      }else lastFrame=0;
+    };
+
+    const setDirection=event=>{
+      if(event.pointerType==='touch'||!finePointer.matches||reducedMotion.matches)return;
+      const rect=device.getBoundingClientRect();
+      const relativeY=Math.max(0,Math.min(1,(event.clientY-rect.top)/Math.max(1,rect.height)));
+      const axis=(relativeY-.5)*2;
+      const deadZone=.035;
+      const magnitude=Math.max(0,(Math.abs(axis)-deadZone)/(1-deadZone));
+      state.direction=Math.sign(axis)*Math.pow(magnitude,1.3);
+      state.active=true;
+      if(!frameId){lastFrame=0;frameId=requestAnimationFrame(animationFrame);}
+    };
+
+    const playPreview=()=>{
+      if(!previewVideo||!previewSource||!finePointer.matches||reducedMotion.matches||!inView||device.matches(':hover')||document.hidden)return;
+      if(!previewSource.getAttribute('src')){
+        previewSource.src=previewSource.dataset.src;
+        previewVideo.load();
+      }
+      previewVideo.play().catch(()=>{});
+    };
+
+    device.addEventListener('pointerenter',event=>{
+      if(event.pointerType==='touch')return;
+      previewVideo?.pause();
+      setDirection(event);
+    });
+    device.addEventListener('pointermove',setDirection,{passive:true});
+    device.addEventListener('pointerleave',()=>{
+      state.active=false;
+      state.speed=0;
+      state.direction=0;
+      playPreview();
+    });
+    device.addEventListener('focusin',()=>previewVideo?.pause());
+    device.addEventListener('focusout',()=>playPreview());
+
+    if(webImage.complete)updateBounds();
+    else webImage.addEventListener('load',updateBounds,{once:true});
+    window.addEventListener('resize',updateBounds,{passive:true});
+    document.addEventListener('visibilitychange',()=>{
+      if(document.hidden)previewVideo?.pause();
+      else playPreview();
+    });
     if('IntersectionObserver' in window){
       const observer=new IntersectionObserver(entries=>{
-        for(const entry of entries)device.classList.toggle('is-in-view',entry.isIntersecting&&!reduce.matches);
-      },{threshold:.15});
+        for(const entry of entries){
+          inView=entry.isIntersecting;
+          if(inView)playPreview();
+          else previewVideo?.pause();
+        }
+      },{rootMargin:'140px 0px',threshold:0});
       observer.observe(device);
-    }else if(!reduce.matches){
-      device.classList.add('is-in-view');
+    }else{
+      inView=true;
+      playPreview();
     }
   }
-
 
   const heroVideo=document.querySelector('.ac-hero-video');
   const videoButton=document.querySelector('[data-video-toggle]');
