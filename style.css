@@ -466,7 +466,7 @@ body{animation:papoaPageIn .45s cubic-bezier(.22,.61,.36,1) both}
   overflow:hidden;
   background:#e8e5df;
   opacity:1;
-  transition:opacity .6s cubic-bezier(.22,1,.36,1)
+  transition:opacity .16s ease-out
 }
 .teaser-cover-video{
   display:block;
