@@ -147,3 +147,19 @@
 .ac-perspectives figcaption{position:absolute;left:22px;bottom:18px;font-size:10px;letter-spacing:.08em;color:#fff;text-shadow:0 1px 7px #0008}
 @media(max-width:700px){.ac-communication{margin-bottom:70px;padding:55px 18px 65px}.ac-perspectives{grid-template-columns:1fr;gap:9px}}
 @media(prefers-reduced-motion:reduce){.ac-perspectives img{transition:none!important}}
+
+/* 2026-10-23: hero motion, complete stills grid, updated brochure */
+.ac-hero-media{isolation:isolate}
+.ac-hero-media .ac-hero-video{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:center;background:#202b2e}
+.ac-hero-media-credit{z-index:2;pointer-events:none}
+.ac-video-control{position:absolute;z-index:3;right:18px;bottom:18px;display:grid;place-items:center;width:36px;height:36px;border:1px solid rgba(255,255,255,.48);border-radius:50%;background:rgba(16,28,29,.28);color:white;font:400 14px/1 Arial,sans-serif;cursor:pointer;backdrop-filter:blur(7px);transition:background .25s ease}
+.ac-video-control:hover,.ac-video-control:focus-visible{background:rgba(16,28,29,.7)}
+.ac-visualisation{padding:5px 0 125px}
+.ac-gallery-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;width:100%}
+.ac-gallery-card{position:relative;margin:0;min-width:0;overflow:hidden;background:#2d3333;aspect-ratio:1.38}
+.ac-gallery-card img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .6s cubic-bezier(.22,.61,.36,1)}
+.ac-gallery-card:hover img{transform:scale(1.035)}
+.ac-gallery-card figcaption{position:absolute;inset:auto 0 0;display:block;padding:36px 19px 16px;color:#fff;font:500 10px/1.4 "Montserrat",Arial,sans-serif;letter-spacing:.11em;background:linear-gradient(transparent,rgba(0,0,0,.46));text-shadow:0 1px 4px #0004;pointer-events:none}
+@media(max-width:900px){.ac-gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}}
+@media(max-width:640px){.ac-gallery-grid{grid-template-columns:1fr}.ac-gallery-card{aspect-ratio:1.55}.ac-visualisation{padding-bottom:70px}}
+@media(prefers-reduced-motion:reduce){.ac-gallery-card img{transition:none!important}}

@@ -25,52 +25,25 @@
     }
   }
 
-  const gallery=document.querySelector('[data-gallery]');
-  if(!gallery)return;
-  const img=gallery.querySelector('[data-gallery-image]');
-  const count=gallery.querySelector('[data-gallery-count]');
-  const caption=gallery.querySelector('[data-gallery-caption]');
-  const dots=gallery.querySelector('[data-gallery-dots]');
-  const images=[1,2,3,4,5,6,7].map(n=>({
-    src:'/assets/armeria/interior-'+String(n).padStart(2,'0')+'.webp',
-    alt:'Armeria Baleal Residence — visualização 3D do interior, vista '+n
-  }));
-  let index=0;
-  let changing=false;
-  const dotButtons=images.map((image,n)=>{
-    const button=document.createElement('button');
-    button.type='button';
-    button.setAttribute('aria-label','Ver imagem '+(n+1));
-    button.addEventListener('click',()=>show(n));
-    dots.append(button);
-    return button;
-  });
-  function show(next){
-    if(changing)return;
-    const target=(next+images.length)%images.length;
-    if(target===index)return;
-    index=target;
-    changing=true;
-    img.classList.add('is-changing');
-    const nextImg=new Image();
-    nextImg.onload=()=>{
-      img.src=images[index].src;
-      img.alt=images[index].alt;
-      if(count)count.textContent=String(index+1).padStart(2,'0')+' / '+String(images.length).padStart(2,'0');
-      if(caption)caption.textContent='INTERIOR '+String(index+1).padStart(2,'0');
-      dotButtons.forEach((button,n)=>button.setAttribute('aria-current',String(index===n)));
-      requestAnimationFrame(()=>{img.classList.remove('is-changing');changing=false;});
+
+  const heroVideo=document.querySelector('.ac-hero-video');
+  const videoButton=document.querySelector('[data-video-toggle]');
+  if(heroVideo&&videoButton){
+    const updateButton=()=>{
+      const paused=heroVideo.paused;
+      videoButton.textContent=paused?'▶':'Ⅱ';
+      videoButton.setAttribute('aria-label',paused?'Reproduzir vídeo':'Pausar vídeo');
+      videoButton.title=paused?'Reproduzir vídeo':'Pausar vídeo';
     };
-    nextImg.onerror=()=>{
-      img.classList.remove('is-changing');changing=false;
-    };
-    nextImg.src=images[index].src;
+    videoButton.addEventListener('click',async ()=>{
+      if(heroVideo.paused){
+        try{await heroVideo.play();}catch(e){/* Browser may block playback until interaction. */}
+      }else heroVideo.pause();
+      updateButton();
+    });
+    heroVideo.addEventListener('play',updateButton);
+    heroVideo.addEventListener('pause',updateButton);
+    if(reduce.matches)heroVideo.pause();
+    updateButton();
   }
-  dotButtons.forEach((button,n)=>button.setAttribute('aria-current',String(index===n)));
-  gallery.querySelector('[data-gallery-prev]')?.addEventListener('click',()=>show(index-1));
-  gallery.querySelector('[data-gallery-next]')?.addEventListener('click',()=>show(index+1));
-  gallery.addEventListener('keydown',event=>{
-    if(event.key==='ArrowLeft'){event.preventDefault();show(index-1);}
-    if(event.key==='ArrowRight'){event.preventDefault();show(index+1);}
-  });
 })();
