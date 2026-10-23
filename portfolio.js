@@ -65,8 +65,8 @@ window.PAPOA_PORTFOLIO = {
         "image": "/assets/images/armeria-teaser2.webp",
         "cover": "/assets/armeria/Armeria_Video_Capa.avif",
         "video": "https://armeriabaleal.com/assets/video/armeria.mp4",
-        "width": 1580,
-        "height": 1000
+        "width": 1920,
+        "height": 1080
       }
     ],
     [
