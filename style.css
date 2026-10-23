@@ -415,77 +415,78 @@ body{animation:papoaPageIn .45s cubic-bezier(.22,.61,.36,1) both}
 .tile-placeholder:after{display:none}
 .placeholder-symbol{font-family:'Benzin','Montserrat',Arial,sans-serif;font-size:clamp(70px,9vw,170px);font-weight:400;color:#757a79;user-select:none}
 
-/* Armeria Baleal — imagem em full bleed e scroll guiado pelo rato. */
+/* Armeria Baleal — capa editorial com o website revelado ao passar o rato. */
 .tile-armeria{
   position:relative;
   display:block;
   overflow:hidden;
   isolation:isolate;
-  background:#162222;
-  --teaser-scroll-y:0px;
-  --teaser-max-scroll:0px
+  background:#e8e5df;
+  --teaser-scroll-y:0px
 }
 .tile-armeria::before{display:none}
 .tile-armeria::after{
-  content:"";position:absolute;inset:62% 0 0;pointer-events:none;
-  background:linear-gradient(transparent,rgba(0,0,0,.48));opacity:0;
-  transition:opacity .24s ease
+  content:"";position:absolute;inset:55% 0 0;z-index:3;pointer-events:none;
+  background:linear-gradient(transparent,rgba(0,0,0,.34));opacity:0;
+  transition:opacity .25s ease
 }
 .tile-armeria:hover::after,.tile-armeria:focus-visible::after{opacity:1}
 .teaser-floating{
   position:absolute;
   inset:0;
-  display:block;
-  pointer-events:none;
-  transform:none;
-  transition:none
+  z-index:1;
+  pointer-events:none
 }
 .teaser-browser{
-  display:flex;flex-direction:column;
+  display:block;
   width:100%;height:100%;
   overflow:hidden;
-  border:3px solid #101819;
-  border-radius:0;
-  background:#f6f5f1;
-  box-shadow:none
-}
-.teaser-browser-chrome{
-  display:flex;flex:0 0 24px;align-items:center;gap:11px;
-  padding:0 10px;line-height:1;
-  background:#102d32;color:#c1c9c6;
-  border-bottom:1px solid rgba(255,255,255,.08)
-}
-.teaser-browser-dots{
-  flex:0 0 auto;width:5px;height:5px;border-radius:50%;
-  background:#9bafad;box-shadow:9px 0 0 #9bafad,18px 0 0 #9bafad
-}
-.teaser-browser-address{
-  flex:1;text-align:center;padding-right:28px;
-  font:500 9px "Montserrat",Arial,sans-serif;
-  letter-spacing:.03em;opacity:.84
+  background:#f7f6f3
 }
 .teaser-browser-screen{
-  position:relative;flex:1;min-height:0;
-  overflow:hidden;background:#f7f6f3
+  position:relative;
+  width:100%;height:100%;
+  overflow:hidden;
+  background:#f7f6f3
 }
 .teaser-browser-screen img{
-  display:block;position:absolute;top:0;left:0;
+  display:block;
+  position:absolute;
+  top:0;left:0;
   width:100%;height:auto;max-width:none;
-  object-fit:initial;object-position:initial;
   transform:translate3d(0,var(--teaser-scroll-y),0);
   transition:none;
-  will-change:transform;
-  animation:none
+  will-change:transform
 }
-.tile-armeria .tile-copy{z-index:3}
-@media(max-width:900px){
-  .teaser-floating{inset:0}
-  .teaser-browser{border-width:2px}
-  .teaser-browser-chrome{flex-basis:20px}
+.teaser-cover{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  pointer-events:none;
+  overflow:hidden;
+  background:#e8e5df;
+  opacity:1;
+  transition:opacity .6s cubic-bezier(.22,1,.36,1)
 }
+.teaser-cover img{
+  display:block;
+  width:100%;height:100%;
+  max-width:none;
+  object-fit:cover;
+  object-position:center center;
+  filter:saturate(.88) contrast(.97);
+  transform:scale(1);
+  transition:transform 1.1s cubic-bezier(.22,1,.36,1)
+}
+@media(hover:hover) and (pointer:fine){
+  .tile-armeria:hover .teaser-cover{opacity:0}
+  .tile-armeria:hover .teaser-cover img{transform:scale(1.035)}
+}
+.tile-armeria:focus-visible .teaser-cover{opacity:0}
+.tile-armeria .tile-copy{z-index:4}
 @media(prefers-reduced-motion:reduce){
+  .teaser-cover,.teaser-cover img{transition:none!important}
   .teaser-browser-screen img{
-    animation:none!important;
     transform:translate3d(0,0,0)!important;
     transition:none!important
   }
