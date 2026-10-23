@@ -26,7 +26,7 @@
       items.forEach((item,itemIndex)=>{
         const p=Object.assign({},projects[item.project]||{},item);
         if(p.placeholder==='armeria'){
-          // Um render do projecto ocupa todo o cartão; a página interactiva revela-se no hover.
+          // O vídeo do Armeria ocupa o cartão; o website interactivo revela-se no hover.
           const tile=document.createElement('a');
           tile.className='tile tile-armeria';
           tile.href=p.href||'https://armeriabaleal.com/';
@@ -43,10 +43,21 @@
           shot.width=626;shot.height=2048;
           screen.append(shot);browser.append(screen);floating.append(browser);
           const cover=document.createElement('div');cover.className='teaser-cover';
-          const coverImage=document.createElement('img');
-          coverImage.src=p.cover||'/assets/armeria/Armeria_Video_Capa.avif';
-          coverImage.alt='';coverImage.loading='eager';coverImage.decoding='async';
-          cover.append(coverImage);
+          const video=document.createElement('video');
+          video.className='teaser-cover-video';
+          video.setAttribute('autoplay','');
+          video.setAttribute('muted','');
+          video.setAttribute('loop','');
+          video.setAttribute('playsinline','');
+          video.muted=true;video.defaultMuted=true;video.autoplay=true;
+          video.loop=true;video.playsInline=true;
+          video.preload='metadata';
+          video.poster=p.cover||'/assets/armeria/Armeria_Video_Capa.avif';
+          video.setAttribute('aria-hidden','true');
+          const source=document.createElement('source');
+          source.src=p.video||'https://armeriabaleal.com/assets/video/armeria.mp4';
+          source.type='video/mp4';
+          video.append(source);cover.append(video);
           tile.append(floating,cover);
           const copy=document.createElement('div');copy.className='tile-copy';
           const title=document.createElement('strong');title.textContent=p.title;
@@ -156,14 +167,25 @@
     portfolio.querySelectorAll('.tile-armeria').forEach(tile=>{
       const state={active:false,current:0,speed:0,direction:0,overflow:0};
       armeriaMotion.set(tile,state);
-      tile.addEventListener('pointerenter',event=>setArmeriaDirection(tile,event));
+      const video=tile.querySelector('.teaser-cover-video');
+      tile.addEventListener('pointerenter',event=>{
+        setArmeriaDirection(tile,event);
+        if(video&&event.pointerType!=='touch')video.pause();
+      });
       tile.addEventListener('pointermove',event=>setArmeriaDirection(tile,event),{passive:true});
       tile.addEventListener('pointerleave',()=>{
-        // Fora do cartão, pára e mantém a última posição.
+        // Fora do cartão, pára e mantém a última posição da página.
         state.active=false;
         state.speed=0;
         state.direction=0;
+        if(video&&!reducedMotion.matches)video.play().catch(()=>{});
       });
+      if(video){
+        video.addEventListener('loadeddata',()=>{
+          if(!reducedMotion.matches&&!tile.matches(':hover'))video.play().catch(()=>{});
+        },{once:true});
+        if(reducedMotion.matches)video.pause();
+      }
       const img=tile.querySelector('.teaser-browser-screen img');
       if(img&&!img.complete){
         img.addEventListener('load',updateArmeriaBounds,{once:true});
