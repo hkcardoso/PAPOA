@@ -163,3 +163,18 @@
 @media(max-width:900px){.ac-gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}}
 @media(max-width:640px){.ac-gallery-grid{grid-template-columns:1fr}.ac-gallery-card{aspect-ratio:1.55}.ac-visualisation{padding-bottom:70px}}
 @media(prefers-reduced-motion:reduce){.ac-gallery-card img{transition:none!important}}
+
+/* Editorial portfolio mockups: four slots */
+.ac-mockup-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:16px;row-gap:44px;align-items:start}
+.ac-mockup-card{margin:0;min-width:0}
+.ac-mockup-media{width:100%;aspect-ratio:4/3;overflow:hidden;display:grid;place-items:center;background:#deddd7}
+.ac-mockup-media img{display:block;width:100%;height:100%;object-fit:contain;transition:transform .65s cubic-bezier(.22,.61,.36,1)}
+.ac-mockup-card:hover .ac-mockup-media img{transform:scale(1.02)}
+.ac-mockup-empty{background:#e1e3de;border:1px solid #cfd3cd;position:relative}
+.ac-mockup-empty:before{content:"";position:absolute;inset:17px;border:1px solid rgba(26,37,35,.08)}
+.ac-mockup-empty .ac-placeholder-question{font-size:clamp(86px,11vw,172px);color:#a8b0a9}
+.ac-mockup-card figcaption{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:10px 16px;margin:14px 0 0;color:#68726c;font-size:10px;letter-spacing:.045em;line-height:1.6}
+.ac-mockup-card figcaption span:first-child{color:#48534d;font-weight:600}
+@media(max-width:700px){.ac-mockup-grid{gap:24px 9px}.ac-mockup-empty:before{inset:10px}.ac-mockup-card figcaption{font-size:9px;margin-top:9px}}
+@media(max-width:540px){.ac-mockup-grid{grid-template-columns:1fr;gap:32px}.ac-mockup-empty .ac-placeholder-question{font-size:120px}}
+@media(prefers-reduced-motion:reduce){.ac-mockup-media img{transition:none!important}}
